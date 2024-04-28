@@ -24,7 +24,12 @@
       ];
 
       imports = [
+        ./apps/module.nix
         ./checks/module.nix
+        ./modules/module.nix
+        ./overlays/module.nix
+        ./pkgs/module.nix
+        ./systems/module.nix
       ];
 
       perSystem = {pkgs, ...}: {
