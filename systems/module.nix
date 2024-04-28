@@ -13,7 +13,12 @@
       "${host}" = nixosSystem {
         inherit pkgs system;
         specialArgs = {inherit inputs outputs;};
-        modules = [./${host} ./${host}/hardware.nix];
+        modules =
+          [
+            ./${host}
+            ./${host}/hardware.nix
+          ]
+          ++ builtins.attrValues outputs.nixosModules;
       };
     });
 in {
