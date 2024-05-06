@@ -25,7 +25,8 @@
             ./${host}
             ./${host}/hardware.nix
           ]
-          ++ builtins.attrValues outputs.nixosModules;
+          ++ builtins.attrValues outputs.nixosModules
+          ++ builtins.attrValues outputs.sharedModules;
       };
     });
 in {
