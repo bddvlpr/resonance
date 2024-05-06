@@ -23,6 +23,6 @@
     });
 in {
   flake.nixosConfigurations = lib.mkMerge [
-    (mkSystem "apollo" "x86_64-linux")
+    (mkSystem "dissension" "x86_64-linux")
   ];
 }
