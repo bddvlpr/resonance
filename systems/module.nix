@@ -8,10 +8,17 @@
   inherit (self) outputs;
   inherit (inputs.nixpkgs.lib) nixosSystem;
 
+  mkPkgs = system:
+    import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
   mkSystem = host: system:
     withSystem system ({pkgs, ...}: {
       "${host}" = nixosSystem {
-        inherit pkgs system;
+        inherit system;
+        pkgs = mkPkgs system;
         specialArgs = {inherit inputs outputs;};
         modules =
           [
