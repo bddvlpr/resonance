@@ -6,12 +6,13 @@
   system,
   ...
 }: let
+  inherit (inputs.home-manager.nixosModules) home-manager;
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.home-manager;
 in {
   # TODO: Interchangable with darwinModules.
-  imports = [inputs.home-manager.nixosModules.home-manager];
+  imports = [home-manager];
 
   options.sysc.home-manager = {
     enable = mkOption {

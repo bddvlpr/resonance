@@ -7,10 +7,7 @@
 in {
   networking = {
     hostName = host;
-
-    networkmanager = {
-      enable = true;
-    };
+    networkmanager.enable = true;
   };
 
   environment.persistence."/persist" = {

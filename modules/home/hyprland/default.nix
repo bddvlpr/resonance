@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
@@ -19,23 +20,39 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
 
+      xwayland.enable = true;
+
       settings = {
         "$mod" = "SUPER";
 
-        bind =
-          []
+        exec = [
+          "${lib.getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
+        ];
+
+        bind = let
+          inherit (lib) getExe;
+        in
+          [
+            "$mod, Q, killactive,"
+            "$mod SHIFT, Q, exit,"
+
+            "$mod, Return, exec, ${getExe pkgs.kitty}"
+            "$mod, SPACE, exec, ${getExe pkgs.wofi} -S drun"
+
+            "$mod SHIFT, SPACE, togglefloating,"
+            "$mod, S, togglesplit"
+            "$mod, F, fullscreen,"
+            "$mod, P, pseudo,"
+          ]
           ++ (
             builtins.concatLists (
               builtins.genList (x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
-                  builtins.toString (x + 1 - (c + 1));
+                ws = builtins.toString (x + 1);
               in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                "$mod, ${ws}, workspace, ${ws}"
+                "$mod SHIFT, ${ws}, movetoworkspace, ${ws}"
               ])
-              10
+              9
             )
           );
       };
