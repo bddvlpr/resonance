@@ -19,7 +19,7 @@
       "${host}" = nixosSystem {
         inherit system;
         pkgs = mkPkgs system;
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs outputs host;};
         modules =
           [
             ./${host}
