@@ -32,5 +32,6 @@
 in {
   flake.nixosConfigurations = lib.mkMerge [
     (mkSystem "dissension" "x86_64-linux")
+    (mkSystem "solaris" "x86_64-linux")
   ];
 }

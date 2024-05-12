@@ -1,1 +1,3 @@
-{}
+{
+  hyprland = import ./hyprland;
+}

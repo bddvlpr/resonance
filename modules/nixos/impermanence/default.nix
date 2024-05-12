@@ -18,4 +18,12 @@ in {
       description = "Whether to enable tmpfs-as-root.";
     };
   };
+
+  config.environment.persistence."/persist" = {
+    enable = cfg.enable;
+    directories = [
+      "/etc/nixos"
+      "/var/log"
+    ];
+  };
 }
