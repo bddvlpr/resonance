@@ -1,5 +1,6 @@
 {
   firefox = import ./firefox;
+  fish = import ./fish;
   git = import ./git;
   gpg = import ./gpg;
   helix = import ./helix;
@@ -9,4 +10,5 @@
   stylix = import ./stylix;
   waybar = import ./waybar;
   wofi = import ./wofi;
+  zsh = import ./zsh;
 }

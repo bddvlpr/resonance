@@ -2,11 +2,22 @@
   lib,
   pkgs,
   ...
-}: {
-  programs.fish = {
+}: let
+  inherit (lib.strings) hasSuffix;
+
+  isDarwin = hasSuffix "-darwin" pkgs.system;
+in {
+  programs.zsh = {
     enable = true;
 
-    shellAbbrs = {
+    shellAliases = let
+      inherit (lib) getExe;
+
+      build-command =
+        if isDarwin
+        then "darwin-rebuild --flake ."
+        else "sudo nixos-rebuild --flake /etc/nixos";
+    in {
       n = "nix";
       nb = "nix build";
       nbn = "nix build nixpkgs#";
@@ -18,20 +29,11 @@
       ns = "nix shell";
       nsn = "nix shell nixpkgs#";
 
-      snr = "sudo nixos-rebuild --flake /etc/nixos";
-      snrs = "sudo nixos-rebuild --flake /etc/nixos switch";
-    };
+      snr = "${build-command} --flake /etc/nixos";
+      snrs = "${build-command} switch";
 
-    shellAliases = let
-      inherit (lib) getExe;
-    in {
       ls = "${getExe pkgs.eza} --icons -F -H --group-directories-first --git";
       cat = "${getExe pkgs.bat} -pp --theme=base16";
     };
-
-    shellInit = ''
-      set fish_greeting
-      export TERM=xterm-256color
-    '';
   };
 }

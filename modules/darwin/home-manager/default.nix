@@ -6,12 +6,11 @@
   system,
   ...
 }: let
-  inherit (inputs.home-manager.nixosModules) home-manager;
+  inherit (inputs.home-manager.darwinModules) home-manager;
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.home-manager;
 in {
-  # TODO: Interchangable with darwinModules.
   imports = [home-manager];
 
   options.sysc.home-manager = {

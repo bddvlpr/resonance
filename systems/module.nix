@@ -14,7 +14,7 @@
       config.allowUnfree = true;
     };
 
-  mkSystem = host: system:
+  mkNixOS = host: system:
     withSystem system ({pkgs, ...}: {
       "${host}" = nixosSystem {
         inherit system;
@@ -29,9 +29,30 @@
           ++ builtins.attrValues outputs.sharedModules;
       };
     });
+
+  mkDarwin = host: system:
+    withSystem system ({pkgs, ...}: {
+      "${host}" = inputs.nix-darwin.lib.darwinSystem {
+        inherit system;
+        pkgs = mkPkgs system;
+        specialArgs = {inherit inputs outputs host;};
+        modules =
+          [
+            ./${host}
+          ]
+          ++ builtins.attrValues outputs.darwinModules
+          ++ builtins.attrValues outputs.sharedModules;
+      };
+    });
 in {
-  flake.nixosConfigurations = lib.mkMerge [
-    (mkSystem "dissension" "x86_64-linux")
-    (mkSystem "solaris" "x86_64-linux")
-  ];
+  flake = {
+    nixosConfigurations = lib.mkMerge [
+      (mkNixOS "dissension" "x86_64-linux")
+      (mkNixOS "solaris" "x86_64-linux")
+    ];
+
+    darwinConfigurations = lib.mkMerge [
+      (mkDarwin "apollo" "aarch64-darwin")
+    ];
+  };
 }
