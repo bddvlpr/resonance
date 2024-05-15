@@ -32,7 +32,6 @@ in {
       snr = "${build-command} --flake /etc/nixos";
       snrs = "${build-command} switch";
 
-      ls = "${getExe pkgs.eza} --icons -F -H --group-directories-first --git";
       cat = "${getExe pkgs.bat} -pp --theme=base16";
     };
   };
