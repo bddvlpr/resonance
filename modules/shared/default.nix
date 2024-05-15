@@ -1,6 +1,5 @@
 {
-  fish = import ./fish;
-  home-manager = import ./home-manager;
   nix = import ./nix;
+  shells = import ./shells;
   users-bddvlpr = import ./users/bddvlpr.nix;
 }
