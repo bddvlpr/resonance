@@ -1,4 +1,5 @@
 {
+  dev = import ./dev;
   firefox = import ./firefox;
   fish = import ./fish;
   git = import ./git;

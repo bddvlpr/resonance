@@ -1,5 +1,6 @@
 {outputs, ...}: {
   imports = with outputs.homeManagerModules; [
+    dev
     fish
     git
     gpg
