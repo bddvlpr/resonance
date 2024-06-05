@@ -6,6 +6,7 @@
   gpg = import ./gpg;
   helix = import ./helix;
   hyprland = import ./hyprland;
+  impermanence = import ./impermanence;
   kitty = import ./kitty;
   starship = import ./starship;
   stylix = import ./stylix;

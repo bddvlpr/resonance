@@ -18,6 +18,12 @@ in {
       popups = 0.6;
     };
 
+    cursor = {
+      name = "phinger-cursors-dark";
+      package = pkgs.phinger-cursors;
+      size = 32;
+    };
+
     fonts = {
       serif = {
         package = pkgs.eb-garamond;

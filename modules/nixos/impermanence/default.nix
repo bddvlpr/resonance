@@ -19,11 +19,14 @@ in {
     };
   };
 
-  config.environment.persistence."/persist" = {
-    enable = cfg.enable;
-    directories = [
-      "/etc/nixos"
-      "/var/log"
-    ];
+  config = {
+    programs.fuse.userAllowOther = true;
+    environment.persistence."/persist" = {
+      enable = cfg.enable;
+      directories = [
+        "/etc/nixos"
+        "/var/log"
+      ];
+    };
   };
 }
