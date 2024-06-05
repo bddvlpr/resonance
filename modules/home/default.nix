@@ -2,6 +2,7 @@
   dev = import ./dev;
   firefox = import ./firefox;
   fish = import ./fish;
+  foot = import ./foot;
   git = import ./git;
   gnome-keyring = import ./gnome-keyring;
   gpg = import ./gpg;

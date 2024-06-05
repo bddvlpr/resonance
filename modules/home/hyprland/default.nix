@@ -47,7 +47,7 @@ in {
             "$mod, Q, killactive,"
             "$mod SHIFT, Q, exit,"
 
-            "$mod, Return, exec, ${getExe pkgs.kitty}"
+            "$mod, Return, exec, ${getExe pkgs.foot}"
             "$mod, SPACE, exec, ${getExe pkgs.wofi} -S drun"
 
             "$mod SHIFT, SPACE, togglefloating,"

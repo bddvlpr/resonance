@@ -17,7 +17,7 @@ in {
 
     defaultTerminal = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Whether to use kitty as the default terminal.";
     };
   };
