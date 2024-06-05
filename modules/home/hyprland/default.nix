@@ -96,7 +96,11 @@ in {
             if enabled
             then "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
             else "${name}, disabled";
-        in (forEach osConfig.sysc.monitors (m: mkMonitor m));
+        in
+          [
+            ", highres, auto, 1"
+          ]
+          ++ (forEach osConfig.sysc.monitors (m: mkMonitor m));
 
         workspace = let
           enabledWorkspaces = filter (m: m.enabled && m.workspace != null) osConfig.sysc.monitors;
