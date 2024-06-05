@@ -8,6 +8,7 @@
   impermanence = import ./impermanence;
   networking = import ./networking;
   nvidia = import ./nvidia;
+  pipewire = import ./pipewire;
   sudo = import ./sudo;
   systemd-boot = import ./systemd-boot;
 }
