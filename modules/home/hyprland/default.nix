@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib) filter forEach getExe mkIf mkOption optionalString types;
 
   cfg = config.sysc.hyprland;
 in {
@@ -27,7 +27,7 @@ in {
         "$mod" = "SUPER";
 
         exec = [
-          "${lib.getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
+          "${getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
         ];
 
         general = {
@@ -40,9 +40,7 @@ in {
           preserve_split = true;
         };
 
-        bind = let
-          inherit (lib) getExe;
-        in
+        bind =
           [
             "$mod, Q, killactive,"
             "$mod SHIFT, Q, exit,"
@@ -57,6 +55,11 @@ in {
 
             "$mod, G, togglegroup"
             "$mod, Tab, changegroupactive"
+
+            "$mod SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
+            "$mod SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
+            "SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy output"
+            ", Print, exec, ${getExe pkgs.grimblast} --notify copy active"
           ]
           ++ (
             builtins.concatLists (
@@ -75,9 +78,26 @@ in {
           "$mod, mouse:273, resizewindow"
         ];
 
-        monitor = [
-          ",highres,auto,1"
-        ];
+        monitor = let
+          enabledMonitors = filter (m: m.enabled) osConfig.sysc.monitors;
+
+          mkMonitor = monitor: let
+            inherit (monitor) name width height refreshRate x y scale;
+          in "${name},${toString width}x${toString height}@${toString refreshRate},${toString x}x${toString y},${toString scale}";
+        in
+          [
+            ", preferred, auto, 1"
+          ]
+          ++ (forEach enabledMonitors (m: mkMonitor m));
+
+        workspace = let
+          enabledWorkspaces = filter (m: m.enabled && m.workspace != null) osConfig.sysc.monitors;
+
+          mkWorkspace = monitor: let
+            inherit (monitor) workspace name;
+          in "${optionalString (workspace != null) "${name},${workspace}"}";
+        in
+          forEach enabledWorkspaces (m: mkWorkspace m);
 
         misc = {
           disable_hyprland_logo = true;

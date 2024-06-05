@@ -6,6 +6,7 @@
   hardware = import ./hardware;
   home-manager = import ./home-manager;
   impermanence = import ./impermanence;
+  monitors = import ./monitors;
   networking = import ./networking;
   nvidia = import ./nvidia;
   pipewire = import ./pipewire;
