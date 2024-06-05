@@ -29,6 +29,16 @@ in {
           "${lib.getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
         ];
 
+        general = {
+          gaps_in = 4;
+          gaps_out = 8;
+          border_size = 2;
+        };
+
+        dwindle = {
+          preserve_split = true;
+        };
+
         bind = let
           inherit (lib) getExe;
         in
@@ -43,6 +53,9 @@ in {
             "$mod, S, togglesplit"
             "$mod, F, fullscreen,"
             "$mod, P, pseudo,"
+
+            "$mod, G, togglegroup"
+            "$mod, Tab, changegroupactive"
           ]
           ++ (
             builtins.concatLists (
@@ -55,6 +68,11 @@ in {
               9
             )
           );
+
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
 
         monitor = [
           ",highres,auto,1"

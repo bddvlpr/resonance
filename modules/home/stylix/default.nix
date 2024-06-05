@@ -21,7 +21,6 @@ in {
     cursor = {
       name = "phinger-cursors-dark";
       package = pkgs.phinger-cursors;
-      size = 32;
     };
 
     fonts = {
