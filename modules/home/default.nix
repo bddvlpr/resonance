@@ -9,6 +9,7 @@
   kitty = import ./kitty;
   starship = import ./starship;
   stylix = import ./stylix;
+  vesktop = import ./vesktop;
   vscode = import ./vscode;
   waybar = import ./waybar;
   wofi = import ./wofi;
