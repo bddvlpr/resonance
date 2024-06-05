@@ -11,6 +11,7 @@
   impermanence = import ./impermanence;
   kitty = import ./kitty;
   starship = import ./starship;
+  steam = import ./steam;
   stylix = import ./stylix;
   vesktop = import ./vesktop;
   vscode = import ./vscode;

@@ -40,6 +40,13 @@ in {
           preserve_split = true;
         };
 
+        windowrulev2 = let
+          steam = "title:^()$,class:^(steam)$";
+        in [
+          "stayfocused, ${steam}"
+          "minsize 1 1, ${steam}"
+        ];
+
         bind =
           [
             "$mod, Q, killactive,"
