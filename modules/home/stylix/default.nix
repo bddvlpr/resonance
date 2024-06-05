@@ -45,4 +45,9 @@ in {
       };
     };
   };
+
+  home.packages = with pkgs; [
+    noto-fonts-cjk-sans
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+  ];
 }

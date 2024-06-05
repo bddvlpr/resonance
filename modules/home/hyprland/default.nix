@@ -90,23 +90,20 @@ in {
         ];
 
         monitor = let
-          enabledMonitors = filter (m: m.enabled) osConfig.sysc.monitors;
-
           mkMonitor = monitor: let
-            inherit (monitor) name width height refreshRate x y scale;
-          in "${name},${toString width}x${toString height}@${toString refreshRate},${toString x}x${toString y},${toString scale}";
-        in
-          [
-            ", preferred, auto, 1"
-          ]
-          ++ (forEach enabledMonitors (m: mkMonitor m));
+            inherit (monitor) enabled name width height refreshRate x y scale;
+          in
+            if enabled
+            then "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
+            else "${name}, disabled";
+        in (forEach osConfig.sysc.monitors (m: mkMonitor m));
 
         workspace = let
           enabledWorkspaces = filter (m: m.enabled && m.workspace != null) osConfig.sysc.monitors;
 
           mkWorkspace = monitor: let
             inherit (monitor) workspace name;
-          in "${optionalString (workspace != null) "${name},${workspace}"}";
+          in "${optionalString (workspace != null) "name:${workspace}, monitor:${name}"}";
         in
           forEach enabledWorkspaces (m: mkWorkspace m);
 

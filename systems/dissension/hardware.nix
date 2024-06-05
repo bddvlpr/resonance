@@ -35,9 +35,15 @@
         refreshRate = 75;
         workspace = "3";
       }
+      {
+        name = "Unknown-1";
+        enabled = false;
+      }
     ];
     nvidia.enable = true;
   };
+
+  hardware.steam-hardware.enable = true;
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];

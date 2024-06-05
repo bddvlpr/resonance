@@ -1,0 +1,70 @@
+window#waybar {
+  background: transparent;
+}
+
+#workspaces button {
+  color: @base05;
+}
+
+#workspaces button.active {
+  color: @base0B;
+}
+
+#workspaces button.urgent {
+  color: @base08;
+}
+
+#workspaces button:hover {
+  color: @base05;
+}
+
+#backlight,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#cpu,
+#memory,
+#custom-player,
+#custom-github,
+#modbackground {
+  background-color: alpha(@base00, 0.7);
+  color: @base05;
+  opacity: 1;
+  padding: 0px 7px;
+  margin: 4px;
+  border-radius: 7px;
+}
+
+#workspaces {
+  border-radius: 7px;
+  padding: 0px;
+  margin: 4px;
+}
+
+window#waybar.empty {
+  background-color: transparent;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#clock {
+  margin: 4px 8px 4px 4px;
+}
+
+#cpu {
+  border-radius: 7px 0px 0px 7px;
+  margin: 4px 0px 4px 4px;
+}
+
+#memory {
+  border-radius: 0px 7px 7px 0px;
+  margin: 4px 4px 4px 0px;
+}
