@@ -7,6 +7,7 @@
   home-manager = import ./home-manager;
   impermanence = import ./impermanence;
   networking = import ./networking;
+  nvidia = import ./nvidia;
   sudo = import ./sudo;
   systemd-boot = import ./systemd-boot;
 }
