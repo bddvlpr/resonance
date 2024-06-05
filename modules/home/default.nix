@@ -3,6 +3,7 @@
   firefox = import ./firefox;
   fish = import ./fish;
   git = import ./git;
+  gnome-keyring = import ./gnome-keyring;
   gpg = import ./gpg;
   helix = import ./helix;
   hyprland = import ./hyprland;
