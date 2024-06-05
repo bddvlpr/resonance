@@ -5,6 +5,8 @@
     common-gpu-nvidia-nonprime
   ];
 
+  sysc.disko.luks-btrfs.device = "/dev/nvme0n1";
+
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
