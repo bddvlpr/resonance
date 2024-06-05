@@ -34,6 +34,11 @@ in {
         name = "Geist";
       };
 
+      monospace = {
+        package = pkgs.geist-mono-nerd-font;
+        name = "GeistMono NFM";
+      };
+
       emoji = {
         package = pkgs.twitter-color-emoji;
         name = "Twitter Color Emoji";

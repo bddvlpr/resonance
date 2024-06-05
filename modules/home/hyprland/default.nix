@@ -36,6 +36,10 @@ in {
           border_size = 2;
         };
 
+        input = {
+          follow_mouse = 2;
+        };
+
         dwindle = {
           preserve_split = true;
         };
