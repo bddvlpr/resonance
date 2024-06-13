@@ -18,6 +18,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [xdg-utils];
+
     wayland.windowManager.hyprland = {
       enable = true;
 
