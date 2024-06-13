@@ -182,9 +182,7 @@ in {
             tooltip = false;
             escape = true;
 
-            on-click = "${playerctl} --player spotify play-pause";
-            on-scroll-up = "${playerctl} --player spotify volume 0.1+";
-            on-scroll-down = "${playerctl} --player spotify volume 0.1-";
+            on-click = "${playerctl} --player spotify_player play-pause";
           };
         };
       };
