@@ -1,6 +1,7 @@
 {
   comma = import ./comma;
   dev = import ./dev;
+  direnv = import ./direnv;
   firefox = import ./firefox;
   fish = import ./fish;
   foot = import ./foot;
