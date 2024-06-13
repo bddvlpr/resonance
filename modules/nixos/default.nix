@@ -1,4 +1,5 @@
 {
+  bluetooth = import ./bluetooth;
   dconf = import ./dconf;
   disko = import ./disko;
   general = import ./general;
@@ -6,6 +7,7 @@
   hardware = import ./hardware;
   home-manager = import ./home-manager;
   impermanence = import ./impermanence;
+  monado = import ./monado;
   monitors = import ./monitors;
   networking = import ./networking;
   nvidia = import ./nvidia;

@@ -56,6 +56,7 @@ in {
           in
             builtins.map (m: m.name) enabledMonitors;
           modules-left = ["hyprland/workspaces" "hyprland/window"];
+          modules-center = ["custom/player"];
           modules-right = ["tray" "cpu" "memory" "backlight" "pulseaudio" "network" "battery" "clock"];
 
           "hyprland/window" = {
@@ -163,6 +164,27 @@ in {
               car = "";
               default = ["" "" ""];
             };
+          };
+
+          "custom/player" = let
+            playerctl = getExe pkgs.playerctl;
+            playerExec = pkgs.writeShellScriptBin "player-exec" ''
+              current_song="$(${playerctl} metadata --player spotify --format '{{artist}} - {{title}}' 2> /dev/null)"
+              if [ -n "$current_song" ]; then
+                echo " $current_song"
+              else
+                echo ""
+              fi
+            '';
+          in {
+            interval = 2;
+            exec = "${playerExec}/bin/player-exec";
+            tooltip = false;
+            escape = true;
+
+            on-click = "${playerctl} --player spotify play-pause";
+            on-scroll-up = "${playerctl} --player spotify volume 0.1+";
+            on-scroll-down = "${playerctl} --player spotify volume 0.1-";
           };
         };
       };

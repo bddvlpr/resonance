@@ -10,6 +10,7 @@
   hyprland = import ./hyprland;
   impermanence = import ./impermanence;
   kitty = import ./kitty;
+  opencomposite = import ./opencomposite;
   starship = import ./starship;
   steam = import ./steam;
   stylix = import ./stylix;
