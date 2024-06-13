@@ -12,6 +12,8 @@
     };
 
     extraConfig = {
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
       credential.helper = "libsecret";
     };
   };

@@ -67,8 +67,16 @@ in {
             "$mod, F, fullscreen,"
             "$mod, P, pseudo,"
 
+            "$mod, H, movefocus, l"
+            "$mod, J, movefocus, d"
+            "$mod, K, movefocus, u"
+            "$mod, L, movefocus, r"
+
             "$mod, G, togglegroup"
             "$mod, Tab, changegroupactive"
+
+            "$mod, A, togglespecialworkspace"
+            "$mod SHIFT, A, movetoworkspace, special"
 
             "$mod SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
             "$mod SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
