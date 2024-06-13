@@ -21,7 +21,6 @@
       display-inlay-hints = true;
     };
 
-    file-picker.hidden = false;
     indent-guides.render = true;
     soft-wrap.enable = true;
   };
