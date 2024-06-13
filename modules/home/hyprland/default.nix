@@ -39,6 +39,7 @@ in {
         };
 
         input = {
+          sensitivity = -0.50;
           follow_mouse = 2;
         };
 
