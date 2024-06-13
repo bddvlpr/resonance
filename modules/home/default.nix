@@ -1,4 +1,5 @@
 {
+  comma = import ./comma;
   dev = import ./dev;
   firefox = import ./firefox;
   fish = import ./fish;
@@ -12,6 +13,7 @@
   kitty = import ./kitty;
   opencomposite = import ./opencomposite;
   starship = import ./starship;
+  spotify = import ./spotify;
   steam = import ./steam;
   stylix = import ./stylix;
   vesktop = import ./vesktop;

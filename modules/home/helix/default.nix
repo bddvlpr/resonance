@@ -1,10 +1,11 @@
 {pkgs, ...} @ args: {
   programs.helix = {
     enable = true;
+    defaultEditor = true;
 
     languages = import ./languages.nix args;
+    settings = import ./settings.nix args;
 
-    defaultEditor = true;
     extraPackages = with pkgs;
       [
         buf-language-server
