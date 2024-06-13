@@ -169,7 +169,7 @@ in {
           "custom/player" = let
             playerctl = getExe pkgs.playerctl;
             playerExec = pkgs.writeShellScriptBin "player-exec" ''
-              current_song="$(${playerctl} metadata --player spotify --format '{{artist}} - {{title}}' 2> /dev/null)"
+              current_song="$(${playerctl} metadata --player spotify_player --format '{{artist}} - {{title}}' 2> /dev/null)"
               if [ -n "$current_song" ]; then
                 echo " $current_song"
               else
