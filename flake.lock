@@ -392,15 +392,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1718631178,
+        "lastModified": 1718632593,
         "narHash": "sha256-RxMA8ut1fsxhKRELodR4lHc+fl3e1y803GCW/kfDzSI=",
-        "owner": "bddvlpr",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
-        "rev": "a2f431ef7429d3014e5cfed4b2d24af84bc437cd",
+        "rev": "063ba0f72f6d80829e17c6e5de6c9ae0aa05a841",
         "type": "github"
       },
       "original": {
-        "owner": "bddvlpr",
+        "owner": "quantonganh",
         "repo": "snippets-ls",
         "type": "github"
       }
