@@ -1,4 +1,5 @@
 {
+  aagl = import ./aagl;
   bluetooth = import ./bluetooth;
   dconf = import ./dconf;
   disko = import ./disko;

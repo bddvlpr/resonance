@@ -29,6 +29,9 @@
 
     snippets-ls.url = "github:quantonganh/snippets-ls";
     snippets-ls.inputs.nixpkgs.follows = "nixpkgs";
+
+    aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
+    aagl-gtk-on-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {flake-parts, ...} @ inputs:

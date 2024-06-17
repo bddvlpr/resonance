@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
@@ -15,9 +16,13 @@ in {
     };
   };
 
-  config.hardware.nvidia = mkIf cfg.enable {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-    modesetting.enable = true;
-    nvidiaSettings = false;
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
+
+    hardware.nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      modesetting.enable = true;
+      nvidiaSettings = false;
+    };
   };
 }
