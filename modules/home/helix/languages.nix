@@ -1,11 +1,13 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   inherit (lib) getExe;
   inherit (pkgs) alejandra;
   inherit (pkgs.nodePackages) prettier;
+  inherit (inputs.snippets-ls.packages.${pkgs.system}) snippets-ls;
 
   mkPrettier = {
     name,
@@ -42,11 +44,16 @@ in {
       name = "tsx";
       parser = "typescript";
     })
-    (mkPrettier {
-      name = "svelte";
-      parser = "typescript";
-      plugin = "prettier-plugin-svelte";
-    })
+    ((
+        mkPrettier {
+          name = "svelte";
+          parser = "typescript";
+          plugin = "prettier-plugin-svelte";
+        }
+      )
+      // {
+        language-servers = ["svelteserver" "snippets-ls"];
+      })
     {
       name = "nix";
       auto-format = true;
@@ -55,4 +62,11 @@ in {
       };
     }
   ];
+
+  language-server = {
+    snippets-ls = {
+      command = getExe snippets-ls;
+      args = ["-config" ./snippets.json];
+    };
+  };
 }

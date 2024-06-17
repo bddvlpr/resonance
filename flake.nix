@@ -26,6 +26,9 @@
 
     lemonake.url = "github:passivelemon/lemonake";
     lemonake.inputs.nixpkgs.follows = "nixpkgs";
+
+    snippets-ls.url = "github:bddvlpr/snippets-ls";
+    snippets-ls.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {flake-parts, ...} @ inputs:

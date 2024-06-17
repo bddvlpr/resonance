@@ -381,7 +381,28 @@
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
+        "snippets-ls": "snippets-ls",
         "stylix": "stylix"
+      }
+    },
+    "snippets-ls": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718631178,
+        "narHash": "sha256-RxMA8ut1fsxhKRELodR4lHc+fl3e1y803GCW/kfDzSI=",
+        "owner": "bddvlpr",
+        "repo": "snippets-ls",
+        "rev": "a2f431ef7429d3014e5cfed4b2d24af84bc437cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bddvlpr",
+        "repo": "snippets-ls",
+        "type": "github"
       }
     },
     "stylix": {
