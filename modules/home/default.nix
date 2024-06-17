@@ -12,6 +12,7 @@
   hyprland = import ./hyprland;
   impermanence = import ./impermanence;
   kitty = import ./kitty;
+  mako = import ./mako;
   opencomposite = import ./opencomposite;
   starship = import ./starship;
   spotify = import ./spotify;
