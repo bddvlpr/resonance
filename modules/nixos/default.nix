@@ -3,6 +3,7 @@
   bluetooth = import ./bluetooth;
   dconf = import ./dconf;
   disko = import ./disko;
+  docker = import ./docker;
   general = import ./general;
   gpg-agent = import ./gpg-agent;
   greetd = import ./greetd;
