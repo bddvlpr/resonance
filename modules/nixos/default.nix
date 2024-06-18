@@ -5,6 +5,7 @@
   disko = import ./disko;
   general = import ./general;
   gpg-agent = import ./gpg-agent;
+  greetd = import ./greetd;
   hardware = import ./hardware;
   home-manager = import ./home-manager;
   impermanence = import ./impermanence;
