@@ -47,7 +47,7 @@ in {
     ((
         mkPrettier {
           name = "svelte";
-          parser = "typescript";
+          parser = "svelte";
           plugin = "prettier-plugin-svelte";
         }
       )
