@@ -15,5 +15,5 @@ in {
     WMR_HANDTRACKING = "0";
   };
 
-  hardware.opengl.extraPackages = [monado-vulkan-layers];
+  hardware.graphics.extraPackages = [monado-vulkan-layers];
 }
