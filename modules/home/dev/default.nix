@@ -17,6 +17,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [nodejs] ++ (with nodePackages; [yarn pnpm]);
+    home.packages = with pkgs; [cargo gcc nodejs] ++ (with nodePackages; [yarn pnpm]);
   };
 }
