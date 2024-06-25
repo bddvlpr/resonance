@@ -49,9 +49,11 @@ in {
 
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
+          steamapp = "class:^(steam_app)";
         in [
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
+          "tile, ${steamapp}"
         ];
 
         bind = let
