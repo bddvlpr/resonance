@@ -54,7 +54,11 @@ in {
           "minsize 1 1, ${steam}"
         ];
 
-        bind =
+        bind = let
+          pamixer = getExe pkgs.pamixer;
+          playerctl = getExe pkgs.playerctl;
+          grimblast = getExe pkgs.grimblast;
+        in
           [
             "$mod, Q, killactive,"
             "$mod SHIFT, Q, exit,"
@@ -78,10 +82,22 @@ in {
             "$mod, A, togglespecialworkspace"
             "$mod SHIFT, A, movetoworkspace, special"
 
-            "$mod SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
-            "$mod SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
-            "SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy output"
-            ", Print, exec, ${getExe pkgs.grimblast} --notify copy active"
+            ", XF86AudioRaiseVolume, exec, ${pamixer} -i 5"
+            ", XF86AudioLowerVolume, exec, ${pamixer} -d 5"
+            "$mod SHIFT, XF86AudioRaiseVolume, exec, ${pamixer} --default-source -i 5"
+            "$mod SHIFT, XF86AudioLowerVolume, exec, ${pamixer} --default-source -d 5"
+
+            ", XF86AudioMute, exec, ${pamixer} -t"
+            ", XF86AudioMicMute, exec, ${pamixer} --default-source -t"
+
+            ", XF86AudioPlay, exec, ${playerctl} play-pause"
+            ", XF86AudioNext, exec, ${playerctl} next"
+            ", XF86AudioPrev, exec, ${playerctl} pause"
+
+            "$mod SHIFT, S, exec, ${grimblast} --notify copy area"
+            "$mod SHIFT, Print, exec, ${grimblast} --notify copy screen"
+            "SHIFT, Print, exec, ${grimblast} --notify copy output"
+            ", Print, exec, ${grimblast} --notify copy active"
           ]
           ++ (
             builtins.concatLists (
