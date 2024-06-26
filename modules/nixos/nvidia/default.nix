@@ -12,7 +12,13 @@ in {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "Whether to enabe Nvidia stuff.";
+      description = "Whether to enable Nvidia stuff.";
+    };
+
+    enableBeta = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to enable the beta driver.";
     };
   };
 
@@ -20,7 +26,7 @@ in {
     environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
 
     hardware.nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = mkIf cfg.enableBeta config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
       nvidiaSettings = false;
     };

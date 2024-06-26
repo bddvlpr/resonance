@@ -23,5 +23,6 @@
   vscode = import ./vscode;
   waybar = import ./waybar;
   wofi = import ./wofi;
+  xdg = import ./xdg;
   zsh = import ./zsh;
 }
