@@ -1,5 +1,12 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (builtins) readDir mapAttrs;
   inherit (pkgs) callPackage;
-in {
-  geist-mono-nerd-font = callPackage ./geist-mono-nerd-font {};
-}
+  inherit (lib.attrsets) filterAttrs;
+
+  packages = filterAttrs (pkg: type: type == "directory") (readDir ./.);
+in
+  mapAttrs (k: _: callPackage ./${k} {}) packages
