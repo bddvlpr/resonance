@@ -1,1 +1,1 @@
-final: prev: (import ../../pkgs {pkgs = final;})
+args: final: prev: (import ../../pkgs (args // {pkgs = final;}))

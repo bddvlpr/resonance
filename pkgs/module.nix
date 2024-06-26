@@ -1,5 +1,5 @@
-{
-  perSystem = {pkgs, ...} @ args: {
-    packages = import ./. args;
+args: {
+  perSystem = {pkgs, ...} @ sysArgs: {
+    packages = import ./. (args // sysArgs);
   };
 }

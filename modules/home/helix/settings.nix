@@ -1,4 +1,4 @@
-{...}: {
+args: {
   editor = {
     scrolloff = 8;
     line-number = "relative";

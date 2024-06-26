@@ -1,4 +1,4 @@
-{...} @ args: {
+args: {
   flake = {
     darwinModules = import ./darwin args;
     homeManagerModules = import ./home args;
