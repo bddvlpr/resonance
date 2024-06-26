@@ -1,28 +1,7 @@
-{
-  aagl = import ./aagl;
-  comma = import ./comma;
-  dev = import ./dev;
-  direnv = import ./direnv;
-  firefox = import ./firefox;
-  fish = import ./fish;
-  foot = import ./foot;
-  git = import ./git;
-  gnome-keyring = import ./gnome-keyring;
-  gpg = import ./gpg;
-  helix = import ./helix;
-  hyprland = import ./hyprland;
-  impermanence = import ./impermanence;
-  kitty = import ./kitty;
-  mako = import ./mako;
-  opencomposite = import ./opencomposite;
-  starship = import ./starship;
-  spotify = import ./spotify;
-  steam = import ./steam;
-  stylix = import ./stylix;
-  vesktop = import ./vesktop;
-  vscode = import ./vscode;
-  waybar = import ./waybar;
-  wofi = import ./wofi;
-  xdg = import ./xdg;
-  zsh = import ./zsh;
-}
+{lib, ...}: let
+  inherit (builtins) readDir mapAttrs;
+  inherit (lib.attrsets) filterAttrs;
+
+  modules = filterAttrs (module: type: type == "directory") (readDir ./.);
+in
+  mapAttrs (k: _: import ./${k}) modules
