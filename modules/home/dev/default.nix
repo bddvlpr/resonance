@@ -17,6 +17,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [cargo gcc htop nodejs] ++ (with nodePackages; [yarn pnpm]);
+    home.packages = with pkgs;
+      [
+        cargo
+        clippy
+        gcc
+        htop
+        nodejs
+        rustc
+        rustfmt
+      ]
+      ++ (with nodePackages; [
+        yarn
+        pnpm
+      ]);
   };
 }
