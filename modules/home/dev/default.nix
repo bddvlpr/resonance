@@ -20,6 +20,7 @@ in {
     home.packages = with pkgs;
       [
         cargo
+        cargo-watch
         clippy
         gcc
         htop
