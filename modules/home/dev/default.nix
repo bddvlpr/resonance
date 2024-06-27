@@ -1,10 +1,12 @@
 {
   pkgs,
   lib,
+  inputs,
   config,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
+  inherit (inputs.fenix.packages.${pkgs.system}) complete;
 
   cfg = config.sysc.dev;
 in {
@@ -17,18 +19,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs;
+    home.packages = with complete;
       [
         cargo
-        cargo-watch
-        clippy
-        gcc
-        htop
-        nodejs
         rustc
         rustfmt
       ]
-      ++ (with nodePackages; [
+      ++ (with pkgs; [
+        cargo-watch
+        gcc
+        htop
+        nodejs
+      ])
+      ++ (with pkgs.nodePackages; [
         yarn
         pnpm
       ]);
