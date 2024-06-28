@@ -5,6 +5,7 @@
     git
     gpg
     helix
+    vscode
     zsh
   ];
 

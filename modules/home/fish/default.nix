@@ -25,22 +25,21 @@ in {
       shellAbbrs = let
         build-command =
           if isDarwin
-          then "darwin-rebuild --flake ."
+          then "darwin-rebuild --flake ~/.config/resonance"
           else "sudo nixos-rebuild --flake /etc/nixos";
-      in {
-        n = "nix";
+      in rec {
         nb = "nix build";
-        nbn = "nix build nixpkgs#";
+        nbn = "${nb} nixpkgs#";
         nf = "nix flake";
-        nfu = "nix flake update";
+        nfu = "${nf} update";
         nfmt = "nix fmt";
         nr = "nix run";
-        nrn = "nix run nixpkgs#";
+        nrn = "${nr} nixpkgs#";
         ns = "nix shell";
-        nsn = "nix shell nixpkgs#";
+        nsn = "${ns} nixpkgs#";
 
-        snr = "${build-command} --flake /etc/nixos";
-        snrs = "${build-command} switch";
+        snr = build-command;
+        snrs = "${snr} switch";
       };
 
       shellAliases = let
