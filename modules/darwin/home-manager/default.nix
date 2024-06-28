@@ -23,6 +23,8 @@ in {
 
   config = mkIf cfg.enable {
     home-manager = {
+      useGlobalPkgs = true;
+
       users.bddvlpr = import ./users/bddvlpr.nix;
       extraSpecialArgs = {
         inherit inputs outputs system;

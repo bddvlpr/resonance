@@ -38,9 +38,7 @@
         pkgs = mkPkgs system;
         specialArgs = {inherit inputs outputs host;};
         modules =
-          [
-            ./${host}
-          ]
+          []
           ++ builtins.attrValues outputs.darwinModules
           ++ builtins.attrValues outputs.sharedModules;
       };
@@ -53,7 +51,7 @@ in {
     ];
 
     darwinConfigurations = lib.mkMerge [
-      (mkDarwin "apollo" "aarch64-darwin")
+      (mkDarwin "lavender" "x86_64-darwin")
     ];
   };
 }
