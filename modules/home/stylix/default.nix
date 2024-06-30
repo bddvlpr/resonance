@@ -45,6 +45,8 @@ in {
         name = "Twitter Color Emoji";
       };
     };
+
+    targets.vscode.enable = false;
   };
 
   home.packages = with pkgs; [
