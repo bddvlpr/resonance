@@ -8,11 +8,19 @@
 
   cfg = config.sysc.helix;
 in {
+  imports = [./steel];
+
   options.sysc.helix = {
     enable = mkOption {
       type = types.bool;
       default = true;
       description = "Whether to enable helix.";
+    };
+
+    enableSteel = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to enable Steel plugins.";
     };
   };
 
