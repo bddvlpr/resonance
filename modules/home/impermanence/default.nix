@@ -6,6 +6,8 @@ in {
   config.home.persistence."/persist/home/bddvlpr" = {
     allowOther = true;
     directories = [
+      ".config/sops"
+      ".ssh"
       "Documents"
       "Pictures"
       "Videos"

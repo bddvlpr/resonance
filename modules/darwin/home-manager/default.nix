@@ -16,7 +16,7 @@ in {
   options.sysc.home-manager = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Whether to enable home-manager.";
     };
   };
@@ -28,7 +28,6 @@ in {
       users.bddvlpr = import ./users/bddvlpr.nix;
       extraSpecialArgs = {
         inherit inputs outputs system;
-        nixosConfig = config;
       };
     };
   };

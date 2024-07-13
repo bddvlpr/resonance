@@ -3,7 +3,7 @@
     pkgs,
     lib,
     ...
-  } @ args: let
+  }: let
     inherit (lib) callPackageWith;
 
     mkTest = test:

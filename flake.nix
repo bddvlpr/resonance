@@ -5,7 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     hardware.url = "github:nixos/nixos-hardware";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+
     impermanence.url = "github:nix-community/impermanence";
 
     disko.url = "github:nix-community/disko";
@@ -46,8 +48,8 @@
   outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
-        "aarch64-linux"
         "aarch64-darwin"
+        "aarch64-linux"
         "x86_64-darwin"
         "x86_64-linux"
       ];
@@ -55,13 +57,18 @@
       imports = [
         ./apps/module.nix
         ./checks/module.nix
+        ./lib/module.nix
         ./modules/module.nix
         ./overlays/module.nix
         ./pkgs/module.nix
         ./systems/module.nix
       ];
 
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        inputs',
+        ...
+      }: {
         formatter = pkgs.alejandra;
       };
     };

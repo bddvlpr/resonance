@@ -17,7 +17,7 @@ in {
 
     enableBeta = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Whether to enable the beta driver.";
     };
   };

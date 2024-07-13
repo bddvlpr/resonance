@@ -1,6 +1,5 @@
 {
   mkTest,
-  pkgs,
   lib,
   self,
   alejandra,

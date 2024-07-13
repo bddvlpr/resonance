@@ -1,56 +1,34 @@
 {
   self,
-  inputs,
   lib,
-  withSystem,
+  inputs,
   ...
 }: let
   inherit (self) outputs;
+  inherit (outputs.lib) mkStrappedSystem;
+  inherit (lib) mkMerge;
   inherit (inputs.nixpkgs.lib) nixosSystem;
+  inherit (inputs.nix-darwin.lib) darwinSystem;
 
-  mkPkgs = system:
-    import inputs.nixpkgs {
-      inherit system;
-      overlays = with outputs.overlays; [pkgs];
-      config.allowUnfree = true;
-    };
+  mkNixOS = host: system: {
+    "${host}" = mkStrappedSystem host system nixosSystem [
+      ./${host}
+      ./${host}/hardware.nix
+    ];
+  };
 
-  mkNixOS = host: system:
-    withSystem system ({pkgs, ...}: {
-      "${host}" = nixosSystem {
-        inherit system;
-        pkgs = mkPkgs system;
-        specialArgs = {inherit inputs outputs host;};
-        modules =
-          [
-            ./${host}
-            ./${host}/hardware.nix
-          ]
-          ++ builtins.attrValues outputs.nixosModules
-          ++ builtins.attrValues outputs.sharedModules;
-      };
-    });
-
-  mkDarwin = host: system:
-    withSystem system ({pkgs, ...}: {
-      "${host}" = inputs.nix-darwin.lib.darwinSystem {
-        inherit system;
-        pkgs = mkPkgs system;
-        specialArgs = {inherit inputs outputs host;};
-        modules =
-          []
-          ++ builtins.attrValues outputs.darwinModules
-          ++ builtins.attrValues outputs.sharedModules;
-      };
-    });
+  mkDarwin = host: system: {
+    "${host}" =
+      mkStrappedSystem host system darwinSystem [];
+  };
 in {
   flake = {
-    nixosConfigurations = lib.mkMerge [
+    nixosConfigurations = mkMerge [
       (mkNixOS "dissension" "x86_64-linux")
       (mkNixOS "solaris" "x86_64-linux")
     ];
 
-    darwinConfigurations = lib.mkMerge [
+    darwinConfigurations = mkMerge [
       (mkDarwin "lavender" "x86_64-darwin")
     ];
   };

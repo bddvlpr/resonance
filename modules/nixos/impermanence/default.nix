@@ -25,6 +25,7 @@ in {
       enable = cfg.enable;
       directories = [
         "/etc/nixos"
+        "/etc/ssh"
         "/var/log"
       ];
     };

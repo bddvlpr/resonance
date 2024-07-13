@@ -46,6 +46,10 @@ in {
           border_size = 2;
         };
 
+        cursor = {
+          no_hardware_cursors = true;
+        };
+
         input = {
           sensitivity = -0.50;
           follow_mouse = 2;
@@ -58,10 +62,12 @@ in {
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamapp = "class:^(steam_app)";
+          cura_launcher = "title:^(cura)$";
         in [
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
           "tile, ${steamapp}"
+          "float, ${cura_launcher}"
         ];
 
         bind = let

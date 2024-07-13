@@ -6,22 +6,23 @@
 }: let
   inherit (lib) mkIf mkOption types;
 
-  cfg = config.sysc.freecad;
+  cfg = config.sysc.cura;
 in {
-  options.sysc.freecad = {
+  options.sysc.cura = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = "Whether to enable FreeCAD.";
+      description = "Whether to enable Cura.";
     };
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [freecad];
+      packages = with pkgs; [cura];
+
       persistence."/persist/home/bddvlpr".directories = [
-        ".local/share/FreeCAD"
-        ".config/FreeCAD"
+        ".config/cura"
+        ".local/share/cura"
       ];
     };
   };

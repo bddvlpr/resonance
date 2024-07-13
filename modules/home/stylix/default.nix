@@ -9,7 +9,7 @@ in {
 
   stylix = {
     enable = true;
-    image = ./wallpaper.jpeg;
+    image = ./wallpaper.jpg;
 
     polarity = "dark";
 
