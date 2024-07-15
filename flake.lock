@@ -163,11 +163,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720661479,
-        "narHash": "sha256-nsGgA14vVn0GGiqEfomtVgviRJCuSR3UEopfP8ixW1I=",
+        "lastModified": 1721007199,
+        "narHash": "sha256-Gof4Lj1rgTrX59bNu5b/uS/3X/marUGM7LYw31NoXEA=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "786965e1b1ed3fd2018d78399984f461e2a44689",
+        "rev": "bad376945de7033c7adc424c02054ea3736cf7c4",
         "type": "github"
       },
       "original": {
@@ -184,11 +184,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1720938532,
-        "narHash": "sha256-Q2ldXS7ZUJWDqdF+GjgRQPlDfdM6NyJ1aw7xUdzjY+4=",
+        "lastModified": 1721025077,
+        "narHash": "sha256-q7UlaKzIXuGNGlM+1REjR2iRO842Orzm00GRniyNdtA=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "e761b522381d124fdc3ba20cecb2be2abec1d8cf",
+        "rev": "22d6920811da3d6f6fbf1efc5af4e9c3e5025d30",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720294664,
-        "narHash": "sha256-YEhAWWXBjWUfzrcG1gvsiQOpih+KMnNWPhDZYgzWeYo=",
+        "lastModified": 1721016383,
+        "narHash": "sha256-iOygn7q9wqu6EJdECXvwCdd+E66HLLm5j4X5KAZx0RY=",
         "owner": "passivelemon",
         "repo": "lemonake",
-        "rev": "44a6c6fb81734bd2d8edc47239ff83d60edb66bb",
+        "rev": "128f4bd16a5adf60cc6322838483ad95899cef47",
         "type": "github"
       },
       "original": {
@@ -531,11 +531,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1720717809,
-        "narHash": "sha256-6I+fm+nTLF/iaj7ffiFGlSY7POmubwUaPA/Wq0Bm53M=",
+        "lastModified": 1720953053,
+        "narHash": "sha256-zNaYyxBHmrfk4EfqvxUU97iOw1uchnBuytqgt/Zm8LA=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "ffbc5ad993d5cd2f3b8bcf9a511165470944ab91",
+        "rev": "e9afba57a5a8780285f530172e3ceea1f9c7eff7",
         "type": "github"
       },
       "original": {
@@ -598,11 +598,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1720927615,
-        "narHash": "sha256-ltreDsPScMcYghRkFtunBmGZemHzI22i42kFgD9HIZQ=",
+        "lastModified": 1721019063,
+        "narHash": "sha256-wS8UvRIfq2LVLVGBZ5ijRBylKIBYKpOC71DxnhSIbsk=",
         "owner": "mattwparas",
         "repo": "steel",
-        "rev": "c2030c25231a6b0010e856db7e36384722848d8a",
+        "rev": "389cb7d5589d154d7626c1757c3343a1915a4a8a",
         "type": "github"
       },
       "original": {
