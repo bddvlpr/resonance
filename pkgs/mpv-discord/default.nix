@@ -2,6 +2,7 @@
   buildGoModule,
   fetchFromGitHub,
   stdenv,
+  lib,
 }: let
   name = "mpv-discord";
   version = "1.6.1";
@@ -32,4 +33,11 @@ in
 
       substituteInPlace $out/share/mpv/scripts/${scriptName} --replace 'binary_path = ""' 'binary_path = "${core}/bin/mpv-discord"'
     '';
+
+    meta = with lib; {
+      description = "A cross-platform Discord Rich Presence integration for mpv with no external dependencies";
+      homepage = "https://github.com/tnychn/mpv-discord";
+      license = licenses.mit;
+      platforms = platforms.all;
+    };
   }
