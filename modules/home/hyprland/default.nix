@@ -5,7 +5,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) filter forEach getExe mkIf mkOption optionalString types;
+  inherit (lib) filter forEach getExe mkIf mkOption optionals optionalString types;
 
   cfg = config.sysc.hyprland;
 in {
@@ -14,6 +14,26 @@ in {
       type = types.bool;
       default = true;
       description = "Whether to enable Hyprland.";
+    };
+
+    dimmer = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to enable a dimmer for your eyes if it goes dark.";
+      };
+
+      latitude = mkOption {
+        type = types.float;
+        default = 51.260197;
+        description = "The latitude for sunset/sunrise calc.";
+      };
+
+      longitude = mkOption {
+        type = types.float;
+        default = 4.402771;
+        description = "The longitude for sunset/sunrise calc.";
+      };
     };
   };
 
@@ -36,9 +56,13 @@ in {
       settings = {
         "$mod" = "SUPER";
 
-        exec = [
-          "${getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
-        ];
+        exec =
+          [
+            "${getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
+          ]
+          ++ optionals cfg.dimmer.enable [
+            "${getExe pkgs.wlsunset} -l ${toString cfg.dimmer.latitude} -L ${toString cfg.dimmer.longitude}"
+          ];
 
         general = {
           gaps_in = 4;

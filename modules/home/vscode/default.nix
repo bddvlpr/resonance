@@ -40,6 +40,7 @@
       eamodio.gitlens
       esbenp.prettier-vscode
       dbaeumer.vscode-eslint
+      zxh404.vscode-proto3
 
       # Theme
       catppuccin.catppuccin-vsc
