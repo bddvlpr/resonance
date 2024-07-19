@@ -35,10 +35,6 @@
         refreshRate = 75;
         workspace = "3";
       }
-      {
-        name = "Unknown-1";
-        enabled = false;
-      }
     ];
     nvidia.enable = true;
   };
