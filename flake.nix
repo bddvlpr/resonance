@@ -38,10 +38,10 @@
     aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
     aagl-gtk-on-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    steel.url = "github:mattwparas/steel?ref=2c273ed15acc5a5bf1cc250f8a96d017e00bda98";
+    steel.url = "github:mattwparas/steel";
     steel.inputs.nixpkgs.follows = "nixpkgs";
 
-    helix-steel.url = "github:mattwparas/helix/steel-event-system";
+    helix-steel.url = "github:mattwparas/helix?ref=steel-event-system";
     helix-steel.inputs.nixpkgs.follows = "nixpkgs";
   };
 
