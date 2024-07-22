@@ -4,7 +4,7 @@
   osConfig,
   pkgs,
   ...
-}: let
+} @ args: let
   inherit (lib) filter getExe mkIf mkOption types;
 
   cfg = config.sysc.waybar;
@@ -57,7 +57,7 @@ in {
             builtins.map (m: m.name) enabledMonitors;
           modules-left = ["hyprland/workspaces" "hyprland/window"];
           modules-center = ["custom/player"];
-          modules-right = ["tray" "cpu" "memory" "backlight" "pulseaudio" "network" "battery" "clock"];
+          modules-right = ["tray" "cpu" "memory" "backlight" "pulseaudio" "custom/tailscale" "network" "battery" "clock"];
 
           "hyprland/window" = {
             format = "{}";
@@ -166,22 +166,29 @@ in {
             };
           };
 
+          "custom/tailscale" = let
+            inherit (import ./tailscale-widget.nix args) exec on-click;
+          in {
+            interval = 3;
+            exec = "${getExe exec}";
+            tooltip = false;
+            on-click = "${getExe on-click}";
+          };
+
           "custom/player" = let
             playerctl = getExe pkgs.playerctl;
             playerExec = pkgs.writeShellScriptBin "player-exec" ''
               current_song="$(${playerctl} metadata --player spotify_player --format '{{artist}} - {{title}}' 2> /dev/null)"
               if [ -n "$current_song" ]; then
-                echo " $current_song"
+                echo "<span color='${colors.base0B}'> </span>$current_song"
               else
                 echo ""
               fi
             '';
           in {
             interval = 2;
-            exec = "${playerExec}/bin/player-exec";
+            exec = "${getExe playerExec}";
             tooltip = false;
-            escape = true;
-
             on-click = "${playerctl} --player spotify_player play-pause";
           };
         };
