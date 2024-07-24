@@ -61,6 +61,10 @@ in {
         command = getExe alejandra;
       };
     }
+    {
+      name = "toml";
+      auto-format = true;
+    }
   ];
 
   language-server = {

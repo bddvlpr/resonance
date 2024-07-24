@@ -6,8 +6,8 @@ args: {
 
     cursor-shape = {
       insert = "bar";
-      normal = "block";
-      select = "underline";
+      normal = "underline";
+      select = "block";
     };
 
     statusline = {
