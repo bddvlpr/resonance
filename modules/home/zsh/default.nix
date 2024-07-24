@@ -32,7 +32,6 @@ in {
       snrs = "${snr} switch";
 
       cat = "${getExe pkgs.bat} -pp --theme=base16";
-      goto = "cd $(find . -type d -print | ${getExe pkgs.fzf})";
     };
   };
 }
