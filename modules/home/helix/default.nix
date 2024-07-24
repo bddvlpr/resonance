@@ -41,7 +41,7 @@ in {
           haskell-language-server
           helm-ls
           kotlin-language-server
-          lldb
+          lldb_18
           marksman
           netcoredbg
           nil
