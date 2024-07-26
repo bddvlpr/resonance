@@ -20,13 +20,6 @@ in {
     in {
       enable = true;
 
-      events = [
-        {
-          event = "before-sleep";
-          command = swayidle;
-        }
-      ];
-
       timeouts = [
         {
           timeout = 60 * 5;
