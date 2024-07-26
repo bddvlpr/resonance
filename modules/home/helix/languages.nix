@@ -7,6 +7,7 @@
   inherit (lib) getExe;
   inherit (pkgs) alejandra;
   inherit (pkgs.nodePackages) prettier;
+  inherit (inputs.nix-steel.packages.${pkgs.system}) steel-language-server;
   inherit (inputs.snippets-ls.packages.${pkgs.system}) snippets-ls;
 
   mkPrettier = {
@@ -65,12 +66,20 @@ in {
       name = "toml";
       auto-format = true;
     }
+    {
+      name = "scheme";
+      language-servers = ["steel-language-server"];
+    }
   ];
 
   language-server = {
     snippets-ls = {
       command = getExe snippets-ls;
       args = ["-config" ./snippets.json];
+    };
+    steel-language-server = {
+      command = getExe steel-language-server;
+      args = [];
     };
   };
 }
