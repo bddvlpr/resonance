@@ -15,4 +15,3 @@
   (helix.theme *helix.cx* (list (select-random options)) helix.PromptEvent::Validate))
 
 (randomly-pick-theme possible-themes)
-

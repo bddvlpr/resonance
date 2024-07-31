@@ -15,7 +15,6 @@
 (define (git-add cx)
   (shell cx "git" "add" "%"))
 
-
 ;; Functions to assist with the above
 
 (define (editor-get-doc-if-exists editor doc-id)
@@ -29,12 +28,11 @@
 
     (if document (Document-path document) #f)))
 
-
 ;;@doc
 ;; Reload the helix.scm file
 (define (reload-helix-scm cx)
   (helix.static.run-in-engine! cx
-                               (string-append "(require \"" (helix.static.get-helix-scm-path) "\")")))
+    (string-append "(require \"" (helix.static.get-helix-scm-path) "\")")))
 
 ;;@doc
 ;; Open the helix.scm file

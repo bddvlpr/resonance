@@ -7,6 +7,7 @@
 }: let
   inherit (lib) mkIf mkOption optionals types;
   inherit (inputs.fenix.packages.${pkgs.system}) complete;
+  inherit (inputs.schemat.packages.${pkgs.system}) schemat;
   inherit (pkgs.stdenv) isDarwin;
 
   cfg = config.sysc.dev;
@@ -30,6 +31,7 @@ in {
             "rustc"
             "rustfmt"
           ])
+        schemat
       ]
       ++ (with pkgs; [
         cargo-watch

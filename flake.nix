@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
 
     hardware.url = "github:nixos/nixos-hardware";
 
@@ -43,6 +44,9 @@
 
     helix-steel.url = "github:mattwparas/helix?ref=steel-event-system";
     helix-steel.inputs.nixpkgs.follows = "nixpkgs";
+
+    schemat.url = "github:bddvlpr/schemat";
+    schemat.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {flake-parts, ...} @ inputs:
