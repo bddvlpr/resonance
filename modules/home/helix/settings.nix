@@ -1,4 +1,4 @@
-args: {
+{config, ...}: {
   editor = {
     scrolloff = 8;
     line-number = "relative";
@@ -8,6 +8,13 @@ args: {
       insert = "bar";
       normal = "underline";
       select = "block";
+    };
+
+    terminal.command = config.home.sessionVariables.TERMINAL;
+
+    inline-diagnostics = {
+      cursor-line = "hint";
+      other-lines = "error";
     };
 
     statusline = {
