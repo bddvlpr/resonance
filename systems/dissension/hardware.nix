@@ -38,8 +38,10 @@
     ];
     nvidia.enable = true;
   };
-
-  hardware.steam-hardware.enable = true;
+  hardware = {
+    steam-hardware.enable = true;
+    keyboard.qmk.enable = true;
+  };
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];
