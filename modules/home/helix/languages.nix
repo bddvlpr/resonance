@@ -8,7 +8,6 @@
   inherit (pkgs) alejandra;
   inherit (pkgs.nodePackages) prettier;
   inherit (inputs.nix-steel.packages.${pkgs.system}) steel-language-server;
-  inherit (inputs.snippets-ls.packages.${pkgs.system}) snippets-ls;
 
   mkPrettier = {
     name,
@@ -53,7 +52,7 @@ in {
         }
       )
       // {
-        language-servers = ["svelteserver" "snippets-ls"];
+        language-servers = ["svelteserver"];
       })
     {
       name = "nix";
@@ -73,10 +72,6 @@ in {
   ];
 
   language-server = {
-    snippets-ls = {
-      command = getExe snippets-ls;
-      args = ["-config" ./snippets.json];
-    };
     steel-language-server = {
       command = getExe steel-language-server;
       args = [];

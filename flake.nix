@@ -30,12 +30,6 @@
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    lemonake.url = "github:passivelemon/lemonake";
-    lemonake.inputs.nixpkgs.follows = "nixpkgs";
-
-    snippets-ls.url = "github:quantonganh/snippets-ls";
-    snippets-ls.inputs.nixpkgs.follows = "nixpkgs";
-
     aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
     aagl-gtk-on-nix.inputs.nixpkgs.follows = "nixpkgs";
 
