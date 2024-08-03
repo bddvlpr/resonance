@@ -295,24 +295,6 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1719745305,
-        "narHash": "sha256-xwgjVUpqSviudEkpQnioeez1Uo2wzrsMaJKJClh+Bls=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "c3c5ecc05edc7dafba779c6c1a61cd08ac6583e9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_3": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_3"
-      },
-      "locked": {
         "lastModified": 1719994518,
         "narHash": "sha256-pQMhCCHyQGRzdfAkdJ4cIWiw+JNuWsTX7f0ZYSyz0VY=",
         "owner": "hercules-ci",
@@ -326,9 +308,9 @@
         "type": "github"
       }
     },
-    "flake-parts_4": {
+    "flake-parts_3": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_4"
+        "nixpkgs-lib": "nixpkgs-lib_3"
       },
       "locked": {
         "lastModified": 1719994518,
@@ -510,27 +492,6 @@
         "type": "github"
       }
     },
-    "lemonake": {
-      "inputs": {
-        "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1721698810,
-        "narHash": "sha256-/FOZPzbB0JRexs49nYeJfdqvwVq83NE+89wRVdXu8x0=",
-        "owner": "passivelemon",
-        "repo": "lemonake",
-        "rev": "ad7cd7c91bd7e23194ae5b4263811c57f7d0b1fe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "passivelemon",
-        "repo": "lemonake",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -573,7 +534,7 @@
     },
     "nix-steel": {
       "inputs": {
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -622,18 +583,6 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
-        "lastModified": 1717284937,
-        "narHash": "sha256-lIbdfCsf8LMFloheeE6N31+BMIeixqyQWbSr2vk79EQ=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
-      }
-    },
-    "nixpkgs-lib_3": {
-      "locked": {
         "lastModified": 1719876945,
         "narHash": "sha256-Fm2rDDs86sHy0/1jxTOKB1118Q0O3Uc7EC0iXvXKpbI=",
         "type": "tarball",
@@ -644,7 +593,7 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/5daf0514482af3f97abaefc78a6606365c9108e2.tar.gz"
       }
     },
-    "nixpkgs-lib_4": {
+    "nixpkgs-lib_3": {
       "locked": {
         "lastModified": 1719876945,
         "narHash": "sha256-Fm2rDDs86sHy0/1jxTOKB1118Q0O3Uc7EC0iXvXKpbI=",
@@ -683,14 +632,12 @@
         "helix-steel": "helix-steel",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "lemonake": "lemonake",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nix-steel": "nix-steel",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "schemat": "schemat",
-        "snippets-ls": "snippets-ls",
         "stylix": "stylix"
       }
     },
@@ -781,7 +728,7 @@
     "schemat": {
       "inputs": {
         "fenix": "fenix_2",
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -797,26 +744,6 @@
       "original": {
         "owner": "bddvlpr",
         "repo": "schemat",
-        "type": "github"
-      }
-    },
-    "snippets-ls": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1718632593,
-        "narHash": "sha256-RxMA8ut1fsxhKRELodR4lHc+fl3e1y803GCW/kfDzSI=",
-        "owner": "quantonganh",
-        "repo": "snippets-ls",
-        "rev": "063ba0f72f6d80829e17c6e5de6c9ae0aa05a841",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quantonganh",
-        "repo": "snippets-ls",
         "type": "github"
       }
     },
