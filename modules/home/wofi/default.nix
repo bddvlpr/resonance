@@ -17,5 +17,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.wofi.enable = true;
+
+    stylix.targets.wofi.enable = false;
   };
 }
