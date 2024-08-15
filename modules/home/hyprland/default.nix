@@ -117,6 +117,11 @@ in {
             "$mod, K, movefocus, u"
             "$mod, L, movefocus, r"
 
+            "$mod SHIFT, H, resizeactive, -20 0"
+            "$mod SHIFT, J, resizeactive, 0 20"
+            "$mod SHIFT, K, resizeactive, 0 -20"
+            "$mod SHIFT, L, resizeactive, 20 0"
+
             "$mod, G, togglegroup"
             "$mod, Tab, changegroupactive"
 

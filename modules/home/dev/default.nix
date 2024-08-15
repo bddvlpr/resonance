@@ -36,7 +36,12 @@ in {
       ++ (with pkgs; [
         cargo-watch
         htop
+        jq
+        p7zip
+        neofetch
         nodejs
+        unzip
+        zip
       ])
       ++ (with pkgs.nodePackages; [
         yarn

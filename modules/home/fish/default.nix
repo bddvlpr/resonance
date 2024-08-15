@@ -5,10 +5,9 @@
   ...
 }: let
   inherit (lib) mkIf mkOption types;
-  inherit (lib.strings) hasSuffix;
+  inherit (pkgs.stdenv) isDarwin;
 
   cfg = config.sysc.fish;
-  isDarwin = hasSuffix "-darwin" pkgs.system;
 in {
   options.sysc.fish = {
     enable = mkOption {

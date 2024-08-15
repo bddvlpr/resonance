@@ -1,8 +1,10 @@
 {
   inputs,
+  inputs',
   outputs,
   lib,
   config,
+  self',
   system,
   ...
 }: let
@@ -27,7 +29,7 @@ in {
 
       users.bddvlpr = import ./users/bddvlpr.nix;
       extraSpecialArgs = {
-        inherit inputs outputs system;
+        inherit inputs inputs' outputs self' system;
       };
     };
   };

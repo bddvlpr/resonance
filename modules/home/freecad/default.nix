@@ -11,7 +11,7 @@ in {
   options.sysc.freecad = {
     enable = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Whether to enable FreeCAD.";
     };
   };

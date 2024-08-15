@@ -3,9 +3,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib.strings) hasSuffix;
-
-  isDarwin = hasSuffix "-darwin" pkgs.system;
+  inherit (pkgs.stdenv) isDarwin;
 in {
   programs.zsh = {
     enable = true;

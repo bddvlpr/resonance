@@ -17,11 +17,16 @@ in {
       };
 
     mkSystem = host: system: type: modules:
-      withSystem system ({pkgs, ...}:
+      withSystem system ({
+        pkgs,
+        inputs',
+        self',
+        ...
+      }:
         type {
           inherit system modules;
           pkgs = mkPkgs system;
-          specialArgs = {inherit inputs outputs host;};
+          specialArgs = {inherit inputs inputs' outputs self host;};
         });
 
     mkStrappedSystem = host: system: type: modules: let

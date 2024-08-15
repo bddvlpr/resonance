@@ -4,9 +4,7 @@
   ...
 }: let
   inherit (lib) mkIf mkMerge;
-  inherit (lib.strings) hasSuffix;
-
-  isDarwin = hasSuffix "-darwin" pkgs.system;
+  inherit (pkgs.stdenv) isDarwin;
 in {
   users.users.bddvlpr = mkMerge [
     {
