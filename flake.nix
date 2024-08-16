@@ -33,7 +33,7 @@
     aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
     aagl-gtk-on-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    helix.url = "github:helix-editor/helix?ref=e46cedfc267c7651462f92a1b822de439c0024a8";
+    helix.url = "github:helix-editor/helix";
     helix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-steel.url = "github:bddvlpr/nix-steel";
