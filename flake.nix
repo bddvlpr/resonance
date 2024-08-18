@@ -27,7 +27,7 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
-    fenix.url = "github:nix-community/fenix";
+    fenix.url = "github:nix-community/fenix?ref=monthly";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
 
     aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
