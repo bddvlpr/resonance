@@ -26,6 +26,7 @@ in {
       directories = [
         "/etc/nixos"
         "/etc/ssh"
+        "/var/lib/nixos"
         "/var/log"
       ];
     };

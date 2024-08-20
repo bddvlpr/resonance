@@ -17,13 +17,19 @@ in {
   config = mkIf cfg.enable {
     services.swayidle = let
       swayidle = lib.getExe config.programs.swaylock.package;
+      hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
     in {
       enable = true;
 
       timeouts = [
         {
-          timeout = 60 * 5;
+          timeout = 60 * 3;
           command = swayidle;
+        }
+        {
+          timeout = 60 * 5;
+          command = "${hyprctl} dispatch dpms off";
+          resumeCommand = "${hyprctl} dispatch dpms on";
         }
       ];
     };
