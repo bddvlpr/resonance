@@ -109,6 +109,7 @@ in {
 
             "$mod SHIFT, SPACE, togglefloating,"
             "$mod, S, togglesplit"
+            "$mod, E, swapnext"
             "$mod, F, fullscreen,"
             "$mod, P, pseudo,"
 
