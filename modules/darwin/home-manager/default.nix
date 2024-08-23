@@ -18,7 +18,7 @@ in {
   options.sysc.home-manager = {
     enable = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Whether to enable home-manager.";
     };
   };

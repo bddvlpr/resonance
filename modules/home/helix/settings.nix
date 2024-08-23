@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   editor = {
     scrolloff = 8;
     line-number = "relative";
@@ -10,7 +14,10 @@
       select = "block";
     };
 
-    terminal.command = config.home.sessionVariables.TERMINAL;
+    terminal.command =
+      if pkgs.stdenv.isLinux
+      then config.home.sessionVariables.TERMINAL
+      else "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
 
     inline-diagnostics = {
       cursor-line = "hint";
