@@ -4,6 +4,7 @@
   ...
 }: {
   imports = with outputs.homeManagerModules; [
+    bash
     comma
     dev
     direnv
@@ -16,7 +17,7 @@
     impermanence
     mpv
     starship
-    #steel
+    steel
     vscode
     zsh
   ];
