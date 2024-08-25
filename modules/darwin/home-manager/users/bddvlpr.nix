@@ -4,7 +4,6 @@
   ...
 }: {
   imports = with outputs.homeManagerModules; [
-    bash
     comma
     dev
     direnv
