@@ -63,6 +63,7 @@
         ./overlays/module.nix
         ./pkgs/module.nix
         ./systems/module.nix
+        ./templates/module.nix
       ];
 
       perSystem = {
