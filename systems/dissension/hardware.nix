@@ -36,7 +36,10 @@
         workspace = "3";
       }
     ];
-    nvidia.enable = true;
+    nvidia = {
+      enable = true;
+      enableOpen = true;
+    };
   };
   hardware = {
     steam-hardware.enable = true;

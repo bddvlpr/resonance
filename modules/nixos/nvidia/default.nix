@@ -20,6 +20,12 @@ in {
       default = true;
       description = "Whether to enable the beta driver.";
     };
+
+    enableOpen = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to enable the open driver.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -27,6 +33,7 @@ in {
 
     hardware.nvidia = {
       package = mkIf cfg.enableBeta config.boot.kernelPackages.nvidiaPackages.beta;
+      open = cfg.enableOpen;
       modesetting.enable = true;
       nvidiaSettings = false;
     };

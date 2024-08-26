@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = with inputs.hardware.nixosModules; [
     common-pc-laptop-ssd
-    common-cpu-intel
+    common-cpu-intel-cpu-only
     common-gpu-nvidia-nonprime
   ];
 
