@@ -790,11 +790,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1724444244,
-        "narHash": "sha256-fH1lyJvJjUhZ8xMlmiI18EZNzodDSe74rFuwlZDL0aQ=",
+        "lastModified": 1724702977,
+        "narHash": "sha256-bP1/BHbEigLjTTmqyy1t8w5EVWHuLuABtOd/BBXVLtA=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "d042af478ce87e188139480922a3085218194106",
+        "rev": "6c895c6b42ca205017abe72a7263baf36a197972",
         "type": "github"
       },
       "original": {
