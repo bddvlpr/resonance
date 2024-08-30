@@ -790,15 +790,15 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1724702977,
-        "narHash": "sha256-bP1/BHbEigLjTTmqyy1t8w5EVWHuLuABtOd/BBXVLtA=",
-        "owner": "danth",
+        "lastModified": 1725034781,
+        "narHash": "sha256-E0CrYq8A/gdBjb9qC3PGKfH9lwSESyFX6sRZXJxq4JE=",
+        "owner": "bddvlpr",
         "repo": "stylix",
-        "rev": "6c895c6b42ca205017abe72a7263baf36a197972",
+        "rev": "c3757a0ce9b717f4397051de93febb752c1020d0",
         "type": "github"
       },
       "original": {
-        "owner": "danth",
+        "owner": "bddvlpr",
         "repo": "stylix",
         "type": "github"
       }

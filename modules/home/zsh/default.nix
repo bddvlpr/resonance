@@ -27,6 +27,7 @@ in {
       nsn = "${ns} nixpkgs#";
 
       snr = build-command;
+      snrb = "${snr} boot";
       snrs = "${snr} switch";
 
       cat = "${getExe pkgs.bat} -pp --theme=base16";

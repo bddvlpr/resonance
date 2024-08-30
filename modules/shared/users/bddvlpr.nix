@@ -12,7 +12,7 @@ in {
     }
     (mkIf (!isDarwin) {
       isNormalUser = true;
-      extraGroups = ["wheel" "audio" "video" "dialout" "networkmanager" "docker"];
+      extraGroups = ["wheel" "audio" "video" "dialout" "plugdev" "networkmanager" "docker"];
       hashedPassword = "$y$j9T$loVbb4dcOYqZmhAC3NScI1$NmvBmCrmuybhIhaM25x6.X2AgFKkvk9Upfr8GyqCA.3";
     })
     (mkIf isDarwin {
