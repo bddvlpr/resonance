@@ -2,7 +2,7 @@
   description = "Luna's system configurations and modules";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=a58bc8ad779655e790115244571758e8de055e3d";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
 
     hardware.url = "github:nixos/nixos-hardware";
