@@ -4,7 +4,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = {flake-parts} @ inputs:
+  outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
