@@ -11,39 +11,58 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-darwin.url = "github:lnl7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.home-manager.follows = "home-manager";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
 
-    fenix.url = "github:nix-community/fenix?ref=monthly";
-    fenix.inputs.nixpkgs.follows = "nixpkgs";
+    fenix = {
+      url = "github:nix-community/fenix?ref=monthly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    aagl-gtk-on-nix.url = "github:ezkea/aagl-gtk-on-nix";
-    aagl-gtk-on-nix.inputs.nixpkgs.follows = "nixpkgs";
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    helix.url = "github:helix-editor/helix";
-    helix.inputs.nixpkgs.follows = "nixpkgs";
+    nix-steel = {
+      url = "github:bddvlpr/nix-steel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-steel.url = "github:bddvlpr/nix-steel";
-    nix-steel.inputs.nixpkgs.follows = "nixpkgs";
+    helix-steel = {
+      url = "github:mattwparas/helix?ref=steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    helix-steel.url = "github:mattwparas/helix?ref=steel-event-system";
-    helix-steel.inputs.nixpkgs.follows = "nixpkgs";
-
-    schemat.url = "github:bddvlpr/schemat";
-    schemat.inputs.nixpkgs.follows = "nixpkgs";
+    schemat = {
+      url = "github:bddvlpr/schemat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {flake-parts, ...} @ inputs:
