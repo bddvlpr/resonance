@@ -13,13 +13,18 @@ in {
       type = types.bool;
       default = true;
     };
+
+    package = mkOption {
+      type = types.package;
+      default = pkgs.mpv.override {
+        scripts = [pkgs.mpv-discord];
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     home.packages = [
-      (pkgs.mpv.override {
-        scripts = [pkgs.mpv-discord];
-      })
+      cfg.package
     ];
   };
 }
