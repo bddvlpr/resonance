@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     services.swayidle = let
-      swayidle = lib.getExe config.programs.swaylock.package;
+      swaylock = lib.getExe config.programs.swaylock.package;
       hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
     in {
       enable = true;
@@ -24,7 +24,7 @@ in {
       timeouts = [
         {
           timeout = 60 * 3;
-          command = swayidle;
+          command = "${swaylock} --grace 120";
         }
         {
           timeout = 60 * 5;
