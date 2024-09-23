@@ -10,7 +10,7 @@ in {
   options.sysc.docker = {
     enable = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Whether to enable Docker and Docker engine.";
     };
   };

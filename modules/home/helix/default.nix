@@ -48,6 +48,7 @@ in {
           netcoredbg
           nil
           omnisharp-roslyn
+          ruff
           rust-analyzer
           taplo
           terraform-ls

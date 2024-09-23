@@ -16,6 +16,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.avahi.enable = true;
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
   };
 }

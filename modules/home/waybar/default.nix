@@ -137,10 +137,19 @@ in {
           };
 
           clock = {
-            format = "<span color='${colors.base0B}'> </span>{:%I:%M%p}";
-            format-alt = "<span color='${colors.base0B}'> </span>{:%a, %b %e}";
+            format = "<span color='${colors.base0B}'> </span>{:%I:%M%p %Z}";
+            format-alt = "<span color='${colors.base0B}'> </span>{:%a, %b %e %Z}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            timezone = "Europe/Brussels";
+            actions = {
+              on-scroll-up = "tz_up";
+              on-scroll-down = "tz_down";
+            };
+            timezones =
+              [
+                "Europe/Brussels"
+              ]
+              ++ (builtins.genList (x: "Etc/GMT-${toString x}") 14)
+              ++ (builtins.genList (x: "Etc/GMT+${toString x}") 9);
           };
 
           pulseaudio = {
