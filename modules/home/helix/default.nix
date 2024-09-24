@@ -28,7 +28,6 @@ in {
   config = mkIf cfg.enable {
     programs.helix = {
       enable = true;
-      package = inputs.helix.packages.${pkgs.system}.helix;
       defaultEditor = true;
 
       languages = import ./languages.nix args;
