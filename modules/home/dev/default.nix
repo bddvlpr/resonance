@@ -35,6 +35,7 @@ in {
       ]
       ++ (with pkgs; [
         cargo-watch
+        file
         htop
         jq
         p7zip
