@@ -2,14 +2,14 @@
   description = "Luna's system configurations and modules";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=a58bc8ad779655e790115244571758e8de055e3d";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
 
     hardware.url = "github:nixos/nixos-hardware";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence?ref=63f4d0443e32b0dd7189001ee1894066765d18a5";
 
     disko = {
       url = "github:nix-community/disko";
