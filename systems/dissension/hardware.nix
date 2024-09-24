@@ -35,6 +35,11 @@
         refreshRate = 75;
         workspace = "3";
       }
+      {
+        # Valve index
+        name = "DP-2";
+        enabled = false;
+      }
     ];
     nvidia = {
       enable = true;
