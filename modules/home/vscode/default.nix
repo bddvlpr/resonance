@@ -20,6 +20,16 @@
       "workbench.iconTheme" = "catppuccin-macchiato";
       "workbench.startupEditor" = "none";
       "workbench.tree.indent" = 16;
+
+      "rust-analyzer.lens.implementations.enable" = false;
+
+      "[svelte]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+
+      "[typescript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
     };
 
     extensions = with pkgs.vscode-extensions; [

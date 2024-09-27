@@ -18,8 +18,9 @@
   };
 
   mkDarwin = host: system: {
-    "${host}" =
-      mkStrappedSystem host system darwinSystem [];
+    "${host}" = mkStrappedSystem host system darwinSystem [
+      ./${host}
+    ];
   };
 in {
   flake = {
