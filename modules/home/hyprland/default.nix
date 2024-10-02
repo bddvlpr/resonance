@@ -102,7 +102,7 @@ in {
           [
             "$mod, Q, killactive,"
             "$mod SHIFT, Q, exit,"
-            "$mod SHIFT, Insert, exec, ${getExe config.programs.swaylock.package}"
+            "$mod SHIFT, BackSpace, exec, ${getExe config.programs.swaylock.package}"
 
             "$mod, Return, exec, ${getExe pkgs.foot}"
             "$mod, SPACE, exec, ${getExe pkgs.wofi} -S drun"
