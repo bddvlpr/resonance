@@ -9,7 +9,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    impermanence.url = "github:nix-community/impermanence?ref=63f4d0443e32b0dd7189001ee1894066765d18a5";
+    impermanence.url = "github:nix-community/impermanence";
 
     disko = {
       url = "github:nix-community/disko";
