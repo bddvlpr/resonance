@@ -38,7 +38,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [xdg-utils];
+    home.packages = with pkgs; [xdg-utils imv];
 
     xdg.portal = let
       hyprland = config.wayland.windowManager.hyprland.package;

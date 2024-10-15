@@ -42,6 +42,7 @@ in {
         neofetch
         nodejs
         unzip
+        usbutils
         zip
       ])
       ++ (with pkgs.nodePackages; [
