@@ -13,7 +13,7 @@ in {
   options.sysc.steel = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Whether to enable steel.";
     };
   };
