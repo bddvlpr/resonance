@@ -17,7 +17,7 @@ in {
     package = mkOption {
       type = types.package;
       default = pkgs.mpv.override {
-        scripts = [pkgs.mpv-discord];
+        scripts = with pkgs.mpvScripts; [mpv-discord];
       };
     };
   };

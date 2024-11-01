@@ -18,7 +18,7 @@ stdenvNoCC.mkDerivation rec {
 
     install -Dm644 *.otf -t $out/share/fonts/opentype
 
-    runHook postInsatll
+    runHook postInstall
   '';
 
   meta = with lib; {
