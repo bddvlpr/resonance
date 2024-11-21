@@ -36,7 +36,6 @@ in {
 
       extraPackages = with pkgs;
         [
-          buf-language-server
           docker-compose-language-service
           gleam
           gopls

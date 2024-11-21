@@ -31,11 +31,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO: https://github.com/danth/stylix/issues/642
+    base16.url = "github:senchopens/base16.nix?ref=665b3c6748534eb766c777298721cece9453fdae";
+
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix?ref=5ab1207b2fdeb5a022f2dd7cccf6be760f1b150f";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+        base16.follows = "base16";
       };
     };
 
