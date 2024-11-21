@@ -19,11 +19,10 @@
       then config.home.sessionVariables.TERMINAL
       else "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
 
-    # TODO: For next version
-    # inline-diagnostics = {
-    #   cursor-line = "hint";
-    #   other-lines = "error";
-    # };
+    inline-diagnostics = {
+      cursor-line = "hint";
+      other-lines = "error";
+    };
 
     statusline = {
       left = ["mode" "spinner" "diagnostics"];

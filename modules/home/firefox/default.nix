@@ -146,6 +146,10 @@ in {
                           name = "Svelte5 docs";
                           url = "https://svelte-5-preview.vercel.app/docs/introduction";
                         }
+                        {
+                          name = "TypeScript docs";
+                          url = "https://www.typescriptlang.org/docs/";
+                        }
                       ];
                     }
                     {
@@ -180,6 +184,10 @@ in {
                           url = "https://github.com/bddvlpr/fidelity";
                         }
                       ];
+                    }
+                    {
+                      name = "GitHub";
+                      url = "https://github.com/";
                     }
                   ];
                 }

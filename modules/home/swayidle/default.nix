@@ -23,8 +23,8 @@ in {
 
       timeouts = [
         {
-          timeout = 60 * 3;
-          command = "${swaylock} --grace 120";
+          timeout = 60 * 4;
+          command = "${swaylock}";
         }
         {
           timeout = 60 * 5;
