@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: let
   inherit (lib) mkIf mkOption types;
@@ -18,10 +17,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home = let
-      inherit (inputs.nixpkgs-stable.legacyPackages.${pkgs.system}) cura;
-    in {
-      packages = with pkgs; [cura cura5];
+    home = {
+      packages = [pkgs.nur.repos.xeals.cura5];
 
       persistence."/persist/home/bddvlpr".directories = [
         ".config/cura"

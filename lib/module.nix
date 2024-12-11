@@ -12,7 +12,10 @@ in {
     mkPkgs = system:
       import inputs.nixpkgs {
         inherit system;
-        overlays = with outputs.overlays; [pkgs];
+        overlays = [
+          outputs.overlays.pkgs
+          inputs.nur.overlays.default
+        ];
         config.allowUnfree = true;
       };
 

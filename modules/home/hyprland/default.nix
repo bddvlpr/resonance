@@ -61,7 +61,7 @@ in {
             "${getExe pkgs.swaybg} -i ${config.stylix.image} --mode fill"
           ]
           ++ optionals cfg.dimmer.enable [
-            "${getExe pkgs.wlsunset} -l ${toString cfg.dimmer.latitude} -L ${toString cfg.dimmer.longitude}"
+            "${getExe pkgs.wlsunset} -l ${toString cfg.dimmer.latitude} -L ${toString cfg.dimmer.longitude} -t 5500"
           ];
 
         general = {
