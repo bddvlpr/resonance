@@ -117,6 +117,7 @@ in {
             format = "<span color='${colors.base0B}'>{icon} </span>{percent}%";
             format-alt = "<span color='${colors.base0B}'>{icon}</span>";
             format-icons = ["󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+            tooltip-format = "{percent}%";
 
             on-scroll-up = "${light} -A 1";
             on-scroll-down = "${light} -U 1";
