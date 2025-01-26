@@ -83,6 +83,14 @@ in {
           preserve_split = true;
         };
 
+        animations = {
+          bezier = "fast, 0.05, 0.9, 0.1, 1";
+          animation = [
+            "windows, 1, 7, fast, slide"
+            "workspaces, 1, 7, fast, slidefade"
+          ];
+        };
+
         windowrulev2 = let
           steam = "title:^()$,class:^(steam)$";
           steamapp = "class:^(steam_app)";
