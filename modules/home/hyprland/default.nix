@@ -113,7 +113,7 @@ in {
             "$mod SHIFT, BackSpace, exec, ${getExe config.programs.swaylock.package}"
 
             "$mod, Return, exec, ${getExe pkgs.foot}"
-            "$mod, SPACE, exec, ${getExe pkgs.wofi} -S drun"
+            "$mod, SPACE, exec, ${getExe pkgs.rofi} -show drun"
 
             "$mod SHIFT, SPACE, togglefloating,"
             "$mod, S, togglesplit"

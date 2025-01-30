@@ -16,7 +16,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.wofi.enable = true;
+    programs.wofi = {
+      enable = true;
+      style = ''
+        #window {
+          background-color: rgba(0.4, 0.4, 0.4, 0.25);
+        }
+      '';
+    };
 
     stylix.targets.wofi.enable = false;
   };
