@@ -32,7 +32,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix?ref=5ab1207b2fdeb5a022f2dd7cccf6be760f1b150f";
+      url = "github:danth/stylix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -56,6 +56,11 @@
 
     helix-steel = {
       url = "github:mattwparas/helix?ref=steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixcord = {
+      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
