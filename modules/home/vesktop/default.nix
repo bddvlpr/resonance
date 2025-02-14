@@ -66,7 +66,6 @@
         volumeBooster.enable = true;
         whoReacted.enable = true;
         youtubeAdblock.enable = true;
-        webScreenShareFixes.enable = true;
       };
     };
   };

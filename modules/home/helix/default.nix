@@ -52,6 +52,7 @@ in {
           taplo
           terraform-ls
           texlab
+          tinymist
           yaml-language-server
           zls
         ]

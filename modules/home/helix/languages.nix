@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) getExe;
-  inherit (pkgs) alejandra;
+  inherit (pkgs) alejandra typstyle;
   inherit (pkgs.nodePackages) prettier;
   inherit (inputs.nix-steel.packages.${pkgs.system}) steel-language-server;
 
@@ -57,9 +57,7 @@ in {
     {
       name = "nix";
       auto-format = true;
-      formatter = {
-        command = getExe alejandra;
-      };
+      formatter.command = getExe alejandra;
     }
     {
       name = "toml";
@@ -68,6 +66,11 @@ in {
     {
       name = "scheme";
       language-servers = ["steel-language-server"];
+    }
+    {
+      name = "typst";
+      auto-format = true;
+      formatter.command = getExe typstyle;
     }
   ];
 
