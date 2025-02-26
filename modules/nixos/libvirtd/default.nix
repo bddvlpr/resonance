@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -23,6 +24,10 @@ in {
         ovmf.enable = true;
       };
     };
+
+    environment.systemPackages = [
+      pkgs.virt-manager
+    ];
 
     boot.binfmt.emulatedSystems = [
       "aarch64-linux"

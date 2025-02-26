@@ -72,12 +72,21 @@ in {
       auto-format = true;
       formatter.command = getExe typstyle;
     }
+    {
+      name = "gdscript";
+      language-servers = ["godot"];
+    }
   ];
 
   language-server = {
     steel-language-server = {
       command = getExe steel-language-server;
       args = [];
+    };
+
+    godot = {
+      command = "${getExe pkgs.netcat}";
+      args = ["127.0.0.1" "6005"];
     };
   };
 }

@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs',
   ...
 } @ args: let
   inherit (lib) mkIf mkOption types;
@@ -28,7 +27,6 @@ in {
   config = mkIf cfg.enable {
     programs.helix = {
       enable = true;
-      package = inputs'.helix.packages.helix;
       defaultEditor = true;
 
       languages = import ./languages.nix args;
@@ -38,6 +36,7 @@ in {
         [
           docker-compose-language-service
           gleam
+          gdtoolkit_4
           gopls
           haskell-language-server
           helm-ls

@@ -95,11 +95,14 @@ in {
           steam = "title:^()$,class:^(steam)$";
           steamapp = "class:^(steam_app)";
           cura_launcher = "title:^(cura)$";
+          godot_new_node = "title:^(Create New Node)$,class:^(Godot)$";
         in [
           "stayfocused, ${steam}"
           "minsize 1 1, ${steam}"
           "tile, ${steamapp}"
           "float, ${cura_launcher}"
+          "size 1300 800, ${godot_new_node}"
+          "move center, ${godot_new_node}"
         ];
 
         bind = let
