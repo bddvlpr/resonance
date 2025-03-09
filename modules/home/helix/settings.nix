@@ -22,6 +22,7 @@
     inline-diagnostics = {
       cursor-line = "hint";
       other-lines = "error";
+      max-diagnostics = 2;
     };
 
     statusline = {

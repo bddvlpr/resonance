@@ -153,6 +153,23 @@ in {
                       ];
                     }
                     {
+                      name = "Typst";
+                      bookmarks = [
+                        {
+                          name = "Typst app";
+                          url = "https://typst.app/";
+                        }
+                        {
+                          name = "Typst docs";
+                          url = "https://typst.app/docs/";
+                        }
+                        {
+                          name = "Typst universe";
+                          url = "https://typst.app/universe/";
+                        }
+                      ];
+                    }
+                    {
                       name = "Nix";
                       bookmarks = [
                         {
