@@ -20,35 +20,42 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages =
-      [
-        (complete.withComponents
-          [
-            "cargo"
-            "clippy"
-            "rust-src"
-            "rustc"
-            "rustfmt"
-          ])
-      ]
-      ++ (with pkgs; [
-        cargo-watch
-        file
-        htop
-        jq
-        p7zip
-        neofetch
-        nodejs
-        unzip
-        usbutils
-        zip
-      ])
-      ++ (with pkgs.nodePackages; [
-        yarn
-        pnpm
-      ])
-      ++ optionals (!isDarwin) (with pkgs; [
-        gcc
-      ]);
+    home = {
+      packages =
+        [
+          (complete.withComponents
+            [
+              "cargo"
+              "clippy"
+              "rust-src"
+              "rustc"
+              "rustfmt"
+            ])
+        ]
+        ++ (with pkgs; [
+          bun
+          cargo-watch
+          file
+          htop
+          jq
+          p7zip
+          neofetch
+          nodejs
+          unzip
+          usbutils
+          zip
+        ])
+        ++ (with pkgs.nodePackages; [
+          yarn
+          pnpm
+        ])
+        ++ optionals (!isDarwin) (with pkgs; [
+          gcc
+        ]);
+
+      persistence."/persist/home/bddvlpr".directories = [
+        ".cache/pnpm"
+      ];
+    };
   };
 }

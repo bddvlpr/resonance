@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.git;
-in {
+in
+{
   options.sysc.git = {
     enable = mkOption {
       type = types.bool;

@@ -21,6 +21,7 @@ in {
       packages = [pkgs.godot_4];
       persistence."/persist/home/bddvlpr".directories = [
         ".config/godot"
+        ".cache/godot"
       ];
     };
   };

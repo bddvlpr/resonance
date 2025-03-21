@@ -24,6 +24,7 @@ in {
     };
 
     home.persistence."/persist/home/bddvlpr".directories = [
+      ".bun"
       ".config/obs-studio"
     ];
   };

@@ -22,6 +22,7 @@ in {
     cursor = {
       name = "phinger-cursors-dark";
       package = pkgs.phinger-cursors;
+      size = 32;
     };
 
     fonts = {
@@ -47,6 +48,7 @@ in {
     };
 
     targets.vscode.enable = false;
+    targets.firefox.profileNames = ["Personal"];
   };
 
   home.packages = with pkgs; [

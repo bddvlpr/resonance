@@ -112,6 +112,44 @@ in {
               toolbar = true;
               bookmarks = [
                 {
+                  name = "Entertainment";
+                  bookmarks = [
+                    {
+                      name = "Ceres";
+                      bookmarks = [
+                        {
+                          name = "Prowlarr";
+                          url = "http://ceres:9696";
+                        }
+                        {
+                          name = "Sonarr";
+                          url = "http://ceres:8989";
+                        }
+                        {
+                          name = "Radarr";
+                          url = "http://ceres:7878";
+                        }
+                        {
+                          name = "Flood";
+                          url = "http://ceres:9091";
+                        }
+                        {
+                          name = "Bazarr";
+                          url = "http://ceres:6767";
+                        }
+                        {
+                          name = "Jellyfin";
+                          url = "http://ceres:8096";
+                        }
+                        {
+                          name = "Jellyseerr";
+                          url = "http://ceres:5055";
+                        }
+                      ];
+                    }
+                  ];
+                }
+                {
                   name = "Services";
                   bookmarks = [
                     {
