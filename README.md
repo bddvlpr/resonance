@@ -10,7 +10,6 @@ Everything is split up in separate flake-parts. Why? I have no clue.
 ```
 .
 ├── apps                     # Any apps I've used. I think this is empty.
-├── checks                   # Checks for formatting and future stuff if I need it.
 ├── lib                      # Usually functions I share between flakes or modules are put here.
 ├── modules                  # Modules are split up in their respective directories. Depending on the host, the correct ones will be imported.
 │   ├── darwin               # Darwin modules; only OSX hosts will import these.

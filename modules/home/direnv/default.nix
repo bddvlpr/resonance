@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.direnv;
-in {
+in
+{
   options.sysc.direnv = {
     enable = mkOption {
       type = types.bool;
@@ -27,6 +29,6 @@ in {
       nix-direnv.enable = cfg.enableNixDirenv;
     };
 
-    home.persistence."/persist/home/bddvlpr".directories = [".local/share/direnv"];
+    home.persistence."/persist/home/bddvlpr".directories = [ ".local/share/direnv" ];
   };
 }

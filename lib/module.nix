@@ -4,12 +4,15 @@
   inputs,
   withSystem,
   ...
-}: let
+}:
+let
   inherit (self) outputs;
   inherit (lib.strings) hasSuffix;
-in {
+in
+{
   flake.lib = rec {
-    mkPkgs = system:
+    mkPkgs =
+      system:
       import inputs.nixpkgs {
         inherit system;
         overlays = [
@@ -19,31 +22,40 @@ in {
         config.allowUnfree = true;
       };
 
-    mkSystem = host: system: type: modules:
-      withSystem system ({
-        pkgs,
-        inputs',
-        self',
-        ...
-      }:
+    mkSystem =
+      host: system: type: modules:
+      withSystem system (
+        {
+          pkgs,
+          inputs',
+          self',
+          ...
+        }:
         type {
           inherit system modules;
           pkgs = mkPkgs system;
-          specialArgs = {inherit inputs inputs' outputs self host;};
-        });
+          specialArgs = {
+            inherit
+              inputs
+              inputs'
+              outputs
+              self
+              host
+              ;
+          };
+        }
+      );
 
-    mkStrappedSystem = host: system: type: modules: let
-      inherit (builtins) attrValues;
+    mkStrappedSystem =
+      host: system: type: modules:
+      let
+        inherit (builtins) attrValues;
 
-      isLinux = hasSuffix "linux" system;
-    in
+        isLinux = hasSuffix "linux" system;
+      in
       mkSystem host system type (
         modules
-        ++ (
-          if isLinux
-          then attrValues outputs.nixosModules
-          else attrValues outputs.darwinModules
-        )
+        ++ (if isLinux then attrValues outputs.nixosModules else attrValues outputs.darwinModules)
         ++ attrValues outputs.sharedModules
       );
   };

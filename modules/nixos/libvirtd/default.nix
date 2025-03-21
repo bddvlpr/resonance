@@ -3,11 +3,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.libvirtd;
-in {
+in
+{
   options.sysc.libvirtd = {
     enable = mkOption {
       type = types.bool;

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.cura;
-in {
+in
+{
   options.sysc.cura = {
     enable = mkOption {
       type = types.bool;
@@ -18,7 +20,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = [pkgs.nur.repos.xeals.cura5];
+      packages = [ pkgs.nur.repos.xeals.cura5 ];
 
       persistence."/persist/home/bddvlpr".directories = [
         ".config/cura"

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.docker;
-in {
+in
+{
   options.sysc.docker = {
     enable = mkOption {
       type = types.bool;

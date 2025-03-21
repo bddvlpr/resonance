@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.freecad;
-in {
+in
+{
   options.sysc.freecad = {
     enable = mkOption {
       type = types.bool;
@@ -18,7 +20,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [freecad];
+      packages = with pkgs; [ freecad ];
       persistence."/persist/home/bddvlpr".directories = [
         ".local/share/FreeCAD"
         ".config/FreeCAD"

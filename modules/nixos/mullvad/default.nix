@@ -1,4 +1,5 @@
-{inputs', ...}: {
+{ inputs', ... }:
+{
   services.mullvad-vpn = {
     enable = true;
     package = inputs'.nixpkgs-stable.legacyPackages.mullvad-vpn;

@@ -3,7 +3,8 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   inherit (self) outputs;
   inherit (outputs.lib) mkStrappedSystem;
   inherit (lib) mkMerge;
@@ -22,7 +23,8 @@
       ./${host}
     ];
   };
-in {
+in
+{
   flake = {
     nixosConfigurations = mkMerge [
       (mkNixOS "dissension" "x86_64-linux")

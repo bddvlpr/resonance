@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.nvidia;
-in {
+in
+{
   options.sysc.nvidia = {
     enable = mkOption {
       type = types.bool;
@@ -29,7 +31,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [nvtopPackages.nvidia];
+    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
 
     hardware.nvidia = {
       package = mkIf cfg.enableBeta config.boot.kernelPackages.nvidiaPackages.beta;

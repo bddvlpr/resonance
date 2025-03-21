@@ -70,8 +70,9 @@
     };
   };
 
-  outputs = {flake-parts, ...} @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
@@ -81,7 +82,6 @@
 
       imports = [
         ./apps/module.nix
-        ./checks/module.nix
         ./lib/module.nix
         ./modules/module.nix
         ./overlays/module.nix
@@ -90,12 +90,14 @@
         ./templates/module.nix
       ];
 
-      perSystem = {
-        pkgs,
-        inputs',
-        ...
-      }: {
-        formatter = pkgs.alejandra;
-      };
+      perSystem =
+        {
+          pkgs,
+          inputs',
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt-tree;
+        };
     };
 }

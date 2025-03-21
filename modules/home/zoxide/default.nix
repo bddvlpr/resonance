@@ -1,7 +1,7 @@
 {
   programs.zoxide = {
     enable = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
 
   home.persistence."/persist/home/bddvlpr".directories = [

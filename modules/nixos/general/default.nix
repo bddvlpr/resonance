@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.general;
-in {
+in
+{
   options.sysc.general = {
     timezone = mkOption {
       type = types.str;

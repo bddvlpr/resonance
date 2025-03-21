@@ -4,13 +4,15 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (inputs.nix-index-database.hmModules) nix-index;
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.comma;
-in {
-  imports = [nix-index];
+in
+{
+  imports = [ nix-index ];
 
   options.sysc.comma = {
     enable = mkOption {
@@ -21,6 +23,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [comma];
+    home.packages = with pkgs; [ comma ];
   };
 }

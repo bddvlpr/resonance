@@ -23,14 +23,21 @@ stdenv.mkDerivation (finalAttrs: {
     ./absolute-layer-path.patch
   ];
 
-  nativeBuildInputs = [cmake];
-  buildInputs = [vulkan-headers vulkan-loader];
+  nativeBuildInputs = [ cmake ];
+  buildInputs = [
+    vulkan-headers
+    vulkan-loader
+  ];
 
   meta = with lib; {
     description = "Vulkan Layers for Monado";
     homepage = "https://gitlab.freedesktop.org/monado/utilities/vulkan-layers";
     platforms = platforms.linux;
     license = licenses.boost;
-    maintainers = with maintainers; [scrumplex passivelemon bddvlpr];
+    maintainers = with maintainers; [
+      scrumplex
+      passivelemon
+      bddvlpr
+    ];
   };
 })

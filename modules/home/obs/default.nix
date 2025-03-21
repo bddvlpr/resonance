@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.obs;
-in {
+in
+{
   options.sysc.obs = {
     enable = mkOption {
       type = types.bool;
@@ -20,7 +22,7 @@ in {
     programs.obs-studio = {
       enable = true;
 
-      plugins = with pkgs.obs-studio-plugins; [wlrobs];
+      plugins = with pkgs.obs-studio-plugins; [ wlrobs ];
     };
 
     home.persistence."/persist/home/bddvlpr".directories = [

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.unity;
-in {
+in
+{
   options.sysc.unity = {
     enable = mkOption {
       type = types.bool;
@@ -18,7 +20,10 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [unityhub vrc-get];
+      packages = with pkgs; [
+        unityhub
+        vrc-get
+      ];
 
       file = {
         ".config/unityhub/projectDir.json".text = ''

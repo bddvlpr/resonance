@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.podman;
-in {
+in
+{
   options.sysc.podman = {
     enable = mkOption {
       type = types.bool;

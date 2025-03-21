@@ -4,11 +4,22 @@
   pkgs,
   osConfig,
   ...
-}: let
-  inherit (lib) filter forEach getExe mkIf mkOption optionals optionalString types;
+}:
+let
+  inherit (lib)
+    filter
+    forEach
+    getExe
+    mkIf
+    mkOption
+    optionals
+    optionalString
+    types
+    ;
 
   cfg = config.sysc.hyprland;
-in {
+in
+{
   options.sysc.hyprland = {
     enable = mkOption {
       type = types.bool;
@@ -38,15 +49,20 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [xdg-utils imv];
+    home.packages = with pkgs; [
+      xdg-utils
+      imv
+    ];
 
-    xdg.portal = let
-      hyprland = config.wayland.windowManager.hyprland.package;
-      xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-    in {
-      extraPortals = [xdph];
-      configPackages = [hyprland];
-    };
+    xdg.portal =
+      let
+        hyprland = config.wayland.windowManager.hyprland.package;
+        xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
+      in
+      {
+        extraPortals = [ xdph ];
+        configPackages = [ hyprland ];
+      };
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -91,25 +107,28 @@ in {
           ];
         };
 
-        windowrulev2 = let
-          steam = "title:^()$,class:^(steam)$";
-          steamapp = "class:^(steam_app)";
-          cura_launcher = "title:^(cura)$";
-          godot_new_node = "title:^(Create New Node)$,class:^(Godot)$";
-        in [
-          "stayfocused, ${steam}"
-          "minsize 1 1, ${steam}"
-          "tile, ${steamapp}"
-          "float, ${cura_launcher}"
-          "size 1300 800, ${godot_new_node}"
-          "move center, ${godot_new_node}"
-        ];
+        windowrulev2 =
+          let
+            steam = "title:^()$,class:^(steam)$";
+            steamapp = "class:^(steam_app)";
+            cura_launcher = "title:^(cura)$";
+            godot_new_node = "title:^(Create New Node)$,class:^(Godot)$";
+          in
+          [
+            "stayfocused, ${steam}"
+            "minsize 1 1, ${steam}"
+            "tile, ${steamapp}"
+            "float, ${cura_launcher}"
+            "size 1300 800, ${godot_new_node}"
+            "move center, ${godot_new_node}"
+          ];
 
-        bind = let
-          pamixer = getExe pkgs.pamixer;
-          playerctl = getExe pkgs.playerctl;
-          grimblast = getExe pkgs.grimblast;
-        in
+        bind =
+          let
+            pamixer = getExe pkgs.pamixer;
+            playerctl = getExe pkgs.playerctl;
+            grimblast = getExe pkgs.grimblast;
+          in
           [
             "$mod, Q, killactive,"
             "$mod SHIFT, Q, exit,"
@@ -157,43 +176,61 @@ in {
             "SHIFT, Print, exec, ${grimblast} --notify copy output"
             ", Print, exec, ${grimblast} --notify copy active"
           ]
-          ++ (
-            builtins.concatLists (
-              builtins.genList (x: let
+          ++ (builtins.concatLists (
+            builtins.genList (
+              x:
+              let
                 ws = builtins.toString (x + 1);
-              in [
+              in
+              [
                 "$mod, ${ws}, workspace, ${ws}"
                 "$mod SHIFT, ${ws}, movetoworkspace, ${ws}"
-              ])
-              9
-            )
-          );
+              ]
+            ) 9
+          ));
 
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
         ];
 
-        monitor = let
-          mkMonitor = monitor: let
-            inherit (monitor) enabled name width height refreshRate x y scale;
+        monitor =
+          let
+            mkMonitor =
+              monitor:
+              let
+                inherit (monitor)
+                  enabled
+                  name
+                  width
+                  height
+                  refreshRate
+                  x
+                  y
+                  scale
+                  ;
+              in
+              if enabled then
+                "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
+              else
+                "${name}, disabled";
           in
-            if enabled
-            then "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
-            else "${name}, disabled";
-        in
           [
             ", highres, auto, 1"
           ]
           ++ (forEach osConfig.sysc.monitors (m: mkMonitor m));
 
-        workspace = let
-          enabledWorkspaces = filter (m: m.enabled && m.workspace != null) osConfig.sysc.monitors;
+        workspace =
+          let
+            enabledWorkspaces = filter (m: m.enabled && m.workspace != null) osConfig.sysc.monitors;
 
-          mkWorkspace = monitor: let
-            inherit (monitor) workspace name;
-          in "${optionalString (workspace != null) "name:${workspace}, monitor:${name}"}";
-        in
+            mkWorkspace =
+              monitor:
+              let
+                inherit (monitor) workspace name;
+              in
+              "${optionalString (workspace != null) "name:${workspace}, monitor:${name}"}";
+          in
           forEach enabledWorkspaces (m: mkWorkspace m);
 
         misc = {

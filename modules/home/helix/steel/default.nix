@@ -4,14 +4,15 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (inputs.helix-steel.packages.${pkgs.system}) helix;
 
   cfg = config.sysc.helix;
-in {
-  config = mkIf (cfg.enable
-    && cfg.enableSteel) {
+in
+{
+  config = mkIf (cfg.enable && cfg.enableSteel) {
     programs.helix = {
       package = helix;
     };

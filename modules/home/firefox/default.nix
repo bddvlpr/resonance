@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.firefox;
-in {
+in
+{
   options.sysc.firefox = {
     enable = mkOption {
       type = types.bool;
@@ -84,7 +86,7 @@ in {
                       }
                     ];
                     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                    definedAliases = ["@np"];
+                    definedAliases = [ "@np" ];
                   }
                 ];
               };
@@ -99,7 +101,7 @@ in {
                       }
                     ];
                     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                    definedAliases = ["@no"];
+                    definedAliases = [ "@no" ];
                   }
                 ];
               };

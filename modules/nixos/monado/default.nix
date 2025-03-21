@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.monado = {
     enable = true;
     defaultRuntime = true;
@@ -9,5 +10,5 @@
     WMR_HANDTRACKING = "0";
   };
 
-  hardware.graphics.extraPackages = with pkgs; [monado-vulkan-layers];
+  hardware.graphics.extraPackages = with pkgs; [ monado-vulkan-layers ];
 }

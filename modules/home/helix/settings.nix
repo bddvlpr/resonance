@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   editor = {
     scrolloff = 8;
     line-number = "relative";
@@ -15,9 +16,10 @@
     };
 
     terminal.command =
-      if pkgs.stdenv.isLinux
-      then config.home.sessionVariables.TERMINAL
-      else "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
+      if pkgs.stdenv.isLinux then
+        config.home.sessionVariables.TERMINAL
+      else
+        "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal";
 
     inline-diagnostics = {
       cursor-line = "hint";
@@ -26,9 +28,24 @@
     };
 
     statusline = {
-      left = ["mode" "spinner" "diagnostics"];
-      center = ["file-name" "read-only-indicator" "file-modification-indicator"];
-      right = ["version-control" "selections" "register" "position" "position-percentage" "file-encoding"];
+      left = [
+        "mode"
+        "spinner"
+        "diagnostics"
+      ];
+      center = [
+        "file-name"
+        "read-only-indicator"
+        "file-modification-indicator"
+      ];
+      right = [
+        "version-control"
+        "selections"
+        "register"
+        "position"
+        "position-percentage"
+        "file-encoding"
+      ];
     };
 
     lsp = {

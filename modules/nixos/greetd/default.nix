@@ -3,11 +3,18 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (lib) getExe mkIf mkOption types;
+}:
+let
+  inherit (lib)
+    getExe
+    mkIf
+    mkOption
+    types
+    ;
 
   cfg = config.sysc.greetd;
-in {
+in
+{
   options.sysc.greetd = {
     enable = mkOption {
       type = types.bool;

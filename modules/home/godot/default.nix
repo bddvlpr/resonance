@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.godot;
-in {
+in
+{
   options.sysc.godot = {
     enable = mkOption {
       type = types.bool;
@@ -18,7 +20,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = [pkgs.godot_4];
+      packages = [ pkgs.godot_4 ];
       persistence."/persist/home/bddvlpr".directories = [
         ".config/godot"
         ".cache/godot"

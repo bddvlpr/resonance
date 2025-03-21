@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.avahi;
-in {
+in
+{
   options.sysc.avahi = {
     enable = mkOption {
       type = types.bool;

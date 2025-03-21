@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.gnome-keyring;
-in {
+in
+{
   options.sysc.gnome-keyring = {
     enable = mkOption {
       type = types.bool;
@@ -20,7 +22,7 @@ in {
     services.gnome-keyring.enable = true;
 
     home = {
-      packages = [pkgs.gcr];
+      packages = [ pkgs.gcr ];
       persistence."/persist/home/bddvlpr".directories = [
         ".local/share/keyrings"
       ];

@@ -4,13 +4,20 @@
   inputs,
   config,
   ...
-}: let
-  inherit (lib) mkIf mkOption optionals types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkOption
+    optionals
+    types
+    ;
   inherit (inputs.fenix.packages.${pkgs.system}) complete;
   inherit (pkgs.stdenv) isDarwin;
 
   cfg = config.sysc.dev;
-in {
+in
+{
   options.sysc.dev = {
     enable = mkOption {
       type = types.bool;
@@ -23,14 +30,13 @@ in {
     home = {
       packages =
         [
-          (complete.withComponents
-            [
-              "cargo"
-              "clippy"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-            ])
+          (complete.withComponents [
+            "cargo"
+            "clippy"
+            "rust-src"
+            "rustc"
+            "rustfmt"
+          ])
         ]
         ++ (with pkgs; [
           bun
@@ -49,9 +55,12 @@ in {
           yarn
           pnpm
         ])
-        ++ optionals (!isDarwin) (with pkgs; [
-          gcc
-        ]);
+        ++ optionals (!isDarwin) (
+          with pkgs;
+          [
+            gcc
+          ]
+        );
 
       persistence."/persist/home/bddvlpr".directories = [
         ".cache/pnpm"

@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.swaylock;
-in {
+in
+{
   options.sysc.swaylock = {
     enable = mkOption {
       type = types.bool;

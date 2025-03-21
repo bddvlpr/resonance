@@ -1,11 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
       (symlinkJoin {
         name = "bambu-studio-with-mesa";
-        paths = [bambu-studio];
+        paths = [ bambu-studio ];
 
-        buildInputs = [makeWrapper];
+        buildInputs = [ makeWrapper ];
 
         postBuild = ''
           wrapProgram $out/bin/bambu-studio \

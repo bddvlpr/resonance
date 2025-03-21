@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.opencomposite;
-in {
+in
+{
   options.sysc.opencomposite = {
     enable = mkOption {
       type = types.bool;

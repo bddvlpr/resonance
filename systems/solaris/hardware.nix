@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = with inputs.hardware.nixosModules; [
     common-pc-laptop-ssd
     common-cpu-intel-cpu-only
@@ -19,8 +20,13 @@
     nvidia.enable = true;
   };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
-  boot.kernelModules = ["kvm-intel"];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.kernelModules = [ "kvm-intel" ];
 
   hardware.enableRedistributableFirmware = true;
 }

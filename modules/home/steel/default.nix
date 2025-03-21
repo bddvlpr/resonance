@@ -4,12 +4,14 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
   inherit (inputs.nix-steel.packages.${pkgs.system}) steel;
 
   cfg = config.sysc.steel;
-in {
+in
+{
   options.sysc.steel = {
     enable = mkOption {
       type = types.bool;
@@ -19,7 +21,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [steel];
+    home.packages = [ steel ];
     home.sessionVariables = {
       STEEL_HOME = "${steel}/home";
       STEEL_LSP_HOME = "/home/bddvlpr/temp-lsp";

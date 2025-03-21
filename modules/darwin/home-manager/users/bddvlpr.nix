@@ -2,7 +2,8 @@
   outputs,
   lib,
   ...
-}: {
+}:
+{
   imports = with outputs.homeManagerModules; [
     comma
     dev
@@ -22,7 +23,7 @@
   ];
 
   # Shim to disable persistence
-  home.persistence = lib.mkForce {};
+  home.persistence = lib.mkForce { };
 
   home.stateVersion = "24.05";
 }

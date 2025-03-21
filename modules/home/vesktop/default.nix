@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nixcord.homeManagerModules.nixcord
   ];
@@ -72,7 +73,7 @@
 
   home = {
     persistence."/persist/home/bddvlpr" = {
-      directories = [".config/vesktop"];
+      directories = [ ".config/vesktop" ];
     };
   };
 }

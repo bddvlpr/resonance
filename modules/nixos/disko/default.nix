@@ -1,6 +1,8 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   inherit (inputs.disko.nixosModules) disko;
-in {
+in
+{
   imports = [
     disko
     ./luks-btrfs.nix

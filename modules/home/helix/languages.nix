@@ -3,39 +3,47 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (lib) getExe;
   inherit (pkgs) nixfmt-rfc-style typstyle;
   inherit (pkgs.nodePackages) prettier;
   inherit (inputs.nix-steel.packages.${pkgs.system}) steel-language-server;
 
-  mkPrettier = {
-    name,
-    parser ? name,
-    plugin ? null,
-  }: {
-    inherit name;
-    auto-format = true;
-    formatter = {
-      command = getExe prettier;
-      args =
-        [
-          "--parser"
-          parser
-        ]
-        ++ (
-          if plugin != null
-          then ["--plugin" plugin]
-          else []
-        );
+  mkPrettier =
+    {
+      name,
+      parser ? name,
+      plugin ? null,
+    }:
+    {
+      inherit name;
+      auto-format = true;
+      formatter = {
+        command = getExe prettier;
+        args =
+          [
+            "--parser"
+            parser
+          ]
+          ++ (
+            if plugin != null then
+              [
+                "--plugin"
+                plugin
+              ]
+            else
+              [ ]
+          );
+      };
     };
-  };
-in {
+in
+{
   language = [
-    (mkPrettier {name = "html";})
-    (mkPrettier {name = "json";})
-    (mkPrettier {name = "css";})
-    (mkPrettier {name = "typescript";})
+    (mkPrettier { name = "html"; })
+    (mkPrettier { name = "json"; })
+    (mkPrettier { name = "css"; })
+    (mkPrettier { name = "typescript"; })
     (mkPrettier {
       name = "javascript";
       parser = "typescript";
@@ -44,16 +52,16 @@ in {
       name = "tsx";
       parser = "typescript";
     })
-    ((
-        mkPrettier {
-          name = "svelte";
-          parser = "svelte";
-          plugin = "prettier-plugin-svelte";
-        }
-      )
-      // {
-        language-servers = ["svelteserver"];
+    (
+      (mkPrettier {
+        name = "svelte";
+        parser = "svelte";
+        plugin = "prettier-plugin-svelte";
       })
+      // {
+        language-servers = [ "svelteserver" ];
+      }
+    )
     {
       name = "nix";
       auto-format = true;
@@ -65,7 +73,7 @@ in {
     }
     {
       name = "scheme";
-      language-servers = ["steel-language-server"];
+      language-servers = [ "steel-language-server" ];
     }
     {
       name = "typst";
@@ -74,19 +82,22 @@ in {
     }
     {
       name = "gdscript";
-      language-servers = ["godot"];
+      language-servers = [ "godot" ];
     }
   ];
 
   language-server = {
     steel-language-server = {
       command = getExe steel-language-server;
-      args = [];
+      args = [ ];
     };
 
     godot = {
       command = "${getExe pkgs.netcat}";
-      args = ["127.0.0.1" "6005"];
+      args = [
+        "127.0.0.1"
+        "6005"
+      ];
     };
   };
 }

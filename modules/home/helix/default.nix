@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-} @ args: let
+}@args:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.helix;
-in {
-  imports = [./steel];
+in
+{
+  imports = [ ./steel ];
 
   options.sysc.helix = {
     enable = mkOption {
@@ -32,7 +34,8 @@ in {
       languages = import ./languages.nix args;
       settings = import ./settings.nix args;
 
-      extraPackages = with pkgs;
+      extraPackages =
+        with pkgs;
         [
           docker-compose-language-service
           gleam

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.tailscale;
-in {
+in
+{
   options.sysc.tailscale = {
     enable = mkOption {
       type = types.bool;

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.systemd-boot;
-in {
+in
+{
   options.sysc.systemd-boot = {
     enable = mkOption {
       type = types.bool;

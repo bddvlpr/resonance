@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.gpg;
-in {
+in
+{
   options.sysc.gpg = {
     enable = mkOption {
       type = types.bool;

@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.wofi;
-in {
+in
+{
   options.sysc.wofi = {
     enable = mkOption {
       type = types.bool;

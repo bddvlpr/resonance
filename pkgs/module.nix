@@ -1,5 +1,7 @@
 args: {
-  perSystem = {pkgs, ...} @ sysArgs: {
-    packages = import ./. (args // sysArgs);
-  };
+  perSystem =
+    { pkgs, ... }@sysArgs:
+    {
+      packages = import ./. (args // sysArgs);
+    };
 }

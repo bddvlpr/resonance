@@ -2,12 +2,19 @@
   lib,
   config,
   ...
-}: let
-  inherit (lib) mkIf mkMerge mkOption types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
 
   cfg = config.sysc.disko.luks-btrfs;
   impermanent = config.sysc.impermanence.enable;
-in {
+in
+{
   options.sysc.disko.luks-btrfs = {
     enable = mkOption {
       type = types.bool;
@@ -36,7 +43,7 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["defaults"];
+                mountOptions = [ "defaults" ];
               };
             };
             luks = {
@@ -48,24 +55,33 @@ in {
                 settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = [ "-f" ];
                   subvolumes = mkMerge [
                     (mkIf impermanent {
                       "/persist" = {
                         mountpoint = "/persist";
-                        mountOptions = ["compress=zstd" "noatime"];
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                        ];
                       };
                     })
                     (mkIf (!impermanent) {
                       "/root" = {
                         mountpoint = "/";
-                        mountOptions = ["compress=zstd" "noatime"];
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                        ];
                       };
                     })
                     {
                       "/nix" = {
                         mountpoint = "/nix";
-                        mountOptions = ["compress=zstd" "noatime"];
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                        ];
                       };
                       "/swap" = {
                         mountpoint = "/swap";
@@ -84,7 +100,7 @@ in {
     disko.devices.nodev = mkIf impermanent {
       "/" = {
         fsType = "tmpfs";
-        mountOptions = ["mode=755"];
+        mountOptions = [ "mode=755" ];
       };
     };
 

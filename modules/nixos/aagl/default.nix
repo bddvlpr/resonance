@@ -4,10 +4,12 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.sysc.aagl;
-in {
-  imports = [inputs.aagl.nixosModules.default];
+in
+{
+  imports = [ inputs.aagl.nixosModules.default ];
 
   options.sysc.aagl = {
     enable = mkOption {

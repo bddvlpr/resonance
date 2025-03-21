@@ -2,10 +2,12 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (inputs.stylix.homeManagerModules) stylix;
-in {
-  imports = [stylix];
+in
+{
+  imports = [ stylix ];
 
   stylix = {
     enable = true;
@@ -48,7 +50,7 @@ in {
     };
 
     targets.vscode.enable = false;
-    targets.firefox.profileNames = ["Personal"];
+    targets.firefox.profileNames = [ "Personal" ];
   };
 
   home.packages = with pkgs; [

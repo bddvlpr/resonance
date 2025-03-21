@@ -1,11 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
       (symlinkJoin {
         name = "orca-slicer-with-mesa";
-        paths = [orca-slicer];
+        paths = [ orca-slicer ];
 
-        buildInputs = [makeWrapper];
+        buildInputs = [ makeWrapper ];
 
         postBuild = ''
           wrapProgram $out/bin/orca-slicer \

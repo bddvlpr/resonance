@@ -3,13 +3,15 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (inputs.impermanence.nixosModules) impermanence;
   inherit (lib) mkOption types;
 
   cfg = config.sysc.impermanence;
-in {
-  imports = [impermanence];
+in
+{
+  imports = [ impermanence ];
 
   options.sysc.impermanence = {
     enable = mkOption {

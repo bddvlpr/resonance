@@ -7,13 +7,15 @@
   self',
   system,
   ...
-}: let
+}:
+let
   inherit (inputs.home-manager.darwinModules) home-manager;
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.home-manager;
-in {
-  imports = [home-manager];
+in
+{
+  imports = [ home-manager ];
 
   options.sysc.home-manager = {
     enable = mkOption {
@@ -29,7 +31,13 @@ in {
 
       users.bddvlpr = import ./users/bddvlpr.nix;
       extraSpecialArgs = {
-        inherit inputs inputs' outputs self' system;
+        inherit
+          inputs
+          inputs'
+          outputs
+          self'
+          system
+          ;
       };
     };
   };

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.transmission;
-in {
+in
+{
   options.sysc.transmission = {
     enable = mkOption {
       type = types.bool;
@@ -16,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [pkgs.transmission_4-gtk];
+    home.packages = [ pkgs.transmission_4-gtk ];
     home.persistence."/persist/home/bddvlpr".directories = [
       ".config/transmission"
     ];

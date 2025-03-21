@@ -3,9 +3,11 @@
   host,
   pkgs,
   ...
-}: let
+}:
+let
   isImpermanent = config.sysc.impermanence.enable;
-in {
+in
+{
   networking = {
     hostName = host;
     search = [
@@ -24,6 +26,6 @@ in {
 
   environment.persistence."/persist" = {
     enable = isImpermanent;
-    directories = ["/etc/NetworkManager"];
+    directories = [ "/etc/NetworkManager" ];
   };
 }

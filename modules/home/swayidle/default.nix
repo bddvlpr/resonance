@@ -2,11 +2,13 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.swayidle;
-in {
+in
+{
   options.sysc.swayidle = {
     enable = mkOption {
       type = types.bool;

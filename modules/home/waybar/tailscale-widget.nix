@@ -3,14 +3,16 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) getExe;
 
   colors = config.lib.stylix.colors.withHashtag;
   jq = getExe pkgs.jq;
   notify-send = getExe pkgs.libnotify;
   tailscale = getExe pkgs.tailscale;
-in {
+in
+{
   exec = pkgs.writeShellScriptBin "tailscale-widget-exec" ''
     status=$(curl --silent --fail --unix-socket /var/run/tailscale/tailscaled.sock http://local-tailscaled.sock/localapi/v0/status)
 

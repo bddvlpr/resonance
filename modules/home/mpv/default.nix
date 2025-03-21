@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.sysc.mpv;
-in {
+in
+{
   options.sysc.mpv = {
     enable = mkOption {
       type = types.bool;
@@ -17,7 +19,7 @@ in {
     package = mkOption {
       type = types.package;
       default = pkgs.mpv.override {
-        scripts = with pkgs.mpvScripts; [mpv-discord];
+        scripts = with pkgs.mpvScripts; [ mpv-discord ];
       };
     };
   };
