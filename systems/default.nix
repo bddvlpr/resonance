@@ -7,7 +7,10 @@
 
   easyHosts = {
     perClass = class: {
-      modules = ["${self}/modules/${class}/default.nix"];
+      modules = [
+        "${self}/modules/${class}/default.nix"
+        "${self}/modules/shared/default.nix"
+      ];
     };
 
     hosts = {
