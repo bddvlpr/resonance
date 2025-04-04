@@ -8,6 +8,15 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
     easy-hosts.url = "github:tgirlcloud/easy-hosts";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -23,6 +32,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {flake-parts, ...} @ inputs:
@@ -35,12 +49,23 @@
       ];
 
       imports = [
-        ./modules
         ./systems
       ];
 
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        inputs',
+        ...
+      }: {
         formatter = pkgs.alejandra;
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            inputs'.nixos-anywhere.packages.nixos-anywhere
+            sops
+            ssh-to-age
+          ];
+        };
       };
     };
 }

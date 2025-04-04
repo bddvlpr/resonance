@@ -1,0 +1,10 @@
+keys:
+  - &host_mango age14u3vde7hnj66eemqj0maf265yc2k0ashg9w0xajwmcwjflxr6e7sythp80
+  - &user_bddvlpr age1wp7nshw57whrddeyekpm3wat8cz7qwrdf3ws4t6wdk6qf27zag6sw2mt9a
+
+creation_rules:
+  - path_regex: systems/mango/[^/]+\.yaml$
+    key_groups:
+      - age:
+        - *host_mango
+        - *user_bddvlpr
