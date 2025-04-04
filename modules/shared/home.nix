@@ -12,6 +12,8 @@ in {
     useUserPackages = true;
     useGlobalPkgs = true;
 
-    users = mapAttrs (name: _: self + "/users/${name}") config.bowl.users;
+    users = mapAttrs (name: _: self + /users/${name}) config.bowl.users;
+
+    sharedModules = [(self + /modules/home/default.nix)];
   };
 }
