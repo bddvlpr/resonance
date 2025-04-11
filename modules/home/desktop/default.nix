@@ -7,8 +7,8 @@ in {
 
   options.bowl.desktop = {
     environment = mkOption {
-      type = types.enum ["hyprland"];
-      default = "hyprland";
+      type = with types; nullOr (enum ["hyprland"]);
+      default = null;
       description = "Which desktop environment to use for this user.";
     };
 

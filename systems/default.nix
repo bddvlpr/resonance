@@ -21,6 +21,11 @@ in {
     };
 
     hosts = {
+      lychee = {
+        arch = "x86_64";
+        class = "darwin";
+      };
+
       mango = {
         arch = "x86_64";
         class = "nixos";

@@ -8,6 +8,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
       inputs = {
@@ -39,7 +44,11 @@
     };
   };
 
-  outputs = {flake-parts, ...} @ inputs:
+  outputs = {
+    self,
+    flake-parts,
+    ...
+  } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
@@ -49,6 +58,7 @@
       ];
 
       imports = [
+        ./apps
         ./lib
         ./systems
       ];
@@ -57,19 +67,25 @@
         pkgs,
         inputs',
         ...
-      }: {
+      }: let
+        inherit (self.lib) systemTernary;
+      in {
         formatter = pkgs.alejandra;
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with inputs';
-            [
-              nixos-anywhere.packages.default
-              disko.packages.default
-            ]
-            ++ (with pkgs; [
-              sops
-              ssh-to-age
-            ]);
+          buildInputs = systemTernary pkgs {
+            default = with inputs';
+              [
+                nixos-anywhere.packages.default
+              ]
+              ++ (with pkgs; [
+                sops
+                ssh-to-age
+              ]);
+
+            linux = [inputs'.disko.packages.default];
+            darwin = [inputs'.nix-darwin.packages.default];
+          };
         };
       };
     };

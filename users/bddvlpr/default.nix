@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ./programs
+  ];
+
   bowl.user = {
     name = "Luna Simons";
     email = "luna@bddvlpr.com";

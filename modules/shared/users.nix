@@ -2,9 +2,10 @@
   lib,
   config,
   self,
+  pkgs,
   ...
 }: let
-  inherit (self.lib) mkUserSecret;
+  inherit (self.lib) mkUserSecret systemTernary;
   inherit (lib) mapAttrs mapAttrs' mkOption nameValuePair optionals types;
 in {
   options.bowl.users = mkOption {
@@ -40,15 +41,21 @@ in {
       )
       config.bowl.users;
 
-    users.users =
-      mapAttrs (name: user: {
-        isNormalUser = true;
-        hashedPasswordFile = config.sops.secrets."user-password-${name}".path;
-        extraGroups =
-          ["audio" "video" "dialout"]
-          ++ (optionals user.superuser ["wheel"])
-          ++ user.groups;
+    users.users = mapAttrs (name: user:
+      systemTernary pkgs {
+        linux = {
+          isNormalUser = true;
+          hashedPasswordFile = config.sops.secrets."user-password-${name}".path;
+          extraGroups =
+            ["audio" "video" "dialout"]
+            ++ (optionals user.superuser ["wheel"])
+            ++ user.groups;
+        };
+
+        darwin = {
+          home = "/Users/${name}";
+        };
       })
-      config.bowl.users;
+    config.bowl.users;
   };
 }

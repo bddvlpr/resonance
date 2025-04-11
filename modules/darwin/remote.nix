@@ -1,3 +1,6 @@
 {inputs, ...}: {
-  imports = [inputs.home-manager.darwinModules.default];
+  imports = [
+    inputs.sops-nix.darwinModules.default
+    inputs.home-manager.darwinModules.default
+  ];
 }

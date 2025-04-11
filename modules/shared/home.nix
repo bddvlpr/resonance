@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  inputs',
   self,
   ...
 }: let
@@ -11,6 +13,8 @@ in {
 
     useUserPackages = true;
     useGlobalPkgs = true;
+
+    extraSpecialArgs = {inherit inputs inputs' self;};
 
     users = mapAttrs (name: _: self + /users/${name}) config.bowl.users;
 
