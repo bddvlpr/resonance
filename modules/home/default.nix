@@ -9,6 +9,7 @@ in {
   imports = [
     ./desktop
     ./dev
+    ./persist.nix
     ./user.nix
   ];
 
