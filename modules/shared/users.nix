@@ -1,8 +1,10 @@
 {
   lib,
   config,
+  self,
   ...
 }: let
+  inherit (self.lib) mkUserSecret;
   inherit (lib) mapAttrs mapAttrs' mkOption nameValuePair optionals types;
 in {
   options.bowl.users = mkOption {
@@ -27,16 +29,21 @@ in {
   };
 
   config = {
-    sops.secrets = mapAttrs' (name: _:
-      nameValuePair "users/${name}/password" {
-        neededForUsers = true;
-      })
-    config.bowl.users;
+    sops.secrets =
+      mapAttrs' (
+        user: _:
+          nameValuePair "user-password-${user}" (mkUserSecret {
+            key = "user/password";
+            inherit user;
+            extraArgs.neededForUsers = true;
+          })
+      )
+      config.bowl.users;
 
     users.users =
       mapAttrs (name: user: {
         isNormalUser = true;
-        hashedPasswordFile = config.sops.secrets."users/${name}/password".path;
+        hashedPasswordFile = config.sops.secrets."user-password-${name}".path;
         extraGroups =
           ["audio" "video" "dialout"]
           ++ (optionals user.superuser ["wheel"])

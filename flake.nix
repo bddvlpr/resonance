@@ -49,6 +49,7 @@
       ];
 
       imports = [
+        ./lib
         ./systems
       ];
 
@@ -60,11 +61,15 @@
         formatter = pkgs.alejandra;
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            inputs'.nixos-anywhere.packages.nixos-anywhere
-            sops
-            ssh-to-age
-          ];
+          buildInputs = with inputs';
+            [
+              nixos-anywhere.packages.default
+              disko.packages.default
+            ]
+            ++ (with pkgs; [
+              sops
+              ssh-to-age
+            ]);
         };
       };
     };
