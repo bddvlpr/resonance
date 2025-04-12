@@ -10,6 +10,7 @@ in {
     ./desktop
     ./dev
     ./persist.nix
+    ./remote.nix
     ./user.nix
   ];
 
