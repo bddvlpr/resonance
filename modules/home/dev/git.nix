@@ -38,6 +38,21 @@ in {
       userEmail = cfg.email;
       inherit (cfg.git) signing;
 
+      aliases = {
+        l = "log -n 20 --graph --abbrev-commit --pretty=oneline";
+        s = "status -s";
+        d = "diff";
+        dc = "diff --cached";
+
+        tags = "tag -l";
+        branches = "branch --all";
+        remotes = "remote --verbose";
+        contributors = "shortlog --summary --numbered";
+
+        amend = "commit --amend --reuse-message=HEAD";
+        credit = "commit --amend -C HEAD --author";
+      };
+
       extraConfig = {
         init = {inherit (cfg.git) defaultBranch;};
         push.autoSetupRemote = true;

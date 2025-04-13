@@ -23,6 +23,12 @@ in {
             default = [];
             description = "Additional groups to grant to the user.";
           };
+
+          shell = mkOption {
+            type = types.package;
+            default = pkgs.fish;
+            description = "Default shell for the user.";
+          };
         };
       });
     default = {bddvlpr = {superuser = true;};};
@@ -43,6 +49,10 @@ in {
 
     users.users = mapAttrs (name: user:
       systemTernary pkgs {
+        default = {
+          inherit (user) shell;
+        };
+
         linux = {
           isNormalUser = true;
           hashedPasswordFile = config.sops.secrets."user-password-${name}".path;

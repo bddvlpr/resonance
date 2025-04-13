@@ -1,15 +1,26 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkOption types;
 in {
   imports = [
     ./hyprland.nix
+    ./sway.nix
   ];
 
   options.bowl.desktop = {
-    environment = mkOption {
-      type = with types; nullOr (enum ["hyprland"]);
-      default = null;
-      description = "Which desktop environment to use for this user.";
+    enable = mkOption {
+      type = types.bool;
+      default = pkgs.stdenv.hostPlatform.isLinux;
+      description = "Whether to enable the desktop environments or not.";
+    };
+
+    environments = mkOption {
+      type = with types; listOf (enum ["hyprland" "sway"]);
+      default = ["hyprland" "sway"];
+      description = "Which desktop environments to use for this user.";
     };
 
     monitors = mkOption {

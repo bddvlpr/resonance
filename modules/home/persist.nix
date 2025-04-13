@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) listToAttrs mkIf mkOption nameValuePair types;
+  inherit (lib) listToAttrs mkIf mkOption nameValuePair strings types;
 
   cfg = config.bowl.persist;
 in {
@@ -55,7 +55,7 @@ in {
           else {files = [path];}
         )
         // {
-          persistentStoragePath = "/persist${config.home.homeDirectory}/${path}";
+          persistentStoragePath = strings.normalizePath "/persist/${config.home.homeDirectory}/${path}";
           inherit allowOther;
         }))
     cfg.entries);

@@ -7,8 +7,8 @@
 
   cfg = config.bowl.desktop;
 in {
-  config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
-    wayland.windowManager.hyprland = {
+  config = mkIf (cfg.enable && elem "sway" cfg.environments) {
+    wayland.windowManager.sway = {
       enable = true;
     };
   };

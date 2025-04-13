@@ -6,8 +6,8 @@
   inherit (lib) mkOption types;
 in {
   imports = [
+    ./environments.nix
     ./login/greetd.nix
-    ./environment/hyprland.nix
   ];
 
   options.bowl.desktop = {
