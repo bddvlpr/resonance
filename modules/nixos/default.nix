@@ -7,6 +7,7 @@
     ./networking.nix
     ./persist.nix
     ./remote.nix
+    ./security.nix
     ./ssh.nix
   ];
 }

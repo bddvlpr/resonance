@@ -57,7 +57,7 @@ in {
           isNormalUser = true;
           hashedPasswordFile = config.sops.secrets."user-password-${name}".path;
           extraGroups =
-            ["audio" "video" "dialout"]
+            ["audio" "video" "dialout" "networkmanager"]
             ++ (optionals user.superuser ["wheel"])
             ++ user.groups;
         };
