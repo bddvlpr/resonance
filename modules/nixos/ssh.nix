@@ -8,8 +8,8 @@
     };
   };
 
-  environment.persistence."/persist".directories = [
-    "/etc/ssh"
+  bowl.persist.entries = [
+    { path = "/etc/ssh"; }
   ];
 
   fileSystems."/etc/ssh".neededForBoot = true;

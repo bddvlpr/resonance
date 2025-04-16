@@ -4,12 +4,21 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit (lib) listToAttrs mkIf mkOption nameValuePair strings types;
+}:
+let
+  inherit (lib)
+    listToAttrs
+    mkIf
+    mkOption
+    nameValuePair
+    strings
+    types
+    ;
 
   cfg = config.bowl.persist;
-in {
-  imports = [inputs.impermanence.homeManagerModules.default];
+in
+{
+  imports = [ inputs.impermanence.homeManagerModules.default ];
 
   options.bowl.persist = {
     enable = mkOption {
@@ -19,7 +28,8 @@ in {
     };
 
     entries = mkOption {
-      type = with types;
+      type =
+        with types;
         listOf (submodule {
           options = {
             path = mkOption {
@@ -27,37 +37,41 @@ in {
               description = "The path to create a mount for.";
             };
             type = mkOption {
-              type = enum ["file" "directory"];
+              type = enum [
+                "file"
+                "directory"
+              ];
               default = "directory";
               description = "Is the path a file or a directory.";
             };
             allowOther = mkOption {
-              type = types.bool;
+              type = bool;
               default = false;
               description = "Allow other users to access the mount.";
             };
           };
         });
-      default = [];
+      default = [ ];
       description = "The entries to create mounts for.";
     };
   };
 
   config = mkIf cfg.enable {
-    home.persistence = listToAttrs (map ({
-      path,
-      type,
-      allowOther,
-    }:
-      nameValuePair path ((
-          if type == "directory"
-          then {directories = [path];}
-          else {files = [path];}
+    home.persistence = listToAttrs (
+      map (
+        {
+          path,
+          type,
+          allowOther,
+        }:
+        nameValuePair path (
+          (if type == "directory" then { directories = [ path ]; } else { files = [ path ]; })
+          // {
+            persistentStoragePath = strings.normalizePath "/persist/${config.home.homeDirectory}";
+            inherit allowOther;
+          }
         )
-        // {
-          persistentStoragePath = strings.normalizePath "/persist/${config.home.homeDirectory}/${path}";
-          inherit allowOther;
-        }))
-    cfg.entries);
+      ) cfg.entries
+    );
   };
 }

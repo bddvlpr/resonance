@@ -4,7 +4,7 @@
     ./desktop
     ./dev
     ./disk.nix
-    ./impermanence.nix
+    ./persist.nix
     ./remote.nix
     ./ssh.nix
   ];
