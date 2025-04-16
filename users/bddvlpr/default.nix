@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./desktop
     ./programs
   ];
 

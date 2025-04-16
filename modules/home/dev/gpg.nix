@@ -40,7 +40,9 @@ in {
                     full = 4;
                     ultimate = 5;
                   }
-                  .${v}
+                  .${
+                    v
+                  }
                 else v;
               description = "Trust in key ownership. Read the docs, I ain't typing that here.";
             };
