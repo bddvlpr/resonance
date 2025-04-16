@@ -10,6 +10,12 @@
 in {
   wayland.windowManager.hyprland = {
     settings = {
+      bindm = [
+        # Drag 'n Drop
+        "${mod}, mouse:272, movewindow"
+        "${mod}, mouse:273, resizewindow"
+      ];
+
       bind =
         [
           # General

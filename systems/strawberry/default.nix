@@ -1,5 +1,8 @@
 {
-  imports = [./hardware.nix];
+  imports = [
+    ./hardware.nix
+    ./home.nix
+  ];
 
   bowl = {
     disk.device = "/dev/nvme0n1";

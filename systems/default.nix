@@ -26,11 +26,6 @@ in {
         class = "darwin";
       };
 
-      mango = {
-        arch = "x86_64";
-        class = "nixos";
-      };
-
       strawberry = {
         arch = "x86_64";
         class = "nixos";
