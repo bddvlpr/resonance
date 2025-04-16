@@ -1,8 +1,5 @@
 {
-  networking = {
-    networkmanager.enable = true;
-    wireless.enable = true;
-  };
+  networking.networkmanager.enable = true;
 
   bowl.persist.entries = [
     {path = "/etc/NetworkManager";}

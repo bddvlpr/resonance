@@ -5,6 +5,8 @@
     common-gpu-nvidia-nonprime
   ];
 
+  hardware.enableRedistributableFirmware = true;
+
   boot = {
     initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
     kernelModules = ["kvm-intel"];
