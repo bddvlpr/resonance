@@ -3,13 +3,11 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) concatLists genList getExe;
 
   mod = "SUPER";
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       bind =
@@ -42,7 +40,7 @@ in
 
           # Grouping
           "${mod}, G, togglegroup"
-          "${mod}, Tab, chagnegroupactive"
+          "${mod}, Tab, changegroupactive"
 
           # Special
           "${mod}, A, togglespecialworkspace"
@@ -63,35 +61,32 @@ in
         ]
         ++ (concatLists (
           genList (
-            x:
-            let
+            x: let
               ws = toString (x + 1);
-            in
-            [
+            in [
               # Workspaces
               "${mod}, ${ws}, workspace, ${ws}"
               "${mod} SHIFT, ${ws}, movetoworkspace, ${ws}"
             ]
-          ) 9
+          )
+          9
         ));
     };
   };
 
   services.hyprpaper = {
-    enable = true;
+    enable = false;
 
-    settings =
-      let
-        contour = pkgs.fetchurl {
-          url = "https://github.com/rose-pine/wallpapers/blob/f76fd68629516ce820fe6dbcf31b5c44de78e4ad/rose_pine_contourline.png?raw=true";
-          hash = "";
-        };
-      in
-      {
-        preload = [ contour ];
-        wallpaper = [
-          ", ${contour}"
-        ];
+    settings = let
+      contour = pkgs.fetchurl {
+        url = "https://github.com/rose-pine/wallpapers/blob/f76fd68629516ce820fe6dbcf31b5c44de78e4ad/rose_pine_contourline.png?raw=true";
+        hash = "";
       };
+    in {
+      preload = [contour];
+      wallpaper = [
+        ", ${contour}"
+      ];
+    };
   };
 }

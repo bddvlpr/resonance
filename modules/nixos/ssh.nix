@@ -9,7 +9,7 @@
   };
 
   bowl.persist.entries = [
-    { path = "/etc/ssh"; }
+    {path = "/etc/ssh";}
   ];
 
   fileSystems."/etc/ssh".neededForBoot = true;
