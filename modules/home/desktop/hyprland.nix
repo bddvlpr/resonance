@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  inherit (lib) elem filter forEach mkIf;
+  inherit (lib) elem filter forEach getExe mkIf;
 
   cfg = config.bowl.desktop;
 in {
@@ -53,6 +53,26 @@ in {
       };
     };
 
-    services.hyprpaper.enable = true;
+    services = {
+      hyprpaper.enable = true;
+      hypridle = {
+        enable = true;
+        settings = {
+          listener = [
+            {
+              timeout = 5 * 60;
+              on-timeout = getExe config.programs.hyprlock.package;
+            }
+          ];
+        };
+      };
+    };
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general.grace = 30;
+      };
+    };
   };
 }

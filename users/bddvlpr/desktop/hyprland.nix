@@ -32,7 +32,7 @@ in {
           # General
           "${mod}, Q, killactive, "
           "${mod} SHIFT, Q, exit, "
-          "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.swaylock.package}"
+          "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.hyprlock.package} --immediate"
 
           # Launchers
           "${mod}, Return, exec, ${getExe pkgs.foot}"

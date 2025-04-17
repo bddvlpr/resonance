@@ -3,7 +3,7 @@
 in {
   imports = [
     ./environments.nix
-    ./login/greetd.nix
+    ./login.nix
   ];
 
   options.bowl.desktop = {
