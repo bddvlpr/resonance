@@ -1,9 +1,10 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }: let
-  inherit (lib) elem filter forEach getExe mkIf;
+  inherit (lib) elem filter forEach getExe mkForce mkIf;
 
   cfg = config.bowl.desktop;
 in {
@@ -72,6 +73,15 @@ in {
       enable = true;
       settings = {
         general.grace = 30;
+
+        auth = mkIf osConfig.bowl.fingerprint.enable {
+          "fingerprint:enabled" = true;
+        };
+
+        background = mkForce {
+          path = "screenshot";
+          blur_passes = 1;
+        };
       };
     };
   };
