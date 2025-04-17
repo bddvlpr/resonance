@@ -2,7 +2,9 @@
   imports = [
     ./desktop
     ./programs
+    ./stylix.nix
   ];
+
   bowl = {
     user = {
       name = "Luna Simons";

@@ -42,4 +42,23 @@ in {
       cat = "${getExe pkgs.bat}";
     };
   };
+
+  programs.starship = {
+    enable = !isDarwin; # TODO: Currently looks terrible because the osx default terminal is limited.
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+
+    settings = {
+      format = "$all";
+    };
+  };
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        pad = "10x0";
+      };
+    };
+  };
 }

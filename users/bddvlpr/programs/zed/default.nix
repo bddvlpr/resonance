@@ -8,4 +8,9 @@
       "nix"
     ];
   };
+
+  bowl.persist.entries = [
+    {path = ".cache/zed";}
+    {path = ".local/share/zed";}
+  ];
 }

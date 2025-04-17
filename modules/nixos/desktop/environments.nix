@@ -12,8 +12,6 @@ in {
     (mkIf (hasHome config (envs: elem "hyprland" envs) ["bowl" "desktop" "environments"]) {
       services.displayManager.sessionPackages = [pkgs.hyprland];
     })
-    (mkIf (hasHome config (envs: elem "sway" envs) ["bowl" "desktop" "environments"]) {
-      services.displayManager.sessionPackages = [pkgs.sway];
-    })
+    # TODO: Sway and other WMs
   ];
 }

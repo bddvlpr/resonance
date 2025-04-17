@@ -20,7 +20,7 @@ in {
 
     allowOther = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Allow other users to access the mounts.";
     };
 

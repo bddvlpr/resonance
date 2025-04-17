@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./hardware.nix
     ./home.nix
@@ -11,6 +11,12 @@
       bddvlpr = {
         superuser = true;
       };
+    };
+
+    desktop.autoLogin = {
+      enable = true;
+      user = "bddvlpr";
+      package = pkgs.hyprland;
     };
   };
 

@@ -10,6 +10,17 @@
 in {
   wayland.windowManager.hyprland = {
     settings = {
+      input.follow_mouse = 2;
+      dwindle.preserve_split = true;
+
+      animations = {
+        bezier = "fast, 0.05, 0.9, 0.1, 1";
+        animation = [
+          "windows, 1, 7, fast, slide"
+          "workspaces, 1, 7, fast, slidefade"
+        ];
+      };
+
       bindm = [
         # Drag 'n Drop
         "${mod}, mouse:272, movewindow"
@@ -77,22 +88,6 @@ in {
           )
           9
         ));
-    };
-  };
-
-  services.hyprpaper = {
-    enable = false;
-
-    settings = let
-      contour = pkgs.fetchurl {
-        url = "https://github.com/rose-pine/wallpapers/blob/f76fd68629516ce820fe6dbcf31b5c44de78e4ad/rose_pine_contourline.png?raw=true";
-        hash = "";
-      };
-    in {
-      preload = [contour];
-      wallpaper = [
-        ", ${contour}"
-      ];
     };
   };
 }

@@ -19,7 +19,7 @@ in {
       enable = true;
 
       vt = 2;
-      restart = !cfg.autoLogin;
+      restart = cfg.autoLogin == null;
 
       settings = {
         default_session = {
@@ -32,6 +32,11 @@ in {
             "--asterisks"
             "--sessions '${sessionPath}'"
           ];
+        };
+
+        initial_session = mkIf (cfg.autoLogin.enable) {
+          inherit (cfg.autoLogin) user;
+          command = getExe cfg.autoLogin.package;
         };
       };
     };

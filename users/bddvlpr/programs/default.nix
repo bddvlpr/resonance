@@ -1,8 +1,7 @@
 {
   imports = [
     ./firefox
-    ./fish
-    ./starship
+    ./shell
     ./zed
   ];
 }

@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkOption types;
 in {
   imports = [
@@ -11,13 +7,25 @@ in {
   ];
 
   options.bowl.desktop = {
-    autoLogin = mkOption {
-      type = types.bool;
-      default = config.bowl.disk.preset == "luks-btrfs";
-      description = ''
-        Whether to auto-login the user or not.
-        Refrain from using autologin if the disk is not password encrypted!
-      '';
+    autoLogin = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Whether to auto-login the user or not.
+          Refrain from using autoLogin if the disk is not password protected!
+        '';
+      };
+
+      user = mkOption {
+        type = types.str;
+        description = "The user to auto-login as.";
+      };
+
+      package = mkOption {
+        type = types.package;
+        description = "The environment to load in to.";
+      };
     };
 
     loginManager = mkOption {
@@ -25,5 +33,9 @@ in {
       default = "greetd";
       description = "Which login manager to use.";
     };
+  };
+
+  config = {
+    programs.dconf.enable = true;
   };
 }
