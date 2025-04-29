@@ -5,7 +5,11 @@
 
     userSettings = import ./settings.nix args;
     extensions = [
+      # Languages
       "nix"
+
+      # Styles
+      "rose-pine-theme"
     ];
   };
 

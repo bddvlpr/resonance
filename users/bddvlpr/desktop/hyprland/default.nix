@@ -35,7 +35,7 @@ in {
           "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.hyprlock.package} --immediate"
 
           # Launchers
-          "${mod}, Return, exec, ${getExe pkgs.foot}"
+          "${mod}, Return, exec, ${getExe pkgs.kitty}"
           "${mod}, Space, exec, ${getExe pkgs.rofi} -show drun"
 
           # Movement

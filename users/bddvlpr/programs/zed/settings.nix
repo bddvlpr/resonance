@@ -5,10 +5,12 @@
   config,
   ...
 }: let
-  inherit (lib) getExe;
+  inherit (lib) getExe mkForce;
 
   inherit (osConfig.bowl.users.${config.home.username}) shell;
 in {
+  theme = mkForce "Rosé Pine Moon";
+
   telemetry.metrics = false;
   inlay_hints.enabled = true;
 

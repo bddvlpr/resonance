@@ -1,7 +1,11 @@
 {
   imports = [
+    ./bat
     ./firefox
-    ./shell
+    ./fish
+    ./helix
+    ./kitty
+    ./starship
     ./zed
   ];
 }

@@ -2,6 +2,7 @@
   imports = [
     ./desktop
     ./programs
+    ./services
     ./stylix.nix
   ];
 

@@ -8,7 +8,8 @@
   stylix = {
     enable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+    polarity = "dark";
     image = pkgs.fetchurl {
       url = "https://github.com/rose-pine/wallpapers/blob/main/rose_pine_contourline.png?raw=true";
       hash = "sha256-8OQCXMy27IImp1Oc/X4i14/8k9XjuuU+6clh0rRcAQY=";

@@ -5,4 +5,8 @@
   };
 
   home.packages = with pkgs; [comma];
+
+  bowl.persist.entries = [
+    {path = ".local/share/zoxide";}
+  ];
 }

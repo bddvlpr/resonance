@@ -6,7 +6,7 @@
   inherit (lib) mkOption types;
 in {
   imports = [
-    ./hyprland.nix
+    ./hyprland
   ];
 
   options.bowl.desktop = {

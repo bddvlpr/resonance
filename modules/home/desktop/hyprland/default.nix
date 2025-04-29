@@ -1,13 +1,19 @@
 {
   lib,
   config,
-  osConfig,
   ...
 }: let
-  inherit (lib) elem filter forEach getExe mkForce mkIf;
+  inherit (lib) elem filter forEach mkIf;
 
   cfg = config.bowl.desktop;
 in {
+  imports = [
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+    ./rofi.nix
+  ];
+
   config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
     wayland.windowManager.hyprland = {
       enable = true;
@@ -51,37 +57,6 @@ in {
             workspace,
             ...
           }: "name:${toString workspace}, monitor:${name}");
-      };
-    };
-
-    services = {
-      hyprpaper.enable = true;
-      hypridle = {
-        enable = true;
-        settings = {
-          listener = [
-            {
-              timeout = 5 * 60;
-              on-timeout = getExe config.programs.hyprlock.package;
-            }
-          ];
-        };
-      };
-    };
-
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        general.grace = 30;
-
-        auth = mkIf osConfig.bowl.fingerprint.enable {
-          "fingerprint:enabled" = true;
-        };
-
-        background = mkForce {
-          path = "screenshot";
-          blur_passes = 1;
-        };
       };
     };
   };
