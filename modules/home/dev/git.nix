@@ -59,5 +59,9 @@ in {
         credential.helper = "store";
       };
     };
+
+    bowl.persist.entries = [
+      {path = ".git-credentials"; type = "file";}
+    ];
   };
 }
