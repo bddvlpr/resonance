@@ -25,6 +25,8 @@ in {
 
       security.pam.services.hyprlock =
         mkIf (hasHome config (envs: elem "hyprland" envs) ["bowl" "desktop" "environments"]) {};
+      security.pam.services.swaylock =
+        mkIf (hasHome config (envs: elem "sway" envs) ["bowl" "desktop" "environments"]) {};
     }
     (mkIf cfg.enable {
       services.fprintd.enable = true;

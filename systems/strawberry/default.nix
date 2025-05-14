@@ -13,8 +13,6 @@
       };
     };
 
-    fingerprint.enable = true;
-
     desktop.autoLogin = {
       enable = true;
       user = "bddvlpr";

@@ -1,7 +1,11 @@
 {pkgs, ...} @ args: {
   programs.zed-editor = {
     enable = true;
-    extraPackages = with pkgs; [nil nixd];
+    extraPackages = with pkgs; [
+      nil
+      nixd
+      package-version-server
+    ];
 
     userSettings = import ./settings.nix args;
     extensions = [

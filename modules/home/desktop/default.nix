@@ -7,6 +7,7 @@
 in {
   imports = [
     ./hyprland
+    ./sway
   ];
 
   options.bowl.desktop = {
@@ -17,7 +18,7 @@ in {
     };
 
     environments = mkOption {
-      type = with types; listOf (enum ["hyprland"]);
+      type = with types; listOf (enum ["hyprland" "sway"]);
       default = ["hyprland"];
       description = "Which desktop environments to use for this user.";
     };
