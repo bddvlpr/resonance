@@ -56,6 +56,7 @@ in {
       extraConfig = {
         init = {inherit (cfg.git) defaultBranch;};
         push.autoSetupRemote = true;
+        credential.helper = "store";
       };
     };
   };
