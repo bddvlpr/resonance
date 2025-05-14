@@ -21,6 +21,11 @@ in {
     };
 
     hosts = {
+      kiwi = {
+        arch = "x86_64";
+        class = "nixos";
+      };
+
       lychee = {
         arch = "x86_64";
         class = "darwin";

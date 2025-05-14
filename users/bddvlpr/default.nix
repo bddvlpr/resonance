@@ -28,6 +28,7 @@
     };
 
     persist.entries = [
+      {path = ".config/sops";}
       {path = "Desktop";}
       {path = "Documents";}
       {path = "Pictures";}
