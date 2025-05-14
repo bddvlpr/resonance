@@ -11,6 +11,7 @@ in {
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./mako.nix
     ./rofi.nix
   ];
 
