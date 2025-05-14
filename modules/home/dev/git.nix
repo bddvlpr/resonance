@@ -61,7 +61,10 @@ in {
     };
 
     bowl.persist.entries = [
-      {path = ".git-credentials"; type = "file";}
+      {
+        path = ".git-credentials";
+        type = "file";
+      }
     ];
   };
 }
