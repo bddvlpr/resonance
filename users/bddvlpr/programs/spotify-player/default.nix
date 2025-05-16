@@ -1,4 +1,6 @@
 {...} @ args: {
+  sops.secrets."spotify/client-id" = {};
+
   programs.spotify-player = {
     enable = true;
 

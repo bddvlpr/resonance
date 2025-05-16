@@ -11,6 +11,7 @@ in {
     ./dev
     ./persist.nix
     ./remote.nix
+    ./secrets.nix
     ./user.nix
   ];
 

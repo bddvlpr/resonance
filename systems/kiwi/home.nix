@@ -5,6 +5,7 @@
         {
           name = "DP-6";
           workspace = 1;
+          bar = "tiny";
 
           width = 1920;
           height = 1080;
@@ -27,6 +28,7 @@
         {
           name = "DP-4";
           workspace = 3;
+          bar = "tiny";
 
           width = 1920;
           height = 1080;

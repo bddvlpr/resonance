@@ -13,6 +13,7 @@ in {
     ./hyprpaper.nix
     ./mako.nix
     ./rofi.nix
+    ./waybar.nix
   ];
 
   config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {

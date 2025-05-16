@@ -40,6 +40,11 @@ in {
               default = null;
               example = 1;
             };
+            bar = mkOption {
+              type = enum ["big" "tiny"];
+              default = "big";
+              example = "tiny";
+            };
 
             width = mkOption {
               type = int;

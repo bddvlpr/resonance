@@ -8,6 +8,10 @@
 
   mod = "SUPER";
 in {
+  imports = [
+    ./waybar.nix
+  ];
+
   wayland.windowManager.hyprland = {
     settings = {
       input.follow_mouse = 2;

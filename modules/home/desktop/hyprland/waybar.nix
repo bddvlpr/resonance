@@ -8,9 +8,9 @@
   cfg = config.bowl.desktop;
 in {
   config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
-    services.mako = {
+    programs.waybar = {
       enable = true;
-      settings.defaultTimeout = 5 * 1000;
+      systemd.enable = true;
     };
   };
 }

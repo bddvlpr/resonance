@@ -1,0 +1,19 @@
+window#waybar {
+    background: @base00;
+    color: @base05;
+}
+
+label.module {
+    border-bottom: solid @base05;
+    border-bottom-width: 2px;
+    margin: 0 6px;
+}
+
+#workspaces {
+    background-color: @base01;
+}
+
+#workspaces button {
+    padding: unset;
+    font-weight: unset;
+}
