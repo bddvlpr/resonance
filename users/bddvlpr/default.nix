@@ -29,6 +29,7 @@
 
     persist.entries = [
       {path = ".config/sops";}
+      {path = ".ssh";}
       {path = "Desktop";}
       {path = "Documents";}
       {path = "Pictures";}

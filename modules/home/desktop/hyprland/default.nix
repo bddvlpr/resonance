@@ -21,6 +21,11 @@ in {
       enable = true;
 
       settings = {
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
+
         misc = {
           disable_splash_rendering = true;
           disable_hyprland_logo = true;

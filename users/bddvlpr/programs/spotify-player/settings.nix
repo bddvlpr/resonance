@@ -11,7 +11,7 @@
   device = {
     name = "Spotify Player (${osConfig.networking.hostName})";
     type = "computer";
-    volume = 75;
+    volume = 100;
     audio_cache = true;
   };
 }

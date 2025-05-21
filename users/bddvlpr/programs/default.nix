@@ -8,6 +8,7 @@
     ./spotify-player
     ./starship
     ./vesktop
+    ./vrcx
     ./zed
   ];
 }
