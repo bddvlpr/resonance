@@ -9,7 +9,7 @@
   flakeInputs = filterAttrs (_: isType "flake") inputs;
 in {
   nix = {
-    # package = pkgs.lix;
+    package = pkgs.lix;
 
     registry = mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;

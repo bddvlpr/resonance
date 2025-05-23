@@ -555,11 +555,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1748013307,
-        "narHash": "sha256-YNsQCAArUxQNzVmE54AW0Ny7gcpfwCBKkukNdk74eu8=",
+        "lastModified": 1748027017,
+        "narHash": "sha256-1KReCdovuXcNbP0VuYCZhwhcPPNIvEDtPmNjK0ipwrM=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "8dd18dd3955548fe299d7ba337e464bc28dd1448",
+        "rev": "6b2bc89659213d90929642e4439289694309e8b6",
         "type": "github"
       },
       "original": {
