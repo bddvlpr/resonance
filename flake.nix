@@ -80,6 +80,7 @@
         ./apps
         ./lib
         ./systems
+        ./templates
       ];
 
       perSystem = {
