@@ -20,7 +20,7 @@ in {
         "nix-command"
         "flakes"
       ];
-      trusted-users = ["@wheel"];
+      trusted-users = ["@wheel" "@admin"];
       substituters = [
         "https://cache.garnix.io"
         "https://nix-community.cachix.org"

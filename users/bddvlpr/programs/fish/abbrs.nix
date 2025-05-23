@@ -19,9 +19,9 @@ in
       nsn = "${ns} nixpkgs#";
     }
     (mkIf isDarwin rec {
-      dr = "darwin-rebuild --flake .";
-      drb = "${dr} build";
-      drs = "${dr} switch";
+      sdr = "sudo darwin-rebuild --flake .";
+      sdrb = "${sdr} build";
+      sdrs = "${sdr} switch";
     })
     (mkIf isLinux rec {
       snr = "sudo nixos-rebuild --flake .";

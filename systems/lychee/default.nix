@@ -5,5 +5,8 @@
     };
   };
 
-  system.stateVersion = 6;
+  system = {
+    primaryUser = "bddvlpr";
+    stateVersion = 6;
+  };
 }

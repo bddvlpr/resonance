@@ -1,8 +1,8 @@
 {pkgs, ...}: let
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
 in {
   programs.starship = {
-    enable = !isDarwin; # TODO: Currently looks terrible because the osx default terminal is limited.
+    enable = isLinux; # TODO: Currently looks terrible because the osx default terminal is limited.
     enableFishIntegration = true;
     enableZshIntegration = true;
 

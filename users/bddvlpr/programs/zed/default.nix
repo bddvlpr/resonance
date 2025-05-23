@@ -5,6 +5,7 @@
       nil
       nixd
       package-version-server
+      rust-analyzer
     ];
 
     userSettings = import ./settings.nix args;
