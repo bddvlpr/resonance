@@ -1,0 +1,36 @@
+keys:
+  - &host_kiwi age1ajf9dmcukxsya3rxqyput9wfmtnsweq9c8evgp3mx8nn7dkau5kswfcqnf
+  - &host_lychee age18a3mm5xhtem23d2mf3chjv4xxfm48n9xruzjaq42s046hmvqhqgq888s5z
+  - &host_mango age14u3vde7hnj66eemqj0maf265yc2k0ashg9w0xajwmcwjflxr6e7sythp80
+  - &host_strawberry age1aarll6pr2mjq9l3a7mc2lxp6djy0a7xhneemwumcq092dzvtqgxsfyumxm
+  - &user_bddvlpr age16aazmlnarycwuk3a9e5sr55e2354sydn9qd5c6edhly9rq9k693s43txeq
+
+creation_rules:
+  - path_regex: users/bddvlpr/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *host_kiwi
+          - *host_lychee
+          - *host_mango
+          - *host_strawberry
+          - *user_bddvlpr
+  - path_regex: systems/kiwi/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *host_kiwi
+          - *user_bddvlpr
+  - path_regex: systems/lychee/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *host_lychee
+          - *user_bddvlpr
+  - path_regex: systems/mango/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *host_mango
+          - *user_bddvlpr
+  - path_regex: systems/strawberry/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *host_strawberry
+          - *user_bddvlpr

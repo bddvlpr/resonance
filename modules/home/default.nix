@@ -1,8 +1,22 @@
-{ lib, ... }:
-let
-  inherit (builtins) readDir mapAttrs;
-  inherit (lib.attrsets) filterAttrs;
+{
+  self,
+  osConfig,
+  pkgs,
+  ...
+}: let
+  inherit (self.lib) systemTernary;
+in {
+  imports = [
+    ./desktop
+    ./dev
+    ./persist.nix
+    ./remote.nix
+    ./secrets.nix
+    ./user.nix
+  ];
 
-  modules = filterAttrs (module: type: type == "directory") (readDir ./.);
-in
-mapAttrs (k: _: import ./${k}) modules
+  home.stateVersion = systemTernary pkgs {
+    linux = osConfig.system.stateVersion;
+    darwin = "25.05";
+  };
+}

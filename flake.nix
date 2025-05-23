@@ -1,13 +1,30 @@
 {
-  description = "Luna's system configurations and modules";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
-    hardware.url = "github:nixos/nixos-hardware";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+        flake-parts.follows = "flake-parts";
+      };
+    };
+
+    easy-hosts.url = "github:tgirlcloud/easy-hosts";
+
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -16,14 +33,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     nix-index-database = {
@@ -31,48 +57,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
-    };
-
-    fenix = {
-      url = "github:nix-community/fenix?ref=monthly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-steel = {
-      url = "github:bddvlpr/nix-steel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    helix-steel = {
-      url = "github:mattwparas/helix?ref=steel-event-system";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    aagl = {
-      url = "github:ezkea/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/nur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs =
-    { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = {
+    self,
+    flake-parts,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
@@ -81,23 +77,36 @@
       ];
 
       imports = [
-        ./apps/module.nix
-        ./lib/module.nix
-        ./modules/module.nix
-        ./overlays/module.nix
-        ./pkgs/module.nix
-        ./systems/module.nix
-        ./templates/module.nix
+        ./apps
+        ./lib
+        ./systems
+        ./templates
       ];
 
-      perSystem =
-        {
-          pkgs,
-          inputs',
-          ...
-        }:
-        {
-          formatter = pkgs.nixfmt-tree;
+      perSystem = {
+        pkgs,
+        inputs',
+        ...
+      }: let
+        inherit (self.lib) systemTernary;
+      in {
+        formatter = pkgs.alejandra;
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = systemTernary pkgs {
+            default = with inputs';
+              [
+                nixos-anywhere.packages.default
+              ]
+              ++ (with pkgs; [
+                sops
+                ssh-to-age
+              ]);
+
+            linux = [inputs'.disko.packages.default];
+            darwin = [inputs'.nix-darwin.packages.default];
+          };
         };
+      };
     };
 }

@@ -1,3 +1,0 @@
-{
-  system.stateVersion = 5;
-}
