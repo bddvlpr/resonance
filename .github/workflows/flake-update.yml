@@ -1,0 +1,17 @@
+name: Flake Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  update-flake-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: determinatesystems/determinate-nix-action@v3
+      - uses: determinatesystems/update-flake-lock@v25
+        with:
+          pr-title: "Flake inputs update"
+          commit-msg: "chore: flake update"
