@@ -4,6 +4,7 @@
     ./firefox
     ./fish
     ./helix
+    ./kicad
     ./kitty
     ./spotify-player
     ./starship
