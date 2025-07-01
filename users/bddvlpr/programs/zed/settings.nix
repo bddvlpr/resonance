@@ -20,6 +20,10 @@ in {
 
   terminal.shell.program = getExe shell;
 
+  file_scan_exclusions = [
+    "**/node_modules"
+  ];
+
   languages = {
     Nix = {
       formatter.external = {

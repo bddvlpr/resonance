@@ -1,6 +1,6 @@
-{
+{pkgs, ...}: {
   programs.firefox = {
-    enable = true;
+    enable = pkgs.stdenv.buildPlatform.isLinux;
 
     profiles = {
       personal = import ./personal;
