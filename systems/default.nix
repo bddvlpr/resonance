@@ -8,7 +8,7 @@
 in {
   imports = [inputs.easy-hosts.flakeModule];
 
-  easyHosts = {
+  easy-hosts = {
     perClass = class: {
       modules =
         [
