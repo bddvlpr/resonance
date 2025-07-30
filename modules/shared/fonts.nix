@@ -2,13 +2,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
-in {
+in
+{
   fonts = {
     fontDir.enable = mkIf isLinux true;
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         geist-font
         iosevka

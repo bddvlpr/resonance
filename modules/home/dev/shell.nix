@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.zoxide = {
     enable = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
 
   home.packages = with pkgs; [
@@ -13,6 +14,6 @@
   ];
 
   bowl.persist.entries = [
-    {path = ".local/share/zoxide";}
+    { path = ".local/share/zoxide"; }
   ];
 }

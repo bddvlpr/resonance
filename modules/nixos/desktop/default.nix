@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) mkOption types;
-in {
+in
+{
   imports = [
     ./environments.nix
     ./login.nix
@@ -29,7 +31,7 @@ in {
     };
 
     loginManager = mkOption {
-      type = types.enum ["greetd"];
+      type = types.enum [ "greetd" ];
       default = "greetd";
       description = "Which login manager to use.";
     };

@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) concatLists genList getExe;
 
   mod = "SUPER";
-in {
+in
+{
   imports = [
     ./waybar.nix
   ];
@@ -31,65 +33,65 @@ in {
         "${mod}, mouse:273, resizewindow"
       ];
 
-      bind =
-        [
-          # General
-          "${mod}, Q, killactive, "
-          "${mod} SHIFT, Q, exit, "
-          "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.hyprlock.package} --immediate"
+      bind = [
+        # General
+        "${mod}, Q, killactive, "
+        "${mod} SHIFT, Q, exit, "
+        "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.hyprlock.package} --immediate"
 
-          # Launchers
-          "${mod}, Return, exec, ${getExe pkgs.kitty}"
-          "${mod}, Space, exec, ${getExe pkgs.rofi} -show drun"
+        # Launchers
+        "${mod}, Return, exec, ${getExe pkgs.kitty}"
+        "${mod}, Space, exec, ${getExe pkgs.rofi} -show drun"
 
-          # Movement
-          "${mod}, H, movefocus, l"
-          "${mod}, J, movefocus, d"
-          "${mod}, K, movefocus, u"
-          "${mod}, L, movefocus, r"
-          "${mod} SHIFT, Space, togglefloating, "
-          "${mod}, S, togglesplit"
-          "${mod}, E, swapnext"
-          "${mod}, F, fullscreen, "
-          "${mod}, P, pseudo, "
+        # Movement
+        "${mod}, H, movefocus, l"
+        "${mod}, J, movefocus, d"
+        "${mod}, K, movefocus, u"
+        "${mod}, L, movefocus, r"
+        "${mod} SHIFT, Space, togglefloating, "
+        "${mod}, S, togglesplit"
+        "${mod}, E, swapnext"
+        "${mod}, F, fullscreen, "
+        "${mod}, P, pseudo, "
 
-          # Resizing
-          "${mod} SHIFT, H, resizeactive, -20 0"
-          "${mod} SHIFT, J, resizeactive, 0 20"
-          "${mod} SHIFT, K, resizeactive, 0 -20"
-          "${mod} SHIFT, L, resizeactive, 20 0"
+        # Resizing
+        "${mod} SHIFT, H, resizeactive, -20 0"
+        "${mod} SHIFT, J, resizeactive, 0 20"
+        "${mod} SHIFT, K, resizeactive, 0 -20"
+        "${mod} SHIFT, L, resizeactive, 20 0"
 
-          # Grouping
-          "${mod}, G, togglegroup"
-          "${mod}, Tab, changegroupactive"
+        # Grouping
+        "${mod}, G, togglegroup"
+        "${mod}, Tab, changegroupactive"
 
-          # Special
-          "${mod}, A, togglespecialworkspace"
-          "${mod} SHIFT, A, movetoworkspace, special"
+        # Special
+        "${mod}, A, togglespecialworkspace"
+        "${mod} SHIFT, A, movetoworkspace, special"
 
-          # Meta
-          ", XF86AudioPlay, exec, ${getExe pkgs.playerctl} play-pause"
-          ", XF86AudioNext, exec, ${getExe pkgs.playerctl} next"
-          ", XF86AudioPrev, exec, ${getExe pkgs.playerctl} previous"
+        # Meta
+        ", XF86AudioPlay, exec, ${getExe pkgs.playerctl} play-pause"
+        ", XF86AudioNext, exec, ${getExe pkgs.playerctl} next"
+        ", XF86AudioPrev, exec, ${getExe pkgs.playerctl} previous"
 
-          # Screenshotting
-          "${mod} SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
-          "${mod} SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
-          "SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy output"
-          ", Print, exec, ${getExe pkgs.grimblast} --notify copy active"
-        ]
-        ++ (concatLists (
-          genList (
-            x: let
-              ws = toString (x + 1);
-            in [
-              # Workspaces
-              "${mod}, ${ws}, workspace, ${ws}"
-              "${mod} SHIFT, ${ws}, movetoworkspace, ${ws}"
-            ]
-          )
-          9
-        ));
+        # Screenshotting
+        "${mod} SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
+        "${mod} SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
+        "SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy output"
+        ", Print, exec, ${getExe pkgs.grimblast} --notify copy active"
+      ]
+      ++ (concatLists (
+        genList (
+          x:
+          let
+            ws = toString (x + 1);
+          in
+          [
+            # Workspaces
+            "${mod}, ${ws}, workspace, ${ws}"
+            "${mod} SHIFT, ${ws}, movetoworkspace, ${ws}"
+          ]
+        ) 9
+      ));
 
       binde = [
         # Media

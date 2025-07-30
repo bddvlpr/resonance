@@ -1,5 +1,6 @@
-{inputs, ...} @ args: {
-  imports = [inputs.nixcord.homeModules.nixcord];
+{ inputs, ... }@args:
+{
+  imports = [ inputs.nixcord.homeModules.nixcord ];
 
   programs.nixcord = {
     enable = true;
@@ -11,6 +12,6 @@
   };
 
   bowl.persist.entries = [
-    {path = ".config/vesktop";}
+    { path = ".config/vesktop"; }
   ];
 }

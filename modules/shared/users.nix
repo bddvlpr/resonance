@@ -4,12 +4,22 @@
   self,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (self.lib) mkUserSecret systemTernary;
-  inherit (lib) mapAttrs mapAttrs' mkOption nameValuePair optionals types;
-in {
+  inherit (lib)
+    mapAttrs
+    mapAttrs'
+    mkOption
+    nameValuePair
+    optionals
+    types
+    ;
+in
+{
   options.bowl.users = mkOption {
-    type = with types;
+    type =
+      with types;
       attrsOf (submodule {
         options = {
           superuser = mkOption {
@@ -20,7 +30,7 @@ in {
 
           groups = mkOption {
             type = with types; listOf str;
-            default = [];
+            default = [ ];
             description = "Additional groups to grant to the user.";
           };
 
@@ -31,23 +41,26 @@ in {
           };
         };
       });
-    default = {bddvlpr = {superuser = true;};};
+    default = {
+      bddvlpr = {
+        superuser = true;
+      };
+    };
     description = "A list of users to create with sensible defaults.";
   };
 
   config = {
-    sops.secrets =
-      mapAttrs' (
-        user: _:
-          nameValuePair "user-password-${user}" (mkUserSecret {
-            key = "user/password";
-            inherit user;
-            extraArgs.neededForUsers = true;
-          })
-      )
-      config.bowl.users;
+    sops.secrets = mapAttrs' (
+      user: _:
+      nameValuePair "user-password-${user}" (mkUserSecret {
+        key = "user/password";
+        inherit user;
+        extraArgs.neededForUsers = true;
+      })
+    ) config.bowl.users;
 
-    users.users = mapAttrs (name: user:
+    users.users = mapAttrs (
+      name: user:
       systemTernary pkgs {
         default = {
           inherit (user) shell;
@@ -56,16 +69,20 @@ in {
         linux = {
           isNormalUser = true;
           hashedPasswordFile = config.sops.secrets."user-password-${name}".path;
-          extraGroups =
-            ["audio" "video" "dialout" "networkmanager"]
-            ++ (optionals user.superuser ["wheel"])
-            ++ user.groups;
+          extraGroups = [
+            "audio"
+            "video"
+            "dialout"
+            "networkmanager"
+          ]
+          ++ (optionals user.superuser [ "wheel" ])
+          ++ user.groups;
         };
 
         darwin = {
           home = "/Users/${name}";
         };
-      })
-    config.bowl.users;
+      }
+    ) config.bowl.users;
   };
 }

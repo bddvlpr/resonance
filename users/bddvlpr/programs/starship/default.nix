@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   inherit (pkgs.stdenv.hostPlatform) isLinux;
-in {
+in
+{
   programs.starship = {
     enable = isLinux; # TODO: Currently looks terrible because the osx default terminal is limited.
     enableFishIntegration = true;

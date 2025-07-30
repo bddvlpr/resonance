@@ -5,6 +5,6 @@
   };
 
   bowl.persist.entries = [
-    {path = ".local/share/direnv";}
+    { path = ".local/share/direnv"; }
   ];
 }

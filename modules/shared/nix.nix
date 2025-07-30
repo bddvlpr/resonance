@@ -2,13 +2,20 @@
   lib,
   inputs,
   ...
-}: let
-  inherit (lib) filterAttrs isType mapAttrs mapAttrsToList;
+}:
+let
+  inherit (lib)
+    filterAttrs
+    isType
+    mapAttrs
+    mapAttrsToList
+    ;
 
   flakeInputs = filterAttrs (_: isType "flake") inputs;
-in {
+in
+{
   nix = {
-    registry = mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    registry = mapAttrs (_: flake: { inherit flake; }) flakeInputs;
     nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
     settings = {
@@ -17,7 +24,10 @@ in {
         "nix-command"
         "flakes"
       ];
-      trusted-users = ["@wheel" "@admin"];
+      trusted-users = [
+        "@wheel"
+        "@admin"
+      ];
       substituters = [
         "https://cache.garnix.io"
         "https://nix-community.cachix.org"

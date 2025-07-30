@@ -2,10 +2,11 @@
   config,
   osConfig,
   ...
-}: {
+}:
+{
   client_id_command = {
     command = "cat";
-    args = [config.sops.secrets."spotify/client-id".path];
+    args = [ config.sops.secrets."spotify/client-id".path ];
   };
   playback_window_position = "Bottom";
   device = {

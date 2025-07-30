@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.firefox = {
     enable = pkgs.stdenv.buildPlatform.isLinux;
 
@@ -55,6 +56,6 @@
   };
 
   bowl.persist.entries = [
-    {path = ".mozilla/firefox";}
+    { path = ".mozilla/firefox"; }
   ];
 }

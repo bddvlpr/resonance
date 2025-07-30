@@ -3,11 +3,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkOption types;
 
   cfg = config.bowl.networking;
-in {
+in
+{
   options.bowl.networking = {
     tailscale = {
       enable = mkOption {
@@ -44,10 +46,7 @@ in {
 
       mullvad-vpn = {
         inherit (cfg.mullvad) enable;
-        package =
-          if cfg.mullvad.enableGUI
-          then pkgs.mullvad-vpn
-          else pkgs.mullvad;
+        package = if cfg.mullvad.enableGUI then pkgs.mullvad-vpn else pkgs.mullvad;
       };
     };
 
@@ -77,11 +76,11 @@ in {
     };
 
     bowl.persist.entries = [
-      {path = "/etc/NetworkManager";}
-      {path = "/etc/mullvad-vpn";}
-      {path = "/var/cache/mullvad-vpn";}
-      {path = "/var/cache/tailscale";}
-      {path = "/var/lib/tailscale";}
+      { path = "/etc/NetworkManager"; }
+      { path = "/etc/mullvad-vpn"; }
+      { path = "/var/cache/mullvad-vpn"; }
+      { path = "/var/cache/tailscale"; }
+      { path = "/var/lib/tailscale"; }
     ];
   };
 }

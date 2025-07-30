@@ -3,11 +3,19 @@
   pkgs,
   config,
   ...
-}: let
-  inherit (lib) genList getExe listToAttrs mkMerge nameValuePair;
+}:
+let
+  inherit (lib)
+    genList
+    getExe
+    listToAttrs
+    mkMerge
+    nameValuePair
+    ;
 
   workspaces = genList (w: toString (w + 1)) 9;
-in {
+in
+{
   imports = [
     ./swaylock.nix
   ];
@@ -24,11 +32,13 @@ in {
       };
 
       bars = [
-        ({
+        (
+          {
             mode = "dock";
             position = "top";
           }
-          // config.lib.stylix.sway.bar)
+          // config.lib.stylix.sway.bar
+        )
       ];
 
       modifier = "Mod4";
@@ -57,12 +67,10 @@ in {
           "${modifier}+Shift+k" = "move up";
           "${modifier}+Shift+l" = "move right";
         }
-        (listToAttrs (map (w:
-          nameValuePair "${modifier}+${w}" "workspace number ${w}")
-        workspaces))
-        (listToAttrs (map (w:
-          nameValuePair "${modifier}+Shift+${w}" "move container to workspace number ${w}")
-        workspaces))
+        (listToAttrs (map (w: nameValuePair "${modifier}+${w}" "workspace number ${w}") workspaces))
+        (listToAttrs (
+          map (w: nameValuePair "${modifier}+Shift+${w}" "move container to workspace number ${w}") workspaces
+        ))
       ];
     };
   };

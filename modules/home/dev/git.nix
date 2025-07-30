@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkOption types;
 
   cfg = config.bowl.user;
-in {
+in
+{
   options.bowl.user.git = {
     defaultBranch = mkOption {
       type = types.str;
@@ -54,7 +56,7 @@ in {
       };
 
       extraConfig = {
-        init = {inherit (cfg.git) defaultBranch;};
+        init = { inherit (cfg.git) defaultBranch; };
         push.autoSetupRemote = true;
         credential.helper = "store";
       };

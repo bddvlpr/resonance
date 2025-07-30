@@ -2,11 +2,19 @@
   lib,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkMerge mkOption types;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
 
   cfg = config.bowl.virtualisation;
-in {
+in
+{
   options.bowl.virtualisation = {
     docker = {
       enable = mkEnableOption "Docker engine";
@@ -24,7 +32,7 @@ in {
       virtualisation.docker.enable = true;
 
       bowl.persist.entries = mkIf cfg.docker.persist [
-        {path = "/var/lib/docker";}
+        { path = "/var/lib/docker"; }
       ];
     })
   ];

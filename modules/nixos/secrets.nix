@@ -3,10 +3,12 @@
   self,
   config,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
-in {
-  imports = [inputs.sops-nix.nixosModules.default];
+in
+{
+  imports = [ inputs.sops-nix.nixosModules.default ];
 
   sops.defaultSopsFile = "${self}/systems/${hostName}/secrets.yaml";
 }

@@ -2,8 +2,10 @@
   self,
   config,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
-in {
+in
+{
   sops.defaultSopsFile = "${self}/systems/${hostName}/secrets.yaml";
 }

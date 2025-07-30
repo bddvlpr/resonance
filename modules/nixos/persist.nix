@@ -4,12 +4,21 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit (lib) attrNames mkIf mkMerge mkOption strings types;
+}:
+let
+  inherit (lib)
+    attrNames
+    mkIf
+    mkMerge
+    mkOption
+    strings
+    types
+    ;
 
   cfg = config.bowl.persist;
-in {
-  imports = [inputs.impermanence.nixosModules.default];
+in
+{
+  imports = [ inputs.impermanence.nixosModules.default ];
 
   options.bowl.persist = {
     enable = mkOption {
@@ -19,7 +28,8 @@ in {
     };
 
     entries = mkOption {
-      type = with types;
+      type =
+        with types;
         listOf (submodule {
           options = {
             path = mkOption {
@@ -51,41 +61,48 @@ in {
             };
           };
         });
-      default = [];
+      default = [ ];
       description = "The entries to create mounts for.";
     };
   };
 
   config = mkIf cfg.enable {
     bowl.persist.entries = [
-      {path = "/var/lib/nixos";}
-      {path = "/var/lib/systemd/coredump";}
-      {path = "/var/log";}
+      { path = "/var/lib/nixos"; }
+      { path = "/var/lib/systemd/coredump"; }
+      { path = "/var/log"; }
     ];
 
-    environment.persistence = mkMerge (map (
+    environment.persistence = mkMerge (
+      map (
         {
           path,
           type,
           mode,
           user,
           group,
-        }: let
-          commonArgs = {inherit mode user group;};
-        in {
+        }:
+        let
+          commonArgs = { inherit mode user group; };
+        in
+        {
           "/persist" =
-            if type == "directory"
-            then {directories = [({directory = path;} // commonArgs)];}
-            else {files = [({file = path;} // commonArgs)];};
+            if type == "directory" then
+              { directories = [ ({ directory = path; } // commonArgs) ]; }
+            else
+              { files = [ ({ file = path; } // commonArgs) ]; };
         }
-      )
-      cfg.entries);
+      ) cfg.entries
+    );
 
-    systemd.tmpfiles.rules = map (name: let
-      user = config.users.users.${name};
-      path = strings.normalizePath "/persist/${user.home}";
-    in "d ${path} 700 ${user.name} ${user.group}")
-    (attrNames config.bowl.users);
+    systemd.tmpfiles.rules = map (
+      name:
+      let
+        user = config.users.users.${name};
+        path = strings.normalizePath "/persist/${user.home}";
+      in
+      "d ${path} 700 ${user.name} ${user.group}"
+    ) (attrNames config.bowl.users);
 
     programs.fuse.userAllowOther = true;
   };

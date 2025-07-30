@@ -2,11 +2,18 @@
   lib,
   config,
   ...
-}: let
-  inherit (lib) elem filter forEach mkIf;
+}:
+let
+  inherit (lib)
+    elem
+    filter
+    forEach
+    mkIf
+    ;
 
   cfg = config.bowl.desktop;
-in {
+in
+{
   imports = [
     ./hypridle.nix
     ./hyprlock.nix
@@ -31,11 +38,11 @@ in {
           disable_hyprland_logo = true;
         };
 
-        monitor =
-          [
-            ", highres, auto, 1"
-          ]
-          ++ (forEach config.bowl.desktop.monitors ({
+        monitor = [
+          ", highres, auto, 1"
+        ]
+        ++ (forEach config.bowl.desktop.monitors (
+          {
             enable,
             name,
             width,
@@ -46,24 +53,31 @@ in {
             scale,
             ...
           }:
-            if enable
-            then "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
-            else "${name}, disabled"));
+          if enable then
+            "${name}, ${toString width}x${toString height}@${toString refreshRate}, ${toString x}x${toString y}, ${toString scale}"
+          else
+            "${name}, disabled"
+        ));
 
-        workspace = let
-          enabledWorkspaces = filter ({
-            enable,
-            workspace,
-            ...
-          }:
-            enable && workspace != null)
-          config.bowl.desktop.monitors;
-        in
-          forEach enabledWorkspaces ({
-            name,
-            workspace,
-            ...
-          }: "name:${toString workspace}, monitor:${name}");
+        workspace =
+          let
+            enabledWorkspaces = filter (
+              {
+                enable,
+                workspace,
+                ...
+              }:
+              enable && workspace != null
+            ) config.bowl.desktop.monitors;
+          in
+          forEach enabledWorkspaces (
+            {
+              name,
+              workspace,
+              ...
+            }:
+            "name:${toString workspace}, monitor:${name}"
+          );
       };
     };
   };

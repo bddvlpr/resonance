@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware.nix
     ./home.nix
@@ -10,7 +11,7 @@
     users = {
       bddvlpr = {
         superuser = true;
-        groups = ["docker"];
+        groups = [ "docker" ];
       };
     };
 

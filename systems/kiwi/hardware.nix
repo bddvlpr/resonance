@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = with inputs.nixos-hardware.nixosModules; [
     common-pc-ssd
     common-cpu-amd
@@ -17,7 +18,14 @@
         efiDeviceHandle = "HD3b";
       };
     };
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-    kernelModules = ["kvm-amd"];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
+    ];
+    kernelModules = [ "kvm-amd" ];
   };
 }

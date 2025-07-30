@@ -1,4 +1,5 @@
-{pkgs, ...} @ args: {
+{ pkgs, ... }@args:
+{
   programs.zed-editor = {
     enable = true;
     extraPackages = with pkgs; [
@@ -19,7 +20,7 @@
   };
 
   bowl.persist.entries = [
-    {path = ".cache/zed";}
-    {path = ".local/share/zed";}
+    { path = ".cache/zed"; }
+    { path = ".local/share/zed"; }
   ];
 }

@@ -4,12 +4,20 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit (lib) mkIf mkMerge mkOption strings types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkMerge
+    mkOption
+    strings
+    types
+    ;
 
   cfg = config.bowl.persist;
-in {
-  imports = [inputs.impermanence.homeManagerModules.default];
+in
+{
+  imports = [ inputs.impermanence.homeManagerModules.default ];
 
   options.bowl.persist = {
     enable = mkOption {
@@ -25,7 +33,8 @@ in {
     };
 
     entries = mkOption {
-      type = with types;
+      type =
+        with types;
         listOf (submodule {
           options = {
             path = mkOption {
@@ -42,28 +51,26 @@ in {
             };
           };
         });
-      default = [];
+      default = [ ];
       description = "The entries to create mounts for.";
     };
   };
 
   config = mkIf cfg.enable {
-    home.persistence = mkMerge (map (
+    home.persistence = mkMerge (
+      map (
         {
           path,
           type,
-        }: {
+        }:
+        {
           "${strings.normalizePath "/persist/${config.home.homeDirectory}"}" =
-            (
-              if type == "directory"
-              then {directories = [path];}
-              else {files = [path];}
-            )
+            (if type == "directory" then { directories = [ path ]; } else { files = [ path ]; })
             // {
               inherit (cfg) allowOther;
             };
         }
-      )
-      cfg.entries);
+      ) cfg.entries
+    );
   };
 }

@@ -4,11 +4,13 @@
   osConfig,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) getExe mkForce;
 
   inherit (osConfig.bowl.users.${config.home.username}) shell;
-in {
+in
+{
   theme = mkForce "Rosé Pine Moon";
 
   telemetry.metrics = false;
@@ -28,7 +30,10 @@ in {
     Nix = {
       formatter.external = {
         command = getExe pkgs.alejandra;
-        args = ["--quiet" "--"];
+        args = [
+          "--quiet"
+          "--"
+        ];
       };
     };
   };

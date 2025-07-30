@@ -1,5 +1,6 @@
-{...} @ args: {
-  sops.secrets."spotify/client-id" = {};
+{ ... }@args:
+{
+  sops.secrets."spotify/client-id" = { };
 
   programs.spotify-player = {
     enable = true;
@@ -8,6 +9,6 @@
   };
 
   bowl.persist.entries = [
-    {path = ".cache/spotify-player";}
+    { path = ".cache/spotify-player"; }
   ];
 }

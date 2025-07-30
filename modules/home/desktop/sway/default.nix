@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) elem mkIf;
 
   cfg = config.bowl.desktop;
-in {
+in
+{
   imports = [
     ./rofi.nix
     ./swayidle.nix

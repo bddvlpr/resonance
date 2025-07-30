@@ -2,9 +2,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkOption types;
-in {
+in
+{
   imports = [
     ./hyprland
     ./sway
@@ -18,13 +20,19 @@ in {
     };
 
     environments = mkOption {
-      type = with types; listOf (enum ["hyprland" "sway"]);
-      default = ["hyprland"];
+      type =
+        with types;
+        listOf (enum [
+          "hyprland"
+          "sway"
+        ]);
+      default = [ "hyprland" ];
       description = "Which desktop environments to use for this user.";
     };
 
     monitors = mkOption {
-      type = with types;
+      type =
+        with types;
         listOf (submodule {
           options = {
             name = mkOption {
@@ -41,7 +49,10 @@ in {
               example = 1;
             };
             bar = mkOption {
-              type = enum ["big" "tiny"];
+              type = enum [
+                "big"
+                "tiny"
+              ];
               default = "big";
               example = "tiny";
             };
@@ -74,7 +85,7 @@ in {
             };
           };
         });
-      default = [];
+      default = [ ];
       description = "Monitors to bootstrap in window managers.";
     };
   };

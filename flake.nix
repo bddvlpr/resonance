@@ -63,12 +63,13 @@
     };
   };
 
-  outputs = {
-    self,
-    flake-parts,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    {
+      self,
+      flake-parts,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
@@ -83,30 +84,34 @@
         ./templates
       ];
 
-      perSystem = {
-        pkgs,
-        inputs',
-        ...
-      }: let
-        inherit (self.lib) systemTernary;
-      in {
-        formatter = pkgs.alejandra;
+      perSystem =
+        {
+          pkgs,
+          inputs',
+          ...
+        }:
+        let
+          inherit (self.lib) systemTernary;
+        in
+        {
+          formatter = pkgs.nixfmt-tree;
 
-        devShells.default = pkgs.mkShell {
-          buildInputs = systemTernary pkgs {
-            default = with inputs';
-              [
-                nixos-anywhere.packages.default
-              ]
-              ++ (with pkgs; [
-                sops
-                ssh-to-age
-              ]);
+          devShells.default = pkgs.mkShell {
+            buildInputs = systemTernary pkgs {
+              default =
+                with inputs';
+                [
+                  nixos-anywhere.packages.default
+                ]
+                ++ (with pkgs; [
+                  sops
+                  ssh-to-age
+                ]);
 
-            linux = [inputs'.disko.packages.default];
-            darwin = [inputs'.nix-darwin.packages.default];
+              linux = [ inputs'.disko.packages.default ];
+              darwin = [ inputs'.nix-darwin.packages.default ];
+            };
           };
         };
-      };
     };
 }

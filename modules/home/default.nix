@@ -3,9 +3,11 @@
   osConfig,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (self.lib) systemTernary;
-in {
+in
+{
   imports = [
     ./desktop
     ./dev

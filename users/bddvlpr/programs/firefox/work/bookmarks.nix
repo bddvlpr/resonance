@@ -2,6 +2,6 @@
   {
     name = "Toolbar";
     toolbar = true;
-    bookmarks = [];
+    bookmarks = [ ];
   }
 ]

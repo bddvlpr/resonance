@@ -2,13 +2,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) optionals;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
-in {
-  home.packages = optionals isLinux [pkgs.vrcx];
+in
+{
+  home.packages = optionals isLinux [ pkgs.vrcx ];
 
   bowl.persist.entries = [
-    {path = ".config/VRCX";}
+    { path = ".config/VRCX"; }
   ];
 }

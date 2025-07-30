@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   plugins = {
     betterGifPicker.enable = true;
     biggerStreamPreview.enable = true;

@@ -13,13 +13,14 @@
     };
   };
 
-  outputs = {
-    flake-parts,
-    crane,
-    advisory-db,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    {
+      flake-parts,
+      crane,
+      advisory-db,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "aarch64-darwin"
         "x86_64-darwin"
@@ -27,55 +28,62 @@
         "x86_64-linux"
       ];
 
-      perSystem = {
-        pkgs,
-        inputs',
-        self',
-        ...
-      }: let
-        craneToolchain = inputs'.fenix.packages.latest.toolchain;
-        craneLib = (crane.mkLib pkgs).overrideToolchain craneToolchain;
+      perSystem =
+        {
+          pkgs,
+          inputs',
+          self',
+          ...
+        }:
+        let
+          craneToolchain = inputs'.fenix.packages.latest.toolchain;
+          craneLib = (crane.mkLib pkgs).overrideToolchain craneToolchain;
 
-        src = craneLib.cleanCargoSource ./.;
+          src = craneLib.cleanCargoSource ./.;
 
-        commonArgs = {
-          inherit src;
-          strictDeps = true;
+          commonArgs = {
+            inherit src;
+            strictDeps = true;
 
-          buildInputs = [];
-        };
+            buildInputs = [ ];
+          };
 
-        cargoArtifacts = craneLib.buildDepsOnly commonArgs;
-      in {
-        formatter = pkgs.alejandra;
+          cargoArtifacts = craneLib.buildDepsOnly commonArgs;
+        in
+        {
+          formatter = pkgs.alejandra;
 
-        packages = {
-          package = craneLib.buildPackage (commonArgs
-            // {
-              inherit cargoArtifacts;
-            });
-        };
+          packages = {
+            package = craneLib.buildPackage (
+              commonArgs
+              // {
+                inherit cargoArtifacts;
+              }
+            );
+          };
 
-        checks =
-          self'.packages
-          // {
-            workspace-clippy = craneLib.cargoClippy (commonArgs
+          checks = self'.packages // {
+            workspace-clippy = craneLib.cargoClippy (
+              commonArgs
               // {
                 inherit cargoArtifacts;
                 cargoClippyExtraArgs = "--all-targets -- --deny warnings";
-              });
+              }
+            );
 
-            workspace-doc = craneLib.cargoDoc (commonArgs
+            workspace-doc = craneLib.cargoDoc (
+              commonArgs
               // {
                 inherit cargoArtifacts;
-              });
+              }
+            );
 
             workspace-fmt = craneLib.cargoFmt {
               inherit src;
             };
 
             workspace-toml-fmt = craneLib.taploFmt {
-              src = pkgs.lib.sources.sourceFilesBySuffices src [".toml"];
+              src = pkgs.lib.sources.sourceFilesBySuffices src [ ".toml" ];
             };
 
             workspace-audit = craneLib.cargoAudit {
@@ -86,18 +94,20 @@
               inherit src;
             };
 
-            workspace-nextest = craneLib.cargoNextest (commonArgs
+            workspace-nextest = craneLib.cargoNextest (
+              commonArgs
               // {
                 inherit cargoArtifacts;
                 partitions = 1;
                 partitionType = "count";
                 cargoNextestPartitionsExtraArgs = "--no-tests=pass";
-              });
+              }
+            );
           };
 
-        devShells.default = craneLib.devShell {
-          checks = self'.checks;
+          devShells.default = craneLib.devShell {
+            checks = self'.checks;
+          };
         };
-      };
     };
 }

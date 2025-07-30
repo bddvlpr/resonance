@@ -3,9 +3,9 @@
   config,
   inputs,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkEnableOption
     mkIf
     mkOption
@@ -13,18 +13,17 @@
     ;
 
   cfg = config.bowl.disk;
-in {
-  imports = [inputs.disko.nixosModules.default];
+in
+{
+  imports = [ inputs.disko.nixosModules.default ];
 
   options.bowl.disk = {
-    enable =
-      mkEnableOption "Automatic disk setup"
-      // {
-        default = true;
-      };
+    enable = mkEnableOption "Automatic disk setup" // {
+      default = true;
+    };
 
     preset = mkOption {
-      type = types.enum ["luks-btrfs"];
+      type = types.enum [ "luks-btrfs" ];
       default = "luks-btrfs";
       description = ''
         Which template to use for automatic disk setup.

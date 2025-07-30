@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) getExe;
-in {
+in
+{
   ls = "${getExe pkgs.eza} --git --icons --group-directories-first";
   cat = "${getExe config.programs.bat.package} -pp";
 }

@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) filter getExe;
 
   monitorsFor = bar: filter (m: m.bar == bar) config.bowl.desktop.monitors;
@@ -55,29 +56,35 @@
       format = "{id}";
     };
   };
-in {
+in
+{
   programs.waybar = {
     style = builtins.readFile ./style.css;
 
     settings = {
-      bigBar =
-        commonArgs
-        // {
-          output = builtins.map (m: m.name) (monitorsFor "big");
+      bigBar = commonArgs // {
+        output = builtins.map (m: m.name) (monitorsFor "big");
 
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["clock"];
-          modules-right = ["cpu" "memory" "pulseaudio" "network" "battery"];
-        };
-      tinyBar =
-        commonArgs
-        // {
-          output = builtins.map (m: m.name) (monitorsFor "tiny");
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "cpu"
+          "memory"
+          "pulseaudio"
+          "network"
+          "battery"
+        ];
+      };
+      tinyBar = commonArgs // {
+        output = builtins.map (m: m.name) (monitorsFor "tiny");
 
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["clock"];
-          modules-right = ["network" "battery"];
-        };
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "network"
+          "battery"
+        ];
+      };
     };
   };
 

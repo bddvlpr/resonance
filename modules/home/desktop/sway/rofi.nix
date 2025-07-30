@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) elem mkIf;
 
   cfg = config.bowl.desktop;
-in {
+in
+{
   config = mkIf (cfg.enable && elem "sway" cfg.environments) {
     programs.rofi.enable = true;
   };

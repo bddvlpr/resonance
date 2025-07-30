@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) elem getExe mkIf;
 
   cfg = config.bowl.desktop;
-in {
+in
+{
   config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
     services.hypridle = {
       enable = true;

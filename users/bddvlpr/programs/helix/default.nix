@@ -1,9 +1,11 @@
-{pkgs, ...} @ args: {
+{ pkgs, ... }@args:
+{
   programs.helix = {
     enable = true;
     defaultEditor = true;
 
-    extraPackages = with pkgs;
+    extraPackages =
+      with pkgs;
       [
         docker-compose-language-service
         helm-ls

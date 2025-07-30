@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) concatStringsSep getExe mkIf;
 
   cfg = config.bowl.desktop;
@@ -13,7 +14,8 @@
     "${sessionData}/share/xsessions"
     "${sessionData}/share/wayland-sessions"
   ];
-in {
+in
+{
   config = mkIf (cfg.loginManager == "greetd") {
     services.greetd = {
       enable = true;

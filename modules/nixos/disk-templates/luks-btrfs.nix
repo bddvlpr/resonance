@@ -1,7 +1,8 @@
 {
   device,
   swap,
-}: {
+}:
+{
   devices = {
     disk.system = {
       type = "disk";
@@ -16,7 +17,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = ["umask=0077"];
+              mountOptions = [ "umask=0077" ];
             };
           };
           luks = {
@@ -28,26 +29,28 @@
               settings.allowDiscards = true;
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"];
-                subvolumes = let
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                in {
-                  "/persist" = {
-                    mountpoint = "/persist";
-                    inherit mountOptions;
+                extraArgs = [ "-f" ];
+                subvolumes =
+                  let
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  in
+                  {
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      inherit mountOptions;
+                    };
+                    "/nix" = {
+                      mountpoint = "/nix";
+                      inherit mountOptions;
+                    };
+                    "/swap" = {
+                      mountpoint = "/swap";
+                      swap.swapfile.size = swap;
+                    };
                   };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    inherit mountOptions;
-                  };
-                  "/swap" = {
-                    mountpoint = "/swap";
-                    swap.swapfile.size = swap;
-                  };
-                };
               };
             };
           };

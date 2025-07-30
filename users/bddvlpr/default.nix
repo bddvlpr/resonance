@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./desktop
     ./programs
@@ -28,12 +29,12 @@
     };
 
     persist.entries = [
-      {path = ".config/sops";}
-      {path = ".ssh";}
-      {path = "Desktop";}
-      {path = "Documents";}
-      {path = "Pictures";}
-      {path = "Videos";}
+      { path = ".config/sops"; }
+      { path = ".ssh"; }
+      { path = "Desktop"; }
+      { path = "Documents"; }
+      { path = "Pictures"; }
+      { path = "Videos"; }
     ];
   };
 }

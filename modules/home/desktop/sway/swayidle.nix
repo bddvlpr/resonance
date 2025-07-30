@@ -2,11 +2,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) elem getExe mkIf;
 
   cfg = config.bowl.desktop;
-in {
+in
+{
   config = mkIf (cfg.enable && elem "sway" cfg.environments) {
     services.swayidle = {
       enable = true;

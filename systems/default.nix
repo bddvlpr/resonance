@@ -3,21 +3,22 @@
   self,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) optionals;
-in {
-  imports = [inputs.easy-hosts.flakeModule];
+in
+{
+  imports = [ inputs.easy-hosts.flakeModule ];
 
   easy-hosts = {
     perClass = class: {
-      modules =
-        [
-          "${self}/modules/${class}/default.nix"
-          "${self}/modules/shared/default.nix"
-        ]
-        ++ (optionals (class != "iso") [
-          "${self}/modules/shared/home.nix"
-        ]);
+      modules = [
+        "${self}/modules/${class}/default.nix"
+        "${self}/modules/shared/default.nix"
+      ]
+      ++ (optionals (class != "iso") [
+        "${self}/modules/shared/home.nix"
+      ]);
     };
 
     hosts = {

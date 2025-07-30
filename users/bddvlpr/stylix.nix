@@ -2,8 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
-  imports = [inputs.stylix.homeModules.stylix];
+}:
+{
+  imports = [ inputs.stylix.homeModules.stylix ];
 
   stylix = {
     enable = true;
@@ -43,6 +44,9 @@
       };
     };
 
-    targets.firefox.profileNames = ["personal" "work"];
+    targets.firefox.profileNames = [
+      "personal"
+      "work"
+    ];
   };
 }
