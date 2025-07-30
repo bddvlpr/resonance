@@ -47,7 +47,6 @@
       url = "github:nix-community/stylix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
         flake-parts.follows = "flake-parts";
       };
     };

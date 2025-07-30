@@ -6,6 +6,7 @@ in
   imports = [
     ./environments.nix
     ./login.nix
+    ./xdg.nix
   ];
 
   options.bowl.desktop = {
