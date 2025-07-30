@@ -10,6 +10,7 @@
     users = {
       bddvlpr = {
         superuser = true;
+        groups = ["docker"];
       };
     };
 
@@ -18,6 +19,8 @@
       user = "bddvlpr";
       package = pkgs.hyprland;
     };
+
+    virtualisation.docker.enable = true;
   };
 
   system.stateVersion = "25.05";

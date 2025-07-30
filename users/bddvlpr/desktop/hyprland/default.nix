@@ -68,8 +68,6 @@ in {
           "${mod} SHIFT, A, movetoworkspace, special"
 
           # Meta
-          ", XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} -i 5"
-          ", XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} -d 5"
           ", XF86AudioPlay, exec, ${getExe pkgs.playerctl} play-pause"
           ", XF86AudioNext, exec, ${getExe pkgs.playerctl} next"
           ", XF86AudioPrev, exec, ${getExe pkgs.playerctl} previous"
@@ -92,6 +90,12 @@ in {
           )
           9
         ));
+
+      binde = [
+        # Media
+        ", XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} -i 5"
+        ", XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} -d 5"
+      ];
     };
   };
 }

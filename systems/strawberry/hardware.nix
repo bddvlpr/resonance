@@ -8,6 +8,7 @@
   hardware = {
     enableRedistributableFirmware = true;
     nvidia.open = false;
+    rtl-sdr.enable = true;
   };
 
   boot = {
