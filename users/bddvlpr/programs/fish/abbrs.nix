@@ -4,10 +4,9 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkMerge;
   inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
 in
-mkMerge [
+lib.mkMerge [
   rec {
     nb = "nix build";
     nbn = "${nb} nixpkgs#";
@@ -19,12 +18,12 @@ mkMerge [
     ns = "nix shell";
     nsn = "${ns} nixpkgs#";
   }
-  (mkIf isDarwin rec {
+  (lib.mkIf isDarwin rec {
     sdr = "sudo darwin-rebuild --flake .";
     sdrb = "${sdr} build";
     sdrs = "${sdr} switch";
   })
-  (mkIf isLinux rec {
+  (lib.mkIf isLinux rec {
     snr = "sudo nixos-rebuild --flake .";
     snrb = "${snr} boot";
     snrs = "${snr} switch";

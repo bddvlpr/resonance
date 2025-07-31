@@ -4,12 +4,11 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
 in
 {
   fonts = {
-    fontDir.enable = mkIf isLinux true;
+    fontDir.enable = lib.mkIf isLinux true;
     packages =
       with pkgs;
       [

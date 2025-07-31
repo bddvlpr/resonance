@@ -3,9 +3,6 @@
   pkgs,
   ...
 }:
-let
-  inherit (lib) mkOption types;
-in
 {
   imports = [
     ./hyprland
@@ -13,15 +10,15 @@ in
   ];
 
   options.bowl.desktop = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = pkgs.stdenv.hostPlatform.isLinux;
       description = "Whether to enable the desktop environments or not.";
     };
 
-    environments = mkOption {
+    environments = lib.mkOption {
       type =
-        with types;
+        with lib.types;
         listOf (enum [
           "hyprland"
           "sway"
@@ -30,26 +27,25 @@ in
       description = "Which desktop environments to use for this user.";
     };
 
-    monitors = mkOption {
-      type =
-        with types;
-        listOf (submodule {
+    monitors = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.submodule {
           options = {
-            name = mkOption {
-              type = str;
+            name = lib.mkOption {
+              type = lib.types.str;
               example = "DP-1";
             };
-            enable = mkOption {
-              type = bool;
+            enable = lib.mkOption {
+              type = lib.types.bool;
               default = true;
             };
-            workspace = mkOption {
-              type = nullOr int;
+            workspace = lib.mkOption {
+              type = with lib.types; nullOr int;
               default = null;
               example = 1;
             };
-            bar = mkOption {
-              type = enum [
+            bar = lib.mkOption {
+              type = lib.types.enum [
                 "big"
                 "tiny"
               ];
@@ -57,34 +53,35 @@ in
               example = "tiny";
             };
 
-            width = mkOption {
-              type = int;
+            width = lib.mkOption {
+              type = lib.types.int;
               default = 1920;
             };
-            height = mkOption {
-              type = int;
+            height = lib.mkOption {
+              type = lib.types.int;
               default = 1090;
             };
-            refreshRate = mkOption {
-              type = int;
+            refreshRate = lib.mkOption {
+              type = lib.types.int;
               default = 60;
             };
 
-            x = mkOption {
-              type = int;
+            x = lib.mkOption {
+              type = lib.types.int;
               default = 0;
             };
-            y = mkOption {
-              type = int;
+            y = lib.mkOption {
+              type = lib.types.int;
               default = 0;
             };
 
-            scale = mkOption {
-              type = float;
+            scale = lib.mkOption {
+              type = lib.types.float;
               default = 1.0;
             };
           };
-        });
+        }
+      );
       default = [ ];
       description = "Monitors to bootstrap in window managers.";
     };

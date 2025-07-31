@@ -5,44 +5,37 @@
   ...
 }:
 let
-  inherit (self.lib) hasHome;
-  inherit (lib)
-    elem
-    mkIf
-    mkOption
-    mkMerge
-    types
-    ;
-
   cfg = config.bowl.fingerprint;
 in
 {
   options.bowl.fingerprint = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = false;
       description = "Enable fingerprint authentication users.";
     };
   };
-  config = mkMerge [
+  config = lib.mkMerge [
     {
       security.sudo = {
         enable = true;
         wheelNeedsPassword = false;
       };
 
-      security.pam.services.hyprlock = mkIf (hasHome config (envs: elem "hyprland" envs) [
-        "bowl"
-        "desktop"
-        "environments"
-      ]) { };
-      security.pam.services.swaylock = mkIf (hasHome config (envs: elem "sway" envs) [
+      security.pam.services.hyprlock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "hyprland" envs)
+        [
+          "bowl"
+          "desktop"
+          "environments"
+        ]
+      ) { };
+      security.pam.services.swaylock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "sway" envs) [
         "bowl"
         "desktop"
         "environments"
       ]) { };
     }
-    (mkIf cfg.enable {
+    (lib.mkIf cfg.enable {
       services.fprintd.enable = true;
 
       bowl.persist.entries = [

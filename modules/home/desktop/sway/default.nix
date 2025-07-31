@@ -4,8 +4,6 @@
   ...
 }:
 let
-  inherit (lib) elem mkIf;
-
   cfg = config.bowl.desktop;
 in
 {
@@ -15,7 +13,7 @@ in
     ./swaylock.nix
   ];
 
-  config = mkIf (cfg.enable && elem "sway" cfg.environments) {
+  config = lib.mkIf (cfg.enable && lib.elem "sway" cfg.environments) {
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;

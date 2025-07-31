@@ -4,34 +4,26 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    mkMerge
-    mkOption
-    types
-    ;
-
   cfg = config.bowl.virtualisation;
 in
 {
   options.bowl.virtualisation = {
     docker = {
-      enable = mkEnableOption "Docker engine";
+      enable = lib.mkEnableOption "Docker engine";
 
-      persist = mkOption {
-        type = types.bool;
+      persist = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Automatically persist docker files.";
       };
     };
   };
 
-  config = mkMerge [
-    (mkIf cfg.docker.enable {
+  config = lib.mkMerge [
+    (lib.mkIf cfg.docker.enable {
       virtualisation.docker.enable = true;
 
-      bowl.persist.entries = mkIf cfg.docker.persist [
+      bowl.persist.entries = lib.mkIf cfg.docker.persist [
         { path = "/var/lib/docker"; }
       ];
     })

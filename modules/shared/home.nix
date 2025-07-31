@@ -6,9 +6,6 @@
   self,
   ...
 }:
-let
-  inherit (lib) mapAttrs;
-in
 {
   home-manager = {
     verbose = true;
@@ -18,7 +15,7 @@ in
 
     extraSpecialArgs = { inherit inputs inputs' self; };
 
-    users = mapAttrs (name: _: self + /users/${name}) config.bowl.users;
+    users = lib.mapAttrs (name: _: self + /users/${name}) config.bowl.users;
 
     sharedModules = [ (self + /modules/home/default.nix) ];
   };

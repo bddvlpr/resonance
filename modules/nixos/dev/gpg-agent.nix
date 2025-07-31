@@ -5,14 +5,10 @@
   pkgs,
   ...
 }:
-let
-  inherit (self.lib) hasHome;
-  inherit (lib) mkIf;
-in
 {
   config =
-    mkIf
-      (hasHome config (v: v != null) [
+    lib.mkIf
+      (self.lib.hasHome config (v: v != null) [
         "bowl"
         "user"
         "git"

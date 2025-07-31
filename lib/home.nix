@@ -1,7 +1,4 @@
 { lib, ... }:
-let
-  inherit (lib) any attrNames getAttrFromPath;
-in
 {
   # thank you isabel :sob:
   hasHome =
@@ -9,7 +6,7 @@ in
     let
       list = map (
         user:
-        getAttrFromPath (
+        lib.getAttrFromPath (
           [
             "home-manager"
             "users"
@@ -17,7 +14,7 @@ in
           ]
           ++ path
         ) conf
-      ) (attrNames conf.bowl.users);
+      ) (lib.attrNames conf.bowl.users);
     in
-    any cond list;
+    lib.any cond list;
 }

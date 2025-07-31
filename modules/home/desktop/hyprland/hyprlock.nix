@@ -5,22 +5,20 @@
   ...
 }:
 let
-  inherit (lib) elem mkForce mkIf;
-
   cfg = config.bowl.desktop;
 in
 {
-  config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
+  config = lib.mkIf (cfg.enable && lib.elem "hyprland" cfg.environments) {
     programs.hyprlock = {
       enable = true;
       settings = {
         general.grace = 30;
 
-        auth = mkIf osConfig.bowl.fingerprint.enable {
+        auth = lib.mkIf osConfig.bowl.fingerprint.enable {
           "fingerprint:enabled" = true;
         };
 
-        background = mkForce {
+        background = lib.mkForce {
           path = "screenshot";
           blur_passes = 1;
         };

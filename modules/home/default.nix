@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  inherit (self.lib) systemTernary;
-in
 {
   imports = [
     ./desktop
@@ -17,7 +14,7 @@ in
     ./user.nix
   ];
 
-  home.stateVersion = systemTernary pkgs {
+  home.stateVersion = self.lib.systemTernary pkgs {
     linux = osConfig.system.stateVersion;
     darwin = "25.05";
   };

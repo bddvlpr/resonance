@@ -1,15 +1,12 @@
 { lib, ... }:
-let
-  inherit (lib) mkOption types;
-in
 {
   options.bowl.user = {
-    name = mkOption {
-      type = types.str;
+    name = lib.mkOption {
+      type = lib.types.str;
       description = "Full name of the user, used in git and other programs.";
     };
-    email = mkOption {
-      type = types.str;
+    email = lib.mkOption {
+      type = lib.types.str;
       description = "Email of the user, used in git and other programs.";
     };
   };

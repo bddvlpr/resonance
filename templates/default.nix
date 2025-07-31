@@ -1,16 +1,14 @@
 { lib, ... }:
 let
-  inherit (lib) listToAttrs nameValuePair;
-
   mkTemplate =
     name: description:
-    nameValuePair name {
+    lib.nameValuePair name {
       path = ./${name};
       inherit description;
     };
 in
 {
-  flake.templates = listToAttrs [
+  flake.templates = lib.listToAttrs [
     (mkTemplate "rust" "Rust package using crane")
     (mkTemplate "rust-workspace" "Rust workspace using crane")
   ];

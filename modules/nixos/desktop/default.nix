@@ -1,7 +1,4 @@
 { lib, ... }:
-let
-  inherit (lib) mkOption types;
-in
 {
   imports = [
     ./environments.nix
@@ -11,8 +8,8 @@ in
 
   options.bowl.desktop = {
     autoLogin = {
-      enable = mkOption {
-        type = types.bool;
+      enable = lib.mkOption {
+        type = lib.types.bool;
         default = false;
         description = ''
           Whether to auto-login the user or not.
@@ -20,19 +17,19 @@ in
         '';
       };
 
-      user = mkOption {
-        type = types.str;
+      user = lib.mkOption {
+        type = lib.types.str;
         description = "The user to auto-login as.";
       };
 
-      package = mkOption {
-        type = types.package;
+      package = lib.mkOption {
+        type = lib.types.package;
         description = "The environment to load in to.";
       };
     };
 
-    loginManager = mkOption {
-      type = types.enum [ "greetd" ];
+    loginManager = lib.mkOption {
+      type = lib.types.enum [ "greetd" ];
       default = "greetd";
       description = "Which login manager to use.";
     };

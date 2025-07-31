@@ -5,33 +5,31 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkOption types;
-
   cfg = config.bowl.networking;
 in
 {
   options.bowl.networking = {
     tailscale = {
-      enable = mkOption {
-        type = types.bool;
+      enable = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Whether to install Tailscale VPN.";
       };
-      excludeVPN = mkOption {
-        type = types.bool;
+      excludeVPN = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Excludes Tailscale traffic from being handled by VPNs.";
       };
     };
 
     mullvad = {
-      enable = mkOption {
-        type = types.bool;
+      enable = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Whether to install Mullvad VPN.";
       };
-      enableGUI = mkOption {
-        type = types.bool;
+      enableGUI = lib.mkOption {
+        type = lib.types.bool;
         default = false;
         description = "Whether to install the GUI version of Mullvad. CLI-only is installed by default.";
       };
@@ -58,7 +56,7 @@ in
       nftables = {
         enable = true;
 
-        tables."mullvad-tailscale" = mkIf (cfg.tailscale.enable && cfg.tailscale.excludeVPN) {
+        tables."mullvad-tailscale" = lib.mkIf (cfg.tailscale.enable && cfg.tailscale.excludeVPN) {
           family = "inet";
           content = ''
             chain output {

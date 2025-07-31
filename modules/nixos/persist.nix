@@ -6,74 +6,65 @@
   ...
 }:
 let
-  inherit (lib)
-    attrNames
-    mkIf
-    mkMerge
-    mkOption
-    strings
-    types
-    ;
-
   cfg = config.bowl.persist;
 in
 {
   imports = [ inputs.impermanence.nixosModules.default ];
 
   options.bowl.persist = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = pkgs.stdenv.buildPlatform.isLinux; # TODO: Add metadata about a system to determine if it is impermanent or not.
       description = "Whether to enable persistence service mounts for tmpfs systems.";
     };
 
-    entries = mkOption {
-      type =
-        with types;
-        listOf (submodule {
+    entries = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.submodule {
           options = {
-            path = mkOption {
-              type = str;
+            path = lib.mkOption {
+              type = lib.types.str;
               description = "The path to create a mount for.";
             };
-            type = mkOption {
-              type = enum [
+            type = lib.mkOption {
+              type = lib.types.enum [
                 "file"
                 "directory"
               ];
               default = "directory";
               description = "Is the path a file or a directory.";
             };
-            mode = mkOption {
-              type = str;
+            mode = lib.mkOption {
+              type = lib.types.str;
               default = "0755";
               description = "Initial mode upon creation of this path.";
             };
-            user = mkOption {
-              type = str;
+            user = lib.mkOption {
+              type = lib.types.str;
               default = "root";
               description = "Initial owner upon creation of this path.";
             };
-            group = mkOption {
-              type = str;
+            group = lib.mkOption {
+              type = lib.types.str;
               default = "root";
               description = "Initial group upon creation of this path.";
             };
           };
-        });
+        }
+      );
       default = [ ];
       description = "The entries to create mounts for.";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     bowl.persist.entries = [
       { path = "/var/lib/nixos"; }
       { path = "/var/lib/systemd/coredump"; }
       { path = "/var/log"; }
     ];
 
-    environment.persistence = mkMerge (
+    environment.persistence = lib.mkMerge (
       map (
         {
           path,
@@ -99,10 +90,10 @@ in
       name:
       let
         user = config.users.users.${name};
-        path = strings.normalizePath "/persist/${user.home}";
+        path = lib.strings.normalizePath "/persist/${user.home}";
       in
       "d ${path} 700 ${user.name} ${user.group}"
-    ) (attrNames config.bowl.users);
+    ) (lib.attrNames config.bowl.users);
 
     programs.fuse.userAllowOther = true;
   };

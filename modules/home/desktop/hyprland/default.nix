@@ -4,13 +4,6 @@
   ...
 }:
 let
-  inherit (lib)
-    elem
-    filter
-    forEach
-    mkIf
-    ;
-
   cfg = config.bowl.desktop;
 in
 {
@@ -23,7 +16,7 @@ in
     ./waybar.nix
   ];
 
-  config = mkIf (cfg.enable && elem "hyprland" cfg.environments) {
+  config = lib.mkIf (cfg.enable && lib.elem "hyprland" cfg.environments) {
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -41,7 +34,7 @@ in
         monitor = [
           ", highres, auto, 1"
         ]
-        ++ (forEach config.bowl.desktop.monitors (
+        ++ (lib.forEach config.bowl.desktop.monitors (
           {
             enable,
             name,
@@ -61,7 +54,7 @@ in
 
         workspace =
           let
-            enabledWorkspaces = filter (
+            enabledWorkspaces = lib.filter (
               {
                 enable,
                 workspace,
@@ -70,7 +63,7 @@ in
               enable && workspace != null
             ) config.bowl.desktop.monitors;
           in
-          forEach enabledWorkspaces (
+          lib.forEach enabledWorkspaces (
             {
               name,
               workspace,

@@ -5,9 +5,7 @@
   ...
 }:
 let
-  inherit (lib) filter getExe;
-
-  monitorsFor = bar: filter (m: m.bar == bar) config.bowl.desktop.monitors;
+  monitorsFor = bar: lib.filter (m: m.bar == bar) config.bowl.desktop.monitors;
 
   commonArgs = {
     layer = "top";
@@ -21,7 +19,7 @@ let
     pulseaudio = {
       format = "vol {volume}%";
       format-muted = "vol mute";
-      on-click = "${getExe pkgs.pamixer} -t";
+      on-click = "${lib.getExe pkgs.pamixer} -t";
     };
 
     network = {

@@ -6,12 +6,10 @@
   ...
 }:
 let
-  inherit (lib) getExe mkForce;
-
   inherit (osConfig.bowl.users.${config.home.username}) shell;
 in
 {
-  theme = mkForce "Rosé Pine Moon";
+  theme = lib.mkForce "Rosé Pine Moon";
 
   telemetry.metrics = false;
   inlay_hints.enabled = true;
@@ -20,7 +18,7 @@ in
     inline.enabled = true;
   };
 
-  terminal.shell.program = getExe shell;
+  terminal.shell.program = lib.getExe shell;
 
   file_scan_exclusions = [
     "**/node_modules"
@@ -29,7 +27,7 @@ in
   languages = {
     Nix = {
       formatter.external = {
-        command = getExe pkgs.alejandra;
+        command = lib.getExe pkgs.nixfmt-rfc-style;
         args = [
           "--quiet"
           "--"

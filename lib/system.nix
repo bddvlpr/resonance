@@ -1,7 +1,4 @@
 { lib, ... }:
-let
-  inherit (lib) isAttrs isList;
-in
 {
   systemTernary =
     pkgs:
@@ -21,9 +18,9 @@ in
         else
           throw "No case found for ${system}";
     in
-    if isList default then
+    if lib.isList default then
       default ++ value
-    else if isAttrs default then
+    else if lib.isAttrs default then
       default // value
     else
       value;

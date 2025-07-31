@@ -4,10 +4,9 @@
   ...
 }:
 let
-  inherit (self.lib) hasHome;
   hasShell =
     shell:
-    hasHome config (v: v.enable) [
+    self.lib.hasHome config (v: v.enable) [
       "programs"
       shell
     ];

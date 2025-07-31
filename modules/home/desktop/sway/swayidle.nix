@@ -4,19 +4,17 @@
   ...
 }:
 let
-  inherit (lib) elem getExe mkIf;
-
   cfg = config.bowl.desktop;
 in
 {
-  config = mkIf (cfg.enable && elem "sway" cfg.environments) {
+  config = lib.mkIf (cfg.enable && lib.elem "sway" cfg.environments) {
     services.swayidle = {
       enable = true;
 
       timeouts = [
         {
           timeout = 60 * 4;
-          command = getExe config.programs.swaylock.package;
+          command = lib.getExe config.programs.swaylock.package;
         }
       ];
     };

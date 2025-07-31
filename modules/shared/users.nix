@@ -5,42 +5,31 @@
   pkgs,
   ...
 }:
-let
-  inherit (self.lib) mkUserSecret systemTernary;
-  inherit (lib)
-    mapAttrs
-    mapAttrs'
-    mkOption
-    nameValuePair
-    optionals
-    types
-    ;
-in
 {
-  options.bowl.users = mkOption {
-    type =
-      with types;
-      attrsOf (submodule {
+  options.bowl.users = lib.mkOption {
+    type = lib.types.attrsOf (
+      lib.types.submodule {
         options = {
-          superuser = mkOption {
-            type = types.bool;
+          superuser = lib.mkOption {
+            type = lib.types.bool;
             default = false;
             description = "Whether the user is an administrator or not.";
           };
 
-          groups = mkOption {
-            type = with types; listOf str;
+          groups = lib.mkOption {
+            type = with lib.types; listOf str;
             default = [ ];
             description = "Additional groups to grant to the user.";
           };
 
-          shell = mkOption {
-            type = types.package;
+          shell = lib.mkOption {
+            type = lib.types.package;
             default = pkgs.fish;
             description = "Default shell for the user.";
           };
         };
-      });
+      }
+    );
     default = {
       bddvlpr = {
         superuser = true;
@@ -50,18 +39,20 @@ in
   };
 
   config = {
-    sops.secrets = mapAttrs' (
+    sops.secrets = lib.mapAttrs' (
       user: _:
-      nameValuePair "user-password-${user}" (mkUserSecret {
-        key = "user/password";
-        inherit user;
-        extraArgs.neededForUsers = true;
-      })
+      lib.nameValuePair "user-password-${user}" (
+        self.lib.mkUserSecret {
+          key = "user/password";
+          inherit user;
+          extraArgs.neededForUsers = true;
+        }
+      )
     ) config.bowl.users;
 
-    users.users = mapAttrs (
+    users.users = lib.mapAttrs (
       name: user:
-      systemTernary pkgs {
+      self.lib.systemTernary pkgs {
         default = {
           inherit (user) shell;
         };
@@ -75,7 +66,7 @@ in
             "dialout"
             "networkmanager"
           ]
-          ++ (optionals user.superuser [ "wheel" ])
+          ++ (lib.optionals user.superuser [ "wheel" ])
           ++ user.groups;
         };
 

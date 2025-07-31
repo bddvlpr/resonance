@@ -5,8 +5,6 @@
   ...
 }:
 let
-  inherit (lib) concatLists genList getExe;
-
   mod = "SUPER";
 in
 {
@@ -37,11 +35,11 @@ in
         # General
         "${mod}, Q, killactive, "
         "${mod} SHIFT, Q, exit, "
-        "${mod} SHIFT, BackSpace, exec, ${getExe config.programs.hyprlock.package} --immediate"
+        "${mod} SHIFT, BackSpace, exec, ${lib.getExe config.programs.hyprlock.package} --immediate"
 
         # Launchers
-        "${mod}, Return, exec, ${getExe pkgs.kitty}"
-        "${mod}, Space, exec, ${getExe pkgs.rofi} -show drun"
+        "${mod}, Return, exec, ${lib.getExe pkgs.kitty}"
+        "${mod}, Space, exec, ${lib.getExe pkgs.rofi} -show drun"
 
         # Movement
         "${mod}, H, movefocus, l"
@@ -69,18 +67,18 @@ in
         "${mod} SHIFT, A, movetoworkspace, special"
 
         # Meta
-        ", XF86AudioPlay, exec, ${getExe pkgs.playerctl} play-pause"
-        ", XF86AudioNext, exec, ${getExe pkgs.playerctl} next"
-        ", XF86AudioPrev, exec, ${getExe pkgs.playerctl} previous"
+        ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+        ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
+        ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
 
         # Screenshotting
-        "${mod} SHIFT, S, exec, ${getExe pkgs.grimblast} --notify copy area"
-        "${mod} SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy screen"
-        "SHIFT, Print, exec, ${getExe pkgs.grimblast} --notify copy output"
-        ", Print, exec, ${getExe pkgs.grimblast} --notify copy active"
+        "${mod} SHIFT, S, exec, ${lib.getExe pkgs.grimblast} --notify copy area"
+        "${mod} SHIFT, Print, exec, ${lib.getExe pkgs.grimblast} --notify copy screen"
+        "SHIFT, Print, exec, ${lib.getExe pkgs.grimblast} --notify copy output"
+        ", Print, exec, ${lib.getExe pkgs.grimblast} --notify copy active"
       ]
-      ++ (concatLists (
-        genList (
+      ++ (lib.concatLists (
+        lib.genList (
           x:
           let
             ws = toString (x + 1);
@@ -95,8 +93,8 @@ in
 
       binde = [
         # Media
-        ", XF86AudioRaiseVolume, exec, ${getExe pkgs.pamixer} -i 5"
-        ", XF86AudioLowerVolume, exec, ${getExe pkgs.pamixer} -d 5"
+        ", XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.pamixer} -i 5"
+        ", XF86AudioLowerVolume, exec, ${lib.getExe pkgs.pamixer} -d 5"
       ];
     };
   };

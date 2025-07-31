@@ -5,12 +5,10 @@
   ...
 }:
 let
-  inherit (lib) elem mkIf;
-
   cfg = config.bowl.desktop;
 in
 {
-  config = mkIf (cfg.enable && elem "sway" cfg.environments) {
+  config = lib.mkIf (cfg.enable && lib.elem "sway" cfg.environments) {
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;

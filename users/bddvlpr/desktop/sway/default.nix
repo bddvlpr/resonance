@@ -5,15 +5,7 @@
   ...
 }:
 let
-  inherit (lib)
-    genList
-    getExe
-    listToAttrs
-    mkMerge
-    nameValuePair
-    ;
-
-  workspaces = genList (w: toString (w + 1)) 9;
+  workspaces = lib.genList (w: toString (w + 1)) 9;
 in
 {
   imports = [
@@ -24,7 +16,7 @@ in
     config = rec {
       defaultWorkspace = "1";
 
-      terminal = getExe pkgs.kitty;
+      terminal = lib.getExe pkgs.kitty;
 
       gaps = {
         outer = 5;
@@ -42,7 +34,7 @@ in
       ];
 
       modifier = "Mod4";
-      keybindings = mkMerge [
+      keybindings = lib.mkMerge [
         {
           "${modifier}+q" = "kill";
           "${modifier}+r" = "mode resize";
@@ -54,9 +46,9 @@ in
           "${modifier}+v" = "splitv";
           "${modifier}+b" = "splith";
 
-          "${modifier}+Space" = "exec ${getExe pkgs.rofi} -show drun";
-          "${modifier}+Return" = "exec ${getExe pkgs.kitty}";
-          "${modifier}+Shift+BackSpace" = "exec ${getExe config.programs.swaylock.package}";
+          "${modifier}+Space" = "exec ${lib.getExe pkgs.rofi} -show drun";
+          "${modifier}+Return" = "exec ${lib.getExe pkgs.kitty}";
+          "${modifier}+Shift+BackSpace" = "exec ${lib.getExe config.programs.swaylock.package}";
 
           "${modifier}+h" = "focus left";
           "${modifier}+j" = "focus down";
@@ -67,9 +59,11 @@ in
           "${modifier}+Shift+k" = "move up";
           "${modifier}+Shift+l" = "move right";
         }
-        (listToAttrs (map (w: nameValuePair "${modifier}+${w}" "workspace number ${w}") workspaces))
-        (listToAttrs (
-          map (w: nameValuePair "${modifier}+Shift+${w}" "move container to workspace number ${w}") workspaces
+        (lib.listToAttrs (map (w: lib.nameValuePair "${modifier}+${w}" "workspace number ${w}") workspaces))
+        (lib.listToAttrs (
+          map (
+            w: lib.nameValuePair "${modifier}+Shift+${w}" "move container to workspace number ${w}"
+          ) workspaces
         ))
       ];
     };

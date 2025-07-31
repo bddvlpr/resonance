@@ -5,25 +5,18 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    mkOption
-    types
-    ;
-
   cfg = config.bowl.disk;
 in
 {
   imports = [ inputs.disko.nixosModules.default ];
 
   options.bowl.disk = {
-    enable = mkEnableOption "Automatic disk setup" // {
+    enable = lib.mkEnableOption "Automatic disk setup" // {
       default = true;
     };
 
-    preset = mkOption {
-      type = types.enum [ "luks-btrfs" ];
+    preset = lib.mkOption {
+      type = lib.types.enum [ "luks-btrfs" ];
       default = "luks-btrfs";
       description = ''
         Which template to use for automatic disk setup.
@@ -31,19 +24,19 @@ in
       '';
     };
 
-    device = mkOption {
-      type = types.str;
+    device = lib.mkOption {
+      type = lib.types.str;
       description = "The device to use for the set disk template.";
     };
 
-    swap = mkOption {
-      type = types.str;
+    swap = lib.mkOption {
+      type = lib.types.str;
       default = "8G";
       description = "The amount of space to allocate to swap (if defined in the template).";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     disko = import ./disk-templates/${cfg.preset}.nix {
       inherit (cfg) device swap;
     };

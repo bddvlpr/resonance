@@ -5,18 +5,16 @@
   ...
 }:
 let
-  inherit (lib) concatStringsSep getExe mkIf;
-
   cfg = config.bowl.desktop;
 
   sessionData = config.services.displayManager.sessionData.desktops;
-  sessionPath = concatStringsSep ":" [
+  sessionPath = lib.concatStringsSep ":" [
     "${sessionData}/share/xsessions"
     "${sessionData}/share/wayland-sessions"
   ];
 in
 {
-  config = mkIf (cfg.loginManager == "greetd") {
+  config = lib.mkIf (cfg.loginManager == "greetd") {
     services.greetd = {
       enable = true;
 
@@ -26,8 +24,8 @@ in
       settings = {
         default_session = {
           user = "greeter";
-          command = concatStringsSep " " [
-            (getExe pkgs.greetd.tuigreet)
+          command = lib.concatStringsSep " " [
+            (lib.getExe pkgs.greetd.tuigreet)
             "--time"
             "--remember"
             "--remember-user-session"
@@ -36,9 +34,9 @@ in
           ];
         };
 
-        initial_session = mkIf (cfg.autoLogin.enable) {
+        initial_session = lib.mkIf (cfg.autoLogin.enable) {
           inherit (cfg.autoLogin) user;
-          command = getExe cfg.autoLogin.package;
+          command = lib.getExe cfg.autoLogin.package;
         };
       };
     };

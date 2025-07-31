@@ -4,19 +4,12 @@
   ...
 }:
 let
-  inherit (lib)
-    filterAttrs
-    isType
-    mapAttrs
-    mapAttrsToList
-    ;
-
-  flakeInputs = filterAttrs (_: isType "flake") inputs;
+  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in
 {
   nix = {
-    registry = mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
     settings = {
       warn-dirty = false;
