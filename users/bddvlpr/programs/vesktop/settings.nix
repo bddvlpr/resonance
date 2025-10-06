@@ -9,7 +9,6 @@
     copyFileContents.enable = true;
     copyUserURLs.enable = true;
     disableCallIdle.enable = true;
-    emoteCloner.enable = true;
     experiments.enable = true;
     favoriteEmojiFirst.enable = true;
     forceOwnerCrown.enable = true;

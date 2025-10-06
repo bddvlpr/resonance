@@ -10,6 +10,7 @@
         docker-compose-language-service
         helm-ls
         nil
+        nixd
         rust-analyzer
         taplo
         terraform-ls

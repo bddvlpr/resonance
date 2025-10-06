@@ -18,14 +18,13 @@ in
     services.greetd = {
       enable = true;
 
-      vt = 2;
       restart = cfg.autoLogin == null;
 
       settings = {
         default_session = {
           user = "greeter";
           command = lib.concatStringsSep " " [
-            (lib.getExe pkgs.greetd.tuigreet)
+            (lib.getExe pkgs.tuigreet)
             "--time"
             "--remember"
             "--remember-user-session"
