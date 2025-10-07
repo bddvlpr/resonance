@@ -15,9 +15,9 @@
 
   boot = {
     loader.systemd-boot.windows = {
-      "11-home" = {
-        title = "Windows 11 Home";
-        efiDeviceHandle = "HD3b";
+      "win-11" = {
+        title = "Windows";
+        efiDeviceHandle = "HD0b";
       };
     };
     initrd.availableKernelModules = [

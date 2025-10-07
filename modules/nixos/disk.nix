@@ -16,7 +16,7 @@ in
     };
 
     preset = lib.mkOption {
-      type = lib.types.enum [ "luks-btrfs" ];
+      type = lib.types.enum [ "luks-btrfs" "luks-btrfs-half" ];
       default = "luks-btrfs";
       description = ''
         Which template to use for automatic disk setup.

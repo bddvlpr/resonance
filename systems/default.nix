@@ -32,6 +32,11 @@ in
         class = "darwin";
       };
 
+      pear = {
+        arch = "x86_64";
+        class = "nixos";
+      };
+
       strawberry = {
         arch = "x86_64";
         class = "nixos";
