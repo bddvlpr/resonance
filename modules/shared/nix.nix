@@ -17,10 +17,7 @@ in
         "nix-command"
         "flakes"
       ];
-      trusted-users = [
-        "@wheel"
-        "@admin"
-      ];
+      trusted-users = [ "@wheel" ];
       substituters = [
         "https://cache.garnix.io"
         "https://nix-community.cachix.org"

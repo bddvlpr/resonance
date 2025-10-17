@@ -8,6 +8,8 @@
   home.packages = with pkgs; [
     bun
     comma
+    htop
+    fastfetch
     nodejs
     pnpm
     wrangler

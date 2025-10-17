@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -17,6 +18,16 @@ in
         description = "Automatically persist docker files.";
       };
     };
+
+    virtd = {
+      enable = lib.mkEnableOption "Virtd";
+
+      persist = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Automatically persist virtd files.";
+      };
+    };
   };
 
   config = lib.mkMerge [
@@ -25,6 +36,15 @@ in
 
       bowl.persist.entries = lib.mkIf cfg.docker.persist [
         { path = "/var/lib/docker"; }
+      ];
+    })
+    (lib.mkIf cfg.virtd.enable {
+      virtualisation.libvirtd.enable = true;
+
+      environment.systemPackages = [ pkgs.virt-manager ];
+
+      bowl.persist.entries = lib.mkIf cfg.virtd.persist [
+        { path = "/var/lib/libvirt"; }
       ];
     })
   ];

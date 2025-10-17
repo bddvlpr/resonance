@@ -24,5 +24,7 @@
     virtualisation.docker.enable = true;
   };
 
+  time.timeZone = "Europe/Brussels";
+
   system.stateVersion = "25.05";
 }

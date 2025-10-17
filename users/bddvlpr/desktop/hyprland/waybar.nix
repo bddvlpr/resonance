@@ -13,6 +13,7 @@ let
 
     clock = {
       format = "{:%a %d %b %I:%M %p}";
+      timezone = "Europe/Brussels";
       tooltip-format = "{calendar}";
     };
 

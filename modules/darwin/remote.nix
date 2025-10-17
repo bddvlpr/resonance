@@ -1,8 +1,8 @@
 { inputs, ... }:
 {
-  imports = [
-    inputs.sops-nix.darwinModules.default
-    inputs.home-manager.darwinModules.default
-    inputs.nix-index-database.darwinModules.nix-index
+  imports = with inputs; [
+    sops-nix.darwinModules.default
+    home-manager.darwinModules.default
+    nix-index-database.darwinModules.nix-index
   ];
 }

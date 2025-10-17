@@ -17,23 +17,25 @@ in
   };
   config = lib.mkMerge [
     {
-      security.sudo = {
-        enable = true;
-        wheelNeedsPassword = false;
+      security = {
+        sudo = {
+          enable = true;
+          wheelNeedsPassword = false;
+        };
+        polkit.enable = true;
+        pam.services = {
+          hyprlock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "hyprland" envs) [
+            "bowl"
+            "desktop"
+            "environments"
+          ]) { };
+          swaylock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "sway" envs) [
+            "bowl"
+            "desktop"
+            "environments"
+          ]) { };
+        };
       };
-
-      security.pam.services.hyprlock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "hyprland" envs)
-        [
-          "bowl"
-          "desktop"
-          "environments"
-        ]
-      ) { };
-      security.pam.services.swaylock = lib.mkIf (self.lib.hasHome config (envs: lib.elem "sway" envs) [
-        "bowl"
-        "desktop"
-        "environments"
-      ]) { };
     }
     (lib.mkIf cfg.enable {
       services.fprintd.enable = true;

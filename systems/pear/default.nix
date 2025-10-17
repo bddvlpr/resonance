@@ -14,6 +14,10 @@
     users = {
       bddvlpr = {
         superuser = true;
+        groups = [
+          "docker"
+          "libvirtd"
+        ];
       };
     };
 
@@ -22,7 +26,14 @@
       user = "bddvlpr";
       package = pkgs.hyprland;
     };
+
+    virtualisation = {
+      docker.enable = true;
+      virtd.enable = true;
+    };
   };
+
+  time.timeZone = "Europe/Brussels";
 
   system.stateVersion = "25.05";
 }
