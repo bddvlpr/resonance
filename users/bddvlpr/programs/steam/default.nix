@@ -1,21 +1,13 @@
-{ pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [
-    (steam.override (prev: {
-      extraEnv =
-        let
-          protonPaths = lib.makeSearchPathOutput "steamcompattool" "" [ proton-ge-bin ];
-        in
-        {
-          STEAM_EXTRA_COMPAT_TOOLS_PATHS = protonPaths;
-        }
-        // (prev.extraEnv or { });
-    }))
-    steam-run
-    protontricks
-    gamescope
-    mangohud
-  ];
+  pkgs,
+  lib,
+  ...
+}:
+let
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
+in
+{
+  home.packages = lib.mkIf isLinux [ pkgs.mangohud ];
 
   bowl.persist.entries = [
     { path = ".factorio"; }

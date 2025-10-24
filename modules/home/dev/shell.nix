@@ -10,12 +10,15 @@
     comma
     htop
     fastfetch
+    freerdp
     nodejs
     pnpm
+    step-cli
     wrangler
   ];
 
   bowl.persist.entries = [
     { path = ".local/share/zoxide"; }
+    { path = ".step"; }
   ];
 }

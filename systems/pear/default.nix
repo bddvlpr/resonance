@@ -29,7 +29,6 @@
 
     virtualisation = {
       docker.enable = true;
-      virtd.enable = true;
     };
   };
 

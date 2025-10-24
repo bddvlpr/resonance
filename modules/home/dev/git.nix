@@ -34,29 +34,39 @@ in
     programs.git = {
       enable = true;
 
-      userName = cfg.name;
-      userEmail = cfg.email;
       inherit (cfg.git) signing;
 
-      aliases = {
-        l = "log -n 20 --graph --abbrev-commit --pretty=oneline";
-        s = "status -s";
-        d = "diff";
-        dc = "diff --cached";
+      settings = {
+        user = {
+          inherit (cfg) name email;
+        };
 
-        tags = "tag -l";
-        branches = "branch --all";
-        remotes = "remote --verbose";
-        contributors = "shortlog --summary --numbered";
+        init = {
+          inherit (cfg.git) defaultBranch;
+        };
 
-        amend = "commit --amend --reuse-message=HEAD";
-        credit = "commit --amend -C HEAD --author";
-      };
+        push = {
+          autoSetupRemote = true;
+        };
 
-      extraConfig = {
-        init = { inherit (cfg.git) defaultBranch; };
-        push.autoSetupRemote = true;
-        credential.helper = "store";
+        alias = {
+          l = "log -n 20 --graph --abbrev-commit --pretty=oneline";
+          s = "status -s";
+          d = "diff";
+          dc = "diff --cached";
+
+          tags = "tag -l";
+          branches = "branch --all";
+          remotes = "remote --verbose";
+          contributors = "shortlog --summary --numbered";
+
+          amend = "commit --amend --reuse-message=HEAD";
+          credit = "commit --amend -C HEAD --author";
+        };
+
+        credential = {
+          helper = "store";
+        };
       };
     };
 

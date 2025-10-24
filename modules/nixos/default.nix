@@ -4,6 +4,7 @@
     ./desktop
     ./dev
     ./disk.nix
+    ./entertainment.nix
     ./networking.nix
     ./peripheral.nix
     ./persist.nix
