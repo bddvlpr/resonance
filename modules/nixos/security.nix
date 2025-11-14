@@ -51,6 +51,8 @@ in
           ]) { };
         };
       };
+
+      services.pcscd.enable = true;
     }
     (lib.mkIf cfg.enable {
       services.fprintd.enable = true;

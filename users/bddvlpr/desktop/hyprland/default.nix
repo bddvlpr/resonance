@@ -96,6 +96,10 @@ in
         ", XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.pamixer} -i 5"
         ", XF86AudioLowerVolume, exec, ${lib.getExe pkgs.pamixer} -d 5"
       ];
+
+      misc = {
+        enable_anr_dialog = false;
+      };
     };
   };
 }

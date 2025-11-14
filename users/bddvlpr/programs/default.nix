@@ -4,8 +4,11 @@
     ./blender
     ./firefox
     ./fish
+    ./gimp
     ./helix
     ./kitty
+    ./libreoffice
+    ./nextcloud
     ./spotify-player
     ./starship
     ./steam

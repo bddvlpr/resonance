@@ -9,6 +9,8 @@
   stylix = {
     enable = true;
 
+    overlays.enable = false;
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
     polarity = "dark";
     image = pkgs.fetchurl {

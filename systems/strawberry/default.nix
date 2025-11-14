@@ -11,7 +11,10 @@
     users = {
       bddvlpr = {
         superuser = true;
-        groups = [ "docker" ];
+        groups = [
+          "docker"
+          "gamemode"
+        ];
       };
     };
 

@@ -11,6 +11,7 @@
     users = {
       bddvlpr = {
         superuser = true;
+        groups = [ "gamemode" ];
       };
     };
 

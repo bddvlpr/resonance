@@ -20,30 +20,52 @@
     statusline = {
       left = [
         "mode"
-        "spinner"
         "diagnostics"
+        "spinner"
+        "file-type"
       ];
       center = [
-        "file-name"
         "read-only-indicator"
+        "file-name"
         "file-modification-indicator"
       ];
       right = [
+        "workspace-diagnostics"
+        "file-encoding"
+        "file-line-ending"
         "version-control"
-        "selections"
         "register"
         "position"
         "position-percentage"
-        "file-encoding"
       ];
     };
 
     lsp = {
       display-messages = true;
+      display-progress-messages = true;
       display-inlay-hints = true;
     };
 
-    indent-guides.render = true;
+    auto-save = {
+      focus-lost = true;
+    };
+
+    file-picker = {
+      hidden = false;
+      follow-symlinks = false;
+    };
+
+    indent-guides = {
+      render = true;
+      character = "┆";
+    };
+
+    whitespace.render = {
+      tab = "all";
+      nbsp = "all";
+      nnbsp = "all";
+    };
+
     soft-wrap.enable = true;
   };
 }

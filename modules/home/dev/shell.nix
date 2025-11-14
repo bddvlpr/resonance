@@ -8,10 +8,11 @@
   home.packages = with pkgs; [
     bun
     comma
-    htop
     fastfetch
     freerdp
+    htop
     nodejs
+    openssl
     pnpm
     step-cli
     wrangler
