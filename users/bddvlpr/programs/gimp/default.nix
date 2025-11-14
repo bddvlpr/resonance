@@ -1,9 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
+in
 {
-  home.packages = [ pkgs.gimp-with-plugins ];
+  config = lib.mkIf isLinux {
+    home.packages = [ pkgs.gimp-with-plugins ];
 
-  bowl.persist.entries = [
-    { path = ".config/GIMP"; }
-    { path = ".cache/gimp"; }
-  ];
+    bowl.persist.entries = [
+      { path = ".config/GIMP"; }
+      { path = ".cache/gimp"; }
+    ];
+  };
 }
