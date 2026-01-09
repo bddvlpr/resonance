@@ -10,6 +10,7 @@
     ./librewolf
     ./minio
     ./nextcloud
+    ./obs
     ./spotify-player
     ./starship
     ./steam
