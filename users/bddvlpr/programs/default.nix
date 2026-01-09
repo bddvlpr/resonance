@@ -5,10 +5,12 @@
     ./fish
     ./gimp
     ./helix
+    ./imv
     ./kitty
     ./libreoffice
     ./librewolf
     ./minio
+    ./mpv
     ./nextcloud
     ./obs
     ./spotify-player
