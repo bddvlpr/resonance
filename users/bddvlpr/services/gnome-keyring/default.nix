@@ -13,7 +13,7 @@ in
     home.packages = [ pkgs.gcr ];
 
     bowl.persist.entries = [
-      { path = ".local/share/keyrings"; }
+      { from = ".local/share/keyrings"; }
     ];
   };
 }

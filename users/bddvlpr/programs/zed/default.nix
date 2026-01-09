@@ -7,12 +7,14 @@
       nixd
       package-version-server
       rust-analyzer
+      zed-discord-presence
     ];
 
     userSettings = import ./settings.nix args;
     extensions = [
       # Languages
       "nix"
+      "svelte"
 
       # Styles
       "rose-pine-theme"
@@ -20,7 +22,7 @@
   };
 
   bowl.persist.entries = [
-    { path = ".cache/zed"; }
-    { path = ".local/share/zed"; }
+    { from = ".cache/zed"; }
+    { from = ".local/share/zed"; }
   ];
 }

@@ -29,12 +29,12 @@
     };
 
     persist.entries = [
-      { path = ".config/sops"; }
-      { path = ".ssh"; }
-      { path = "Desktop"; }
-      { path = "Documents"; }
-      { path = "Pictures"; }
-      { path = "Videos"; }
+      { from = ".config/sops"; }
+      { from = ".ssh"; }
+      { from = "Desktop"; }
+      { from = "Documents"; }
+      { from = "Pictures"; }
+      { from = "Videos"; }
     ];
   };
 }

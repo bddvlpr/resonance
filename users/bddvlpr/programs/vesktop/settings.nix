@@ -4,10 +4,8 @@
     betterGifPicker.enable = true;
     biggerStreamPreview.enable = true;
     callTimer.enable = true;
-    clearURLs.enable = true;
     copyEmojiMarkdown.enable = true;
     copyFileContents.enable = true;
-    copyUserURLs.enable = true;
     disableCallIdle.enable = true;
     experiments.enable = true;
     favoriteEmojiFirst.enable = true;
@@ -22,8 +20,6 @@
       ignoreBots = true;
       ignoreSelf = true;
     };
-    moreCommands.enable = true;
-    moreKaomoji.enable = true;
     noUnblockToJump.enable = true;
     permissionsViewer.enable = true;
     petpet.enable = true;
@@ -43,10 +39,7 @@
       enable = true;
       autoDisable = false;
     };
-    silentTyping = {
-      enable = true;
-      showIcon = true;
-    };
+    silentTyping.enable = true;
     startupTimings.enable = true;
     superReactionTweaks.enable = true;
     typingIndicator.enable = true;

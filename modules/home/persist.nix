@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   pkgs,
   ...
 }:
@@ -9,8 +8,6 @@ let
   cfg = config.bowl.persist;
 in
 {
-  imports = [ inputs.impermanence.homeManagerModules.default ];
-
   options.bowl.persist = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -18,17 +15,11 @@ in
       description = "Whether to enable persistance service mounts for tmpfs systems.";
     };
 
-    allowOther = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Allow other users to access the mounts.";
-    };
-
     entries = lib.mkOption {
       type = lib.types.listOf (
         lib.types.submodule {
           options = {
-            path = lib.mkOption {
+            from = lib.mkOption {
               type = lib.types.str;
               description = "The path to create a mount for.";
             };
@@ -52,15 +43,24 @@ in
     home.persistence = lib.mkMerge (
       map (
         {
-          path,
+          from,
           type,
         }:
         {
-          "${lib.strings.normalizePath "/persist/${config.home.homeDirectory}"}" =
-            (if type == "directory" then { directories = [ path ]; } else { files = [ path ]; })
-            // {
-              inherit (cfg) allowOther;
-            };
+          "/persist" = (
+            if type == "directory" then
+              {
+                directories = [
+                  {
+                    directory = from;
+                  }
+                ];
+              }
+            else
+              {
+                files = [ from ];
+              }
+          );
         }
       ) cfg.entries
     );

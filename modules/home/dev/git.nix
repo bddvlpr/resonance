@@ -72,7 +72,7 @@ in
 
     bowl.persist.entries = [
       {
-        path = ".git-credentials";
+        from = ".git-credentials";
         type = "file";
       }
     ];

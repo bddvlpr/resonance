@@ -34,8 +34,7 @@ in
         };
 
         initial_session = lib.mkIf (cfg.autoLogin.enable) {
-          inherit (cfg.autoLogin) user;
-          command = lib.getExe cfg.autoLogin.package;
+          inherit (cfg.autoLogin) user command;
         };
       };
     };

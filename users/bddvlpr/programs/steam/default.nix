@@ -10,7 +10,9 @@ in
   home.packages = lib.mkIf isLinux [ pkgs.mangohud ];
 
   bowl.persist.entries = [
-    { path = ".factorio"; }
-    { path = ".local/share/Steam"; }
+    { from = ".factorio"; }
+    { from = ".local/share/Yellow\ Dog\ Man\ Studios"; }
+    { from = ".cache/Yellow\ Dog\ Man\ Studios"; }
+    { from = ".local/share/Steam"; }
   ];
 }

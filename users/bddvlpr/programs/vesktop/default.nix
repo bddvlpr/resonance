@@ -12,6 +12,6 @@
   };
 
   bowl.persist.entries = [
-    { path = ".config/vesktop"; }
+    { from = ".config/vesktop"; }
   ];
 }

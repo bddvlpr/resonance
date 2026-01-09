@@ -99,6 +99,7 @@ in
 
       misc = {
         enable_anr_dialog = false;
+        middle_click_paste = false;
       };
     };
   };

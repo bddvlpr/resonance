@@ -18,7 +18,7 @@
     desktop.autoLogin = {
       enable = true;
       user = "bddvlpr";
-      package = pkgs.hyprland;
+      command = "${pkgs.hyprland}/bin/start-hyprland";
     };
   };
 

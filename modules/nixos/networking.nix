@@ -74,11 +74,11 @@ in
     };
 
     bowl.persist.entries = [
-      { path = "/etc/NetworkManager"; }
-      { path = "/etc/mullvad-vpn"; }
-      { path = "/var/cache/mullvad-vpn"; }
-      { path = "/var/cache/tailscale"; }
-      { path = "/var/lib/tailscale"; }
+      { from = "/etc/NetworkManager"; }
+      { from = "/etc/mullvad-vpn"; }
+      { from = "/var/cache/mullvad-vpn"; }
+      { from = "/var/cache/tailscale"; }
+      { from = "/var/lib/tailscale"; }
     ];
   };
 }

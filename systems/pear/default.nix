@@ -75,12 +75,12 @@
     desktop.autoLogin = {
       enable = true;
       user = "bddvlpr";
-      package = pkgs.hyprland;
+      command = "${pkgs.hyprland}/bin/start-hyprland";
     };
 
-    virtualisation = {
-      docker.enable = true;
-    };
+    virtualisation.docker.enable = true;
+
+    entertainment.vr.enable = true;
   };
 
   time.timeZone = "Europe/Brussels";

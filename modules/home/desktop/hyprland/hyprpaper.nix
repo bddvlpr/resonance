@@ -8,6 +8,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && lib.elem "hyprland" cfg.environments) {
-    services.hyprpaper.enable = true;
+    services.hyprpaper = {
+      enable = true;
+      settings.splash = false;
+    };
   };
 }

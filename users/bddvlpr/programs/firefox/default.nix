@@ -56,6 +56,6 @@
   };
 
   bowl.persist.entries = [
-    { path = ".mozilla/firefox"; }
+    { from = ".mozilla/firefox"; }
   ];
 }

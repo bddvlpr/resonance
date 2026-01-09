@@ -11,7 +11,7 @@ in
     home.packages = [ pkgs.libreoffice ];
 
     bowl.persist.entries = [
-      { path = ".config/libreoffice"; }
+      { from = ".config/libreoffice"; }
     ];
   };
 }

@@ -2,16 +2,18 @@
   imports = [
     ./bat
     ./blender
-    ./firefox
     ./fish
     ./gimp
     ./helix
     ./kitty
     ./libreoffice
+    ./librewolf
+    ./minio
     ./nextcloud
     ./spotify-player
     ./starship
     ./steam
+    ./talos
     ./vesktop
     ./vrcx
     ./zed

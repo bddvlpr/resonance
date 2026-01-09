@@ -6,6 +6,7 @@
   };
 
   home.packages = with pkgs; [
+    biome
     bun
     comma
     fastfetch
@@ -19,7 +20,7 @@
   ];
 
   bowl.persist.entries = [
-    { path = ".local/share/zoxide"; }
-    { path = ".step"; }
+    { from = ".local/share/zoxide"; }
+    { from = ".step"; }
   ];
 }

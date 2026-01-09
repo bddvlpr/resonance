@@ -50,5 +50,10 @@
       "personal"
       "work"
     ];
+
+    targets.librewolf.profileNames = [
+      "personal"
+      "work"
+    ];
   };
 }

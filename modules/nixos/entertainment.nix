@@ -14,6 +14,14 @@ in
       default = pkgs.stdenv.buildPlatform.isLinux;
       description = "Whether to enable entertainment packages.";
     };
+
+    vr = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether to enable VR runtimes.";
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -52,6 +60,17 @@ in
     programs.gamemode = {
       enable = true;
       settings.general.renice = 10;
+    };
+
+    services.monado = {
+      inherit (cfg.vr) enable;
+      highPriority = true;
+    };
+
+    systemd.user.services.monado.environment = {
+      STEAMVR_LH_ENABLE = "1";
+      XRT_COMPOSITOR_COMPUTE = "1";
+      WMR_HANDTRACKING = "0";
     };
 
     security.pam.loginLimits = [

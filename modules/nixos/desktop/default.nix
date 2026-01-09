@@ -22,8 +22,8 @@
         description = "The user to auto-login as.";
       };
 
-      package = lib.mkOption {
-        type = lib.types.package;
+      command = lib.mkOption {
+        type = lib.types.str;
         description = "The environment to load in to.";
       };
     };

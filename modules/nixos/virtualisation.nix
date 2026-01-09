@@ -35,7 +35,7 @@ in
       virtualisation.docker.enable = true;
 
       bowl.persist.entries = lib.mkIf cfg.docker.persist [
-        { path = "/var/lib/docker"; }
+        { from = "/var/lib/docker"; }
       ];
     })
     (lib.mkIf cfg.virtd.enable {
@@ -44,7 +44,7 @@ in
       environment.systemPackages = [ pkgs.virt-manager ];
 
       bowl.persist.entries = lib.mkIf cfg.virtd.persist [
-        { path = "/var/lib/libvirt"; }
+        { from = "/var/lib/libvirt"; }
       ];
     })
   ];

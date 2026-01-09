@@ -8,8 +8,8 @@ in
     home.packages = [ pkgs.nextcloud-client ];
 
     bowl.persist.entries = [
-      { path = ".config/Nextcloud"; }
-      { path = "Nextcloud"; }
+      { from = ".config/Nextcloud"; }
+      { from = "Nextcloud"; }
     ];
   };
 }

@@ -10,6 +10,6 @@ in
   home.packages = lib.optionals isLinux [ pkgs.vrcx ];
 
   bowl.persist.entries = [
-    { path = ".config/VRCX"; }
+    { from = ".config/VRCX"; }
   ];
 }

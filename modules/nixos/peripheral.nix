@@ -29,7 +29,7 @@ in
       environment.systemPackages = [ pkgs.bluetuith ];
 
       bowl.persist.entries = lib.mkIf cfg.bluetooth.persist [
-        { path = "/var/lib/bluetooth"; }
+        { from = "/var/lib/bluetooth"; }
       ];
     })
   ];

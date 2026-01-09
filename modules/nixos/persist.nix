@@ -22,7 +22,7 @@ in
       type = lib.types.listOf (
         lib.types.submodule {
           options = {
-            path = lib.mkOption {
+            from = lib.mkOption {
               type = lib.types.str;
               description = "The path to create a mount for.";
             };
@@ -59,15 +59,15 @@ in
 
   config = lib.mkIf cfg.enable {
     bowl.persist.entries = [
-      { path = "/var/lib/nixos"; }
-      { path = "/var/lib/systemd/coredump"; }
-      { path = "/var/log"; }
+      { from = "/var/lib/nixos"; }
+      { from = "/var/lib/systemd/coredump"; }
+      { from = "/var/log"; }
     ];
 
     environment.persistence = lib.mkMerge (
       map (
         {
-          path,
+          from,
           type,
           mode,
           user,
@@ -79,22 +79,11 @@ in
         {
           "/persist" =
             if type == "directory" then
-              { directories = [ ({ directory = path; } // commonArgs) ]; }
+              { directories = [ ({ directory = from; } // commonArgs) ]; }
             else
-              { files = [ ({ file = path; } // commonArgs) ]; };
+              { files = [ ({ file = from; } // commonArgs) ]; };
         }
       ) cfg.entries
     );
-
-    systemd.tmpfiles.rules = map (
-      name:
-      let
-        user = config.users.users.${name};
-        path = lib.strings.normalizePath "/persist/${user.home}";
-      in
-      "d ${path} 700 ${user.name} ${user.group}"
-    ) (lib.attrNames config.bowl.users);
-
-    programs.fuse.userAllowOther = true;
   };
 }

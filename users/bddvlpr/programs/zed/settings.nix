@@ -12,7 +12,10 @@ in
   theme = lib.mkForce "Rosé Pine Moon";
 
   telemetry.metrics = false;
-  inlay_hints.enabled = true;
+  inlay_hints = {
+    enabled = true;
+    show_type_hints = false;
+  };
 
   diagnostics = {
     inline.enabled = true;
@@ -24,15 +27,33 @@ in
     "**/node_modules"
   ];
 
-  languages = {
-    Nix = {
-      formatter.external = {
-        command = lib.getExe pkgs.nixfmt-rfc-style;
-        args = [
-          "--quiet"
-          "--"
-        ];
+  languages =
+    let
+      biomeConfiguration = {
+        formatter.language_server.name = "biome";
+        code_actions_on_format = {
+          "source.fixAll.biome" = true;
+          "source.organizeImports.biome" = true;
+        };
       };
+    in
+    {
+      Nix = {
+        formatter.external = {
+          command = lib.getExe pkgs.nixfmt;
+          args = [
+            "--quiet"
+            "--"
+          ];
+        };
+      };
+
+      JavaScript = biomeConfiguration;
+      TypeScript = biomeConfiguration;
+      TSX = biomeConfiguration;
+      JSON = biomeConfiguration;
+      JSONC = biomeConfiguration;
+      CSS = biomeConfiguration;
+      GraphQL = biomeConfiguration;
     };
-  };
 }

@@ -8,6 +8,7 @@
   imports = [
     ./desktop
     ./dev
+    ./entertainment.nix
     ./persist.nix
     ./remote.nix
     ./secrets.nix
