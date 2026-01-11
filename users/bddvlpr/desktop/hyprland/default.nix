@@ -95,6 +95,10 @@ in
         # Media
         ", XF86AudioRaiseVolume, exec, ${lib.getExe pkgs.pamixer} -i 5"
         ", XF86AudioLowerVolume, exec, ${lib.getExe pkgs.pamixer} -d 5"
+
+        # Backlight
+        ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} set +5%"
+        ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} set 5%-"
       ];
 
       misc = {
