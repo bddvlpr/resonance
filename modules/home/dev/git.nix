@@ -31,6 +31,8 @@ in
   };
 
   config = {
+    sops.secrets."git/credentials" = { };
+
     programs.git = {
       enable = true;
 
@@ -64,15 +66,8 @@ in
           credit = "commit --amend -C HEAD --author";
         };
 
-        credential.helper = "store";
+        credential.helper = "store --file ${config.sops.secrets."git/credentials".path}";
       };
     };
-
-    bowl.persist.entries = [
-      {
-        from = ".git-credentials";
-        type = "file";
-      }
-    ];
   };
 }
