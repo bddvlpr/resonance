@@ -48,6 +48,11 @@
         fsType = "cifs";
         inherit options;
       };
+      "/mnt/artifacts" = {
+        device = "//192.168.0.199/Artifacts";
+        fsType = "cifs";
+        inherit options;
+      };
       "/mnt/xchange" = {
         device = "//192.168.0.20/XChange";
         fsType = "cifs";

@@ -64,9 +64,7 @@ in
           credit = "commit --amend -C HEAD --author";
         };
 
-        credential = {
-          helper = "store";
-        };
+        credential.helper = "store";
       };
     };
 
