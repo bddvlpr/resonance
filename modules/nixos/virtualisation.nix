@@ -39,7 +39,10 @@ in
       ];
     })
     (lib.mkIf cfg.virtd.enable {
-      virtualisation.libvirtd.enable = true;
+      virtualisation.libvirtd = {
+        enable = true;
+        qemu.swtpm.enable = true;
+      };
 
       environment.systemPackages = [ pkgs.virt-manager ];
 
