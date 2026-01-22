@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf osConfig.bowl.entertainment.vr.enable {
+  config = lib.mkIf osConfig.bowl.entertainment.monado.enable {
     xdg.configFile."openvr/openvrpaths.vrpath" = {
       force = true;
       text = builtins.toJSON {

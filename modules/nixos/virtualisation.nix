@@ -44,6 +44,8 @@ in
         qemu.swtpm.enable = true;
       };
 
+      networking.firewall.trustedInterfaces = [ "virbr0" ];
+
       environment.systemPackages = [ pkgs.virt-manager ];
 
       bowl.persist.entries = lib.mkIf cfg.virtd.persist [

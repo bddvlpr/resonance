@@ -83,9 +83,12 @@
       command = "${pkgs.hyprland}/bin/start-hyprland";
     };
 
-    virtualisation.docker.enable = true;
+    virtualisation = {
+      docker.enable = true;
+      virtd.enable = true;
+    };
 
-    entertainment.vr.enable = true;
+    entertainment.wivrn.enable = true;
   };
 
   time.timeZone = "Europe/Brussels";
