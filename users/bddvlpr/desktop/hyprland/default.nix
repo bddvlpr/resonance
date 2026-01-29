@@ -42,10 +42,6 @@ in
         "${mod}, Space, exec, ${lib.getExe pkgs.rofi} -show drun"
 
         # Movement
-        "${mod}, H, movefocus, l"
-        "${mod}, J, movefocus, d"
-        "${mod}, K, movefocus, u"
-        "${mod}, L, movefocus, r"
         "${mod} SHIFT, Space, togglefloating, "
         "${mod}, S, togglesplit"
         "${mod}, E, swapnext"
@@ -99,6 +95,12 @@ in
         "${mod} SHIFT, J, resizeactive, 0 20"
         "${mod} SHIFT, K, resizeactive, 0 -20"
         "${mod} SHIFT, L, resizeactive, 20 0"
+
+        # Movement
+        "${mod}, H, movefocus, l"
+        "${mod}, J, movefocus, d"
+        "${mod}, K, movefocus, u"
+        "${mod}, L, movefocus, r"
       ];
 
       misc = {
