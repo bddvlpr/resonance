@@ -7,6 +7,8 @@
     extraPackages =
       with pkgs;
       [
+        ameba-ls
+        crystalline
         docker-compose-language-service
         helm-ls
         nil

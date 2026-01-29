@@ -6,6 +6,7 @@
   };
 
   home.packages = with pkgs; [
+    crystal
     biome
     bun
     comma
@@ -16,7 +17,6 @@
     openssl
     pnpm
     step-cli
-    wrangler
   ];
 
   bowl.persist.entries = [
