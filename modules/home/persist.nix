@@ -31,6 +31,12 @@ in
               default = "directory";
               description = "Is the path a file or a directory.";
             };
+            mode = lib.mkOption {
+              type = lib.types.str;
+              example = "0700";
+              default = "0755";
+              description = "The permissions of this persist.";
+            };
           };
         }
       );
@@ -45,6 +51,7 @@ in
         {
           from,
           type,
+          mode,
         }:
         {
           "/persist" = (
@@ -53,6 +60,7 @@ in
                 directories = [
                   {
                     directory = from;
+                    inherit mode;
                   }
                 ];
               }

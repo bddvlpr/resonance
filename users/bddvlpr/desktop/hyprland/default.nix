@@ -52,12 +52,6 @@ in
         "${mod}, F, fullscreen, "
         "${mod}, P, pseudo, "
 
-        # Resizing
-        "${mod} SHIFT, H, resizeactive, -20 0"
-        "${mod} SHIFT, J, resizeactive, 0 20"
-        "${mod} SHIFT, K, resizeactive, 0 -20"
-        "${mod} SHIFT, L, resizeactive, 20 0"
-
         # Grouping
         "${mod}, G, togglegroup"
         "${mod}, Tab, changegroupactive"
@@ -99,6 +93,12 @@ in
         # Backlight
         ", XF86MonBrightnessUp, exec, ${lib.getExe pkgs.brightnessctl} set +5%"
         ", XF86MonBrightnessDown, exec, ${lib.getExe pkgs.brightnessctl} set 5%-"
+
+        # Resizing
+        "${mod} SHIFT, H, resizeactive, -20 0"
+        "${mod} SHIFT, J, resizeactive, 0 20"
+        "${mod} SHIFT, K, resizeactive, 0 -20"
+        "${mod} SHIFT, L, resizeactive, 20 0"
       ];
 
       misc = {

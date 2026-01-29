@@ -64,5 +64,12 @@ in
 
       inherit (cfg) publicKeys;
     };
+
+    bowl.persist.entries = [
+      {
+        from = ".gnupg";
+        mode = "0700";
+      }
+    ];
   };
 }
