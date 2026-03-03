@@ -21,17 +21,13 @@
       ignoreSelf = true;
     };
     noUnblockToJump.enable = true;
-    permissionsViewer.enable = true;
     petpet.enable = true;
     platformIndicators.enable = true;
     relationshipNotifier = {
       enable = true;
       notices = true;
     };
-    reverseImageSearch.enable = true;
     sendTimestamps.enable = true;
-    serverInfo.enable = true;
-    serverListIndicators.enable = true;
     showConnections.enable = true;
     showHiddenChannels.enable = true;
     showHiddenThings.enable = true;

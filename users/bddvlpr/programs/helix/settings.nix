@@ -44,6 +44,7 @@
       display-messages = true;
       display-progress-messages = true;
       display-inlay-hints = true;
+      inlay-hints-length-limit = 8;
     };
 
     auto-save = {

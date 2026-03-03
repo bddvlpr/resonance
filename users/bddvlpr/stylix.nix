@@ -36,8 +36,8 @@
       };
 
       monospace = {
-        package = pkgs.nerd-fonts.geist-mono;
-        name = "GeistMono Nerd Font";
+        package = pkgs.nerd-fonts.comic-shanns-mono;
+        name = "ComicShannsMono Nerd Font";
       };
 
       emoji = {

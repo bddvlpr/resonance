@@ -43,21 +43,21 @@ in
           protontricks.enable = true;
           gamescopeSession.enable = true;
           extraPackages = with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            xorg.libxcb
             dotnet-sdk_9
+            keyutils
+            libjack2
+            libkrb5
             libpng
             libpulseaudio
             libvorbis
+            libxcb
+            libxcursor
+            libxi
+            libxinerama
+            libxscrnsaver
+            procps
             sdl3
             stdenv.cc.cc.lib
-            libkrb5
-            libjack2
-            keyutils
-            procps
             usbutils
           ];
           extraCompatPackages = [

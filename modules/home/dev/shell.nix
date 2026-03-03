@@ -6,11 +6,13 @@
   };
 
   home.packages = with pkgs; [
-    crystal
     biome
     bun
+    cargo
     comma
+    crystal
     fastfetch
+    ffmpeg
     freerdp
     htop
     nodejs

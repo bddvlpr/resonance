@@ -14,7 +14,7 @@ in
         listener = [
           {
             timeout = 5 * 60;
-            on-timeout = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
+            on-timeout = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package} --grace 30";
           }
         ];
       };

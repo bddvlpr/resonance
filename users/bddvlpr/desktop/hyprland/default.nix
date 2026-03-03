@@ -40,6 +40,7 @@ in
         # Launchers
         "${mod}, Return, exec, ${lib.getExe pkgs.kitty}"
         "${mod}, Space, exec, ${lib.getExe pkgs.rofi} -show drun"
+        "${mod} SHIFT, Return, exec, ${lib.getExe config.programs.librewolf.package}"
 
         # Movement
         "${mod} SHIFT, Space, togglefloating, "
@@ -101,6 +102,10 @@ in
         "${mod}, J, movefocus, d"
         "${mod}, K, movefocus, u"
         "${mod}, L, movefocus, r"
+      ];
+
+      windowrule = [
+        "float on, min_size 800 600, center on, match:class ^(blender)$, match:title ^(Blender File View|Preferences)$"
       ];
 
       misc = {

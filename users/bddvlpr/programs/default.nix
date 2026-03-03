@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bambu-studio
     ./bat
     ./blender
     ./fish

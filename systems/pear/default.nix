@@ -14,7 +14,6 @@
   fileSystems =
     let
       options = [
-        "ro"
         "x-systemd.automount"
         "noauto"
         "x-systemd.idle-timeout=60"
@@ -28,32 +27,47 @@
       ];
     in
     {
-      "/mnt/general" = {
+      "/srv/backup" = {
+        device = "//192.168.0.200/Backup";
+        fsType = "cifs";
+        inherit options;
+      };
+      "/srv/general" = {
         device = "//192.168.0.20/Algemeen";
         fsType = "cifs";
         inherit options;
       };
-      "/mnt/library" = {
+      "/srv/library" = {
+        device = "//192.168.0.20/Bibliotheek";
+        fsType = "cifs";
+        inherit options;
+      };
+      "/srv/running-projects" = {
         device = "//192.168.0.20/Lopende\ Projecten";
         fsType = "cifs";
         inherit options;
       };
-      "/mnt/running-projects" = {
-        device = "//192.168.0.20/Lopende\ Projecten";
-        fsType = "cifs";
-        inherit options;
-      };
-      "/mnt/finished-projects" = {
+      "/srv/finished-projects" = {
         device = "//192.168.0.200/Afgewerkte\ Projecten";
         fsType = "cifs";
         inherit options;
       };
-      "/mnt/artifacts" = {
+      "/srv/archived-projects" = {
+        device = "//192.168.0.200/Gearchiveerde\ Projecten";
+        fsType = "cifs";
+        inherit options;
+      };
+      "/srv/renders" = {
+        device = "//192.168.0.20/Renders";
+        fsType = "cifs";
+        inherit options;
+      };
+      "/srv/artifacts" = {
         device = "//192.168.0.199/Artifacts";
         fsType = "cifs";
         inherit options;
       };
-      "/mnt/xchange" = {
+      "/srv/xchange" = {
         device = "//192.168.0.20/XChange";
         fsType = "cifs";
         inherit options;
@@ -87,8 +101,6 @@
       docker.enable = true;
       virtd.enable = true;
     };
-
-    entertainment.wivrn.enable = true;
   };
 
   time.timeZone = "Europe/Brussels";

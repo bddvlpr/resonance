@@ -12,8 +12,6 @@ in
     programs.hyprlock = {
       enable = true;
       settings = {
-        general.grace = 30;
-
         auth = lib.mkIf osConfig.bowl.fingerprint.enable {
           "fingerprint:enabled" = true;
         };
@@ -21,6 +19,7 @@ in
         background = lib.mkForce {
           path = "screenshot";
           blur_passes = 1;
+          blur_size = 5;
         };
       };
     };

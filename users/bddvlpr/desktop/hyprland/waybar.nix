@@ -21,6 +21,8 @@ let
       format = "vol {volume}%";
       format-muted = "vol mute";
       on-click = "${lib.getExe pkgs.pamixer} -t";
+      on-click-right = "${lib.getExe pkgs.qpwgraph}";
+      on-click-middle = "${lib.getExe pkgs.pavucontrol}";
     };
 
     network = {
@@ -62,7 +64,7 @@ in
 
     settings = {
       bigBar = commonArgs // {
-        output = builtins.map (m: m.name) (monitorsFor "big");
+        output = map (m: m.name) (monitorsFor "big");
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
@@ -76,7 +78,7 @@ in
         ];
       };
       tinyBar = commonArgs // {
-        output = builtins.map (m: m.name) (monitorsFor "tiny");
+        output = map (m: m.name) (monitorsFor "tiny");
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];

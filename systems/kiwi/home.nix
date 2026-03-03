@@ -35,7 +35,7 @@
           refreshRate = 75;
 
           x = 5360;
-          scale = 1.0;
+          scale = 1.5;
         }
       ];
     };
