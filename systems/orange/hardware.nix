@@ -8,6 +8,12 @@
   hardware = {
     enableRedistributableFirmware = true;
     nvidia.open = false;
+    nvidia.prime = {
+      sync.enable = false;
+      offload.enable = true;
+      intelBusId = "";
+      nvidiaBusId = "";
+    };
   };
 
   boot = {
