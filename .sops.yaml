@@ -1,7 +1,6 @@
 keys:
   - &host_pear age1q5yc4luyu7qpqpsm579ug59zuj92m56qqn4gdpw74lcnqepzveuqwl7eh4
   - &host_kiwi age1ajf9dmcukxsya3rxqyput9wfmtnsweq9c8evgp3mx8nn7dkau5kswfcqnf
-  - &host_lychee age18a3mm5xhtem23d2mf3chjv4xxfm48n9xruzjaq42s046hmvqhqgq888s5z
   - &host_orange age1dpss7e28zr5ss34ajszlw3lmfuzw0rw5rkrcx8gexw44jpha5y8q7c3742
   - &host_strawberry age1aarll6pr2mjq9l3a7mc2lxp6djy0a7xhneemwumcq092dzvtqgxsfyumxm
   - &user_bddvlpr age16aazmlnarycwuk3a9e5sr55e2354sydn9qd5c6edhly9rq9k693s43txeq
@@ -12,7 +11,6 @@ creation_rules:
       - age:
           - *host_pear
           - *host_kiwi
-          - *host_lychee
           - *host_orange
           - *host_strawberry
           - *user_bddvlpr
@@ -25,11 +23,6 @@ creation_rules:
     key_groups:
       - age:
           - *host_kiwi
-          - *user_bddvlpr
-  - path_regex: systems/lychee/[^/]+\.yaml$
-    key_groups:
-      - age:
-          - *host_lychee
           - *user_bddvlpr
   - path_regex: systems/orange/[^/]+\.yaml$
     key_groups:

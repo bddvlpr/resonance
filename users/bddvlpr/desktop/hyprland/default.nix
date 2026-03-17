@@ -44,7 +44,7 @@ in
 
         # Movement
         "${mod} SHIFT, Space, togglefloating, "
-        "${mod}, S, togglesplit"
+        "${mod}, S, layoutmsg, togglesplit"
         "${mod}, E, swapnext"
         "${mod}, F, fullscreen, "
         "${mod}, P, pseudo, "

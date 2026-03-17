@@ -15,6 +15,7 @@
     ffmpeg
     freerdp
     htop
+    nixpkgs-review
     nodejs
     openssl
     pnpm

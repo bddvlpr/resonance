@@ -27,11 +27,6 @@ in
         class = "nixos";
       };
 
-      lychee = {
-        arch = "x86_64";
-        class = "darwin";
-      };
-
       orange = {
         arch = "x86_64";
         class = "nixos";

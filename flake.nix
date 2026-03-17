@@ -9,11 +9,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
       inputs = {
@@ -96,7 +91,6 @@
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
-        "x86_64-darwin"
         "x86_64-linux"
       ];
 
