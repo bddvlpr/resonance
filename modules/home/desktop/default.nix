@@ -86,4 +86,14 @@
       description = "Monitors to bootstrap in window managers.";
     };
   };
+
+  config = {
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+    };
+  };
 }

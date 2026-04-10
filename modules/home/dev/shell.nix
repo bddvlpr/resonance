@@ -20,6 +20,7 @@
     openssl
     pnpm
     step-cli
+    thunar
   ];
 
   bowl.persist.entries = [

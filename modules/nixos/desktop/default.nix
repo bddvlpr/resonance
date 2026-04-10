@@ -37,5 +37,6 @@
 
   config = {
     programs.dconf.enable = true;
+    services.tumbler.enable = true;
   };
 }

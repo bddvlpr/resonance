@@ -6,6 +6,7 @@
     ./fish
     ./gimp
     ./helix
+    ./htop
     ./imv
     ./kitty
     ./libreoffice
@@ -14,6 +15,7 @@
     ./mpv
     ./nextcloud
     ./obs
+    ./prismlauncher
     ./spotify-player
     ./starship
     ./steam

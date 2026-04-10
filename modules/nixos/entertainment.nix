@@ -125,7 +125,6 @@ in
           enable = true;
           openFirewall = true;
           package = pkgs.wivrn.override { cudaSupport = true; };
-          defaultRuntime = true;
         };
       })
     ]

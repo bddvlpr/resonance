@@ -10,7 +10,7 @@ in
   config = lib.mkIf (cfg.enable && lib.elem "hyprland" cfg.environments) {
     services.mako = {
       enable = true;
-      settings.defaultTimeout = 5 * 1000;
+      settings.default-timeout = 5000;
     };
   };
 }
